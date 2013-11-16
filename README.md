@@ -1,0 +1,4 @@
+.conf
+=====
+
+automatic configuration script
