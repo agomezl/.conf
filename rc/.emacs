@@ -76,6 +76,8 @@
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
 
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
 
 ;; configuraciones de ibuffer
 (setq ibuffer-saved-filter-groups
@@ -175,3 +177,13 @@
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
 	    (auto-complete-mode)))
+
+;;Org-mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+(add-hook 'Org-mode-hook
+	  (lambda ()
+	    (flyspell-mode)))
