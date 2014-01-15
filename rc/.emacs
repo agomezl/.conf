@@ -19,7 +19,8 @@
  '(ibuffer-saved-filter-groups nil t)
  '(ibuffer-saved-filters (quote (("gnus" ((or (mode . message-mode) (mode . mail-mode) (mode . gnus-group-mode) (mode . gnus-summary-mode) (mode . gnus-article-mode)))) ("programming" ((or (mode . emacs-lisp-mode) (mode . cperl-mode) (mode . c-mode) (mode . java-mode) (mode . idl-mode) (mode . lisp-mode)))))))
  '(ibuffer-show-empty-filter-groups nil)
- '(initial-buffer-choice t)
+ '(inhibit-startup-screen t)
+ '(initial-buffer-choice nil)
  '(ispell-dictionary "spanish")
  '(keyboard-coding-system (quote utf-8-unix))
  '(nxhtml-autoload-web nil t)
@@ -84,6 +85,7 @@
       '(("alien"
 	 ("Latex" (or (filename . ".tex")
 		      (filename . ".bib")))
+	 ("Dired" (mode . dired-mode))
 	 ("Haskell" (filename . ".hs"))
 	 ("JavaScript" (filename . ".js"))
 	 ("Bash"(filename . ".sh" ))
@@ -184,6 +186,8 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-(add-hook 'Org-mode-hook
+(add-hook 'org-mode-hook
 	  (lambda ()
 	    (flyspell-mode)))
+
+(put 'dired-find-alternate-file 'disabled nil)

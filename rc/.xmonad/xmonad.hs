@@ -31,7 +31,9 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
     , ((mod4Mask , xK_d), spawn "pcmanfm")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
-                                       ["emacs", "google-chrome", "lxterminal", "virtualbox"])
+                                       ["ec","google-chrome","emacs",
+                                        "lxterminal", "virtualbox",
+                                        "qbittorrent","vlc"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask , xK_o), spawn "sh /home/alien/.xmonad/restore.sh")
