@@ -17,11 +17,6 @@ alias emacs='~/.conf/scripts/ec.sh'
 
 export PS1="\n\[\033[1;37m\]\342\224\214\342\224\200<\[\033[1;31m\]\t\[\033[1;37m\]//\[\033[1;33m\]\u\[\033[1;37m\]//\[\033[1;31m\]\W\[\033[1;37m\]>\n\342\224\224\342\224\200>>=\[\033[0m\] "
 
-# typemsg <<EOF
-# Think about your sins
-# EOF
-# clear
-
 alias shutdown='\
 echo "##################### WARNING ##########################";\
 echo "# You are trying to shutdown the master node of Apolo, #";\

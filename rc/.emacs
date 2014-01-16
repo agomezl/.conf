@@ -21,7 +21,7 @@
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
- '(ispell-dictionary "spanish")
+ '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
  '(nxhtml-autoload-web nil t)
  '(save-place t nil (saveplace))
@@ -90,6 +90,7 @@
 	 ("JavaScript" (filename . ".js"))
 	 ("Bash"(filename . ".sh" ))
 	 ("MarkDown" (filename . ".md"))
+	 ("Org" (filename . ".org"))
 	 ("Java" (filename . ".java")))))
 
 (add-hook 'ibuffer-mode-hook
