@@ -10,19 +10,20 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
- '(custom-enabled-themes nil)
+ '(custom-enabled-themes (quote (wombat)))
  '(display-battery-mode t)
  '(ecb-layout-window-sizes (quote (("left5" (ecb-directories-buffer-name 0.23809523809523808 . 0.2807017543859649) (ecb-sources-buffer-name 0.23809523809523808 . 0.3508771929824561) (ecb-history-buffer-name 0.23809523809523808 . 0.3508771929824561)))))
  '(ecb-options-version "2.40")
  '(global-linum-mode t)
  '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation (lambda nil (ghc-init) (flymake-mode) (turn-on-haskell-indentation) (auto-complete-mode) (local-set-key (kbd "C-?") (quote flymake-display-err-menu-for-current-line))))) t)
- '(ibuffer-saved-filter-groups nil t)
+ '(ibuffer-saved-filter-groups nil)
  '(ibuffer-saved-filters (quote (("gnus" ((or (mode . message-mode) (mode . mail-mode) (mode . gnus-group-mode) (mode . gnus-summary-mode) (mode . gnus-article-mode)))) ("programming" ((or (mode . emacs-lisp-mode) (mode . cperl-mode) (mode . c-mode) (mode . java-mode) (mode . idl-mode) (mode . lisp-mode)))))))
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
  '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
+ '(menu-bar-mode nil)
  '(nxhtml-autoload-web nil t)
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
@@ -32,6 +33,10 @@
 
 ;;; uncomment for CJK utf-8 support for non-Asian users
 ;; (require 'un-define)
+
+(setq-default indent-tabs-mode nil)
+
+
 
 ;; backups
 
@@ -44,12 +49,15 @@
 
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
-	  (lambda ()
-	    (ghc-init)
-	    (flymake-mode)
-	    (turn-on-haskell-indentation)
-	    (auto-complete-mode)
-	    (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
+          (lambda ()
+            (ghc-init)
+            (flymake-mode)
+            (turn-on-haskell-indentation)
+            (auto-complete-mode)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (interactive) (column-marker-1 60)
+            (interactive) (column-marker-2 70)
+            (interactive) (column-marker-3 80)))
 
 ;; configuraciones de C
 
@@ -58,11 +66,14 @@
 (require 'gccsense)
 
 (add-hook 'c-mode-common-hook
-	  (lambda ()
-	    (gccsense-flymake-setup)
-	    (flymake-mode)
-	    (local-set-key [C-tab] 'ac-complete-gccsense)
-	    (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
+          (lambda ()
+            (gccsense-flymake-setup)
+            (flymake-mode)
+            (local-set-key [C-tab] 'ac-complete-gccsense)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (interactive) (column-marker-1 60)
+            (interactive) (column-marker-2 70)
+            (interactive) (column-marker-3 80)))
 
 ;; atajos de teclado y cosas raras generales
 (put 'downcase-region 'disabled nil)
@@ -83,34 +94,38 @@
 ;; configuraciones de ibuffer
 (setq ibuffer-saved-filter-groups
       '(("alien"
-	 ("Latex" (or (filename . ".tex")
-		      (filename . ".bib")))
-	 ("Dired" (mode . dired-mode))
-	 ("Haskell" (filename . ".hs"))
-	 ("JavaScript" (filename . ".js"))
-	 ("Bash"(filename . ".sh" ))
-	 ("MarkDown" (filename . ".md"))
-	 ("Org" (filename . ".org"))
-	 ("Java" (filename . ".java")))))
+         ("Latex" (or (filename . ".tex")
+                      (filename . ".bib")))
+         ("Dired" (mode . dired-mode))
+         ("Haskell" (filename . ".hs"))
+         ("JavaScript" (filename . ".js"))
+         ("Bash"(filename . ".sh" ))
+         ("MarkDown" (filename . ".md"))
+         ("Org" (filename . ".org"))
+         ("Java" (filename . ".java")))))
 
 (add-hook 'ibuffer-mode-hook
-	  '(lambda ()
-	     (ibuffer-switch-to-saved-filter-groups "alien")))
+          '(lambda ()
+             (ibuffer-switch-to-saved-filter-groups "alien")))
 
 ;; configuracion de latex
 
 (require 'flymake)
 
 (add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	  (tex-pdf-mode)
-	  (auto-complete-mode)
-	  (flymake-mode)
-	  (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
+          (lambda ()
+            (tex-pdf-mode)
+            (auto-complete-mode)
+            (flymake-mode)
+            (flyspell-mode)
+            (interactive) (column-marker-1 60)
+            (interactive) (column-marker-2 70)
+            (interactive) (column-marker-3 80)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
 
 (defun flymake-get-tex-args (file-name)
-(list "pdflatex"
-(list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+  (list "pdflatex"
+        (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
 
 
 (custom-set-faces
@@ -118,7 +133,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(cursor ((t (:background "white"))))
+ '(show-paren-match ((t (:background "lime green"))))
+ '(show-paren-mismatch ((t (:background "red1" :foreground "white")))))
 
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
@@ -133,21 +150,24 @@
 ;;; Emacs is not a package manager, and here we load its package manager!
 (require 'package)
 (dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-		  ("elpa" . "http://tromey.com/elpa/")
-		  ("melpa" . "http://melpa.milkbox.net/packages/")
-		  ))
+                  ("elpa" . "http://tromey.com/elpa/")
+                  ("melpa" . "http://melpa.milkbox.net/packages/")
+                  ))
   (add-to-list 'package-archives source t))
 (package-initialize)
 
 ;;JavaScript shit
 (require 'flymake-jslint)
 (add-hook 'js-mode-hook
-	  (lambda ()
-	    ;; Scan the file for nested code blocks
-	    (imenu-add-menubar-index)
-	    ;; Activate the folding mode
-	    (hs-minor-mode t)
-	    (flymake-jslint-load)))
+          (lambda ()
+            ;; Scan the file for nested code blocks
+            (imenu-add-menubar-index)
+            ;; Activate the folding mode
+            (hs-minor-mode t)
+            (flymake-jslint-load)
+            (interactive) (column-marker-1 60)
+            (interactive) (column-marker-2 70)
+            (interactive) (column-marker-3 80)))
 
 ;; hide code
 (global-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
@@ -156,10 +176,10 @@
 ;; flymake
 (eval-after-load "flymake"
   '(progn
-    (defun flymake-after-change-function (start stop len)
-      "Start syntax check for current buffer if it isn't already running."
-      ;; Do nothing, don't want to run checks until I save.
-      )))
+     (defun flymake-after-change-function (start stop len)
+       "Start syntax check for current buffer if it isn't already running."
+       ;; Do nothing, don't want to run checks until I save.
+       )))
 
 
 ;; ARDUINO
@@ -176,11 +196,6 @@
 ;; Enable EDE (Project Management) features
 (global-ede-mode 1)
 
-;;Erland
-(add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (auto-complete-mode)))
-
 ;;Org-mode
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
@@ -188,7 +203,7 @@
 (setq org-log-done t)
 
 (add-hook 'org-mode-hook
-	  (lambda ()
-	    (flyspell-mode)))
+          (lambda ()
+            (flyspell-mode)))
 
 (put 'dired-find-alternate-file 'disabled nil)
