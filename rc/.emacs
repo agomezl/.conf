@@ -12,14 +12,16 @@
  '(column-number-mode t)
  '(custom-enabled-themes (quote (wombat)))
  '(display-battery-mode t)
- '(ecb-layout-window-sizes (quote (("left5" (ecb-directories-buffer-name 0.23809523809523808 . 0.2807017543859649) (ecb-sources-buffer-name 0.23809523809523808 . 0.3508771929824561) (ecb-history-buffer-name 0.23809523809523808 . 0.3508771929824561)))))
+ '(ecb-layout-window-sizes
+   (quote
+    (("left5"
+      (ecb-directories-buffer-name 0.23809523809523808 . 0.2807017543859649)
+      (ecb-sources-buffer-name 0.23809523809523808 . 0.3508771929824561)
+      (ecb-history-buffer-name 0.23809523809523808 . 0.3508771929824561)))))
  '(ecb-options-version "2.40")
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
  '(global-linum-mode t)
- '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation (lambda nil (ghc-init) (flymake-mode) (turn-on-haskell-indentation) (auto-complete-mode) (local-set-key (kbd "C-?") (quote flymake-display-err-menu-for-current-line))))) t)
- '(ibuffer-saved-filter-groups nil)
- '(ibuffer-saved-filters (quote (("gnus" ((or (mode . message-mode) (mode . mail-mode) (mode . gnus-group-mode) (mode . gnus-summary-mode) (mode . gnus-article-mode)))) ("programming" ((or (mode . emacs-lisp-mode) (mode . cperl-mode) (mode . c-mode) (mode . java-mode) (mode . idl-mode) (mode . lisp-mode)))))))
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
@@ -93,6 +95,7 @@
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 (global-set-key (kbd "C-S-<left>") 'previous-buffer)
 (global-set-key (kbd "C-S-<right>") 'next-buffer)
+(global-set-key (kbd "C-M-S-g" ) 'magit-status)
 
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
@@ -105,6 +108,9 @@
       '(("alien"
          ("Latex" (or (filename . ".tex")
                       (filename . ".bib")))
+         ("Git" (or (mode . magit-status-mode)
+                    (mode . magit-mode)
+                    (mode . git-commit-mode)))
          ("Dired" (mode . dired-mode))
          ("Haskell" (filename . ".hs"))
          ("JavaScript" (filename . ".js"))
