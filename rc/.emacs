@@ -63,9 +63,9 @@
 
 ;; General hook
 (defun general-hook ()
-  (interactive) (column-marker-1 60)
-  (interactive) (column-marker-2 70)
-  (interactive) (column-marker-3 80)
+  (interactive) (column-marker-1 77)
+  (interactive) (column-marker-2 78)
+  (interactive) (column-marker-3 79)
   (fci-mode)
   (auto-complete-mode)
   )
@@ -145,9 +145,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-marker-1 ((t (:background "black" :foreground "green" :box (:line-width 2 :color "black" :style released-button)))))
- '(column-marker-2 ((t (:background "black" :foreground "yellow" :box (:line-width 2 :color "black" :style released-button)))))
- '(column-marker-3 ((t (:background "black" :foreground "orange" :box (:line-width 2 :color "black" :style released-button)))))
+ '(column-marker-1 ((t (:underline (:color "green" :style wave)))))
+ '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))))
+ '(column-marker-3 ((t (:underline (:color "orange" :style wave)))))
  '(cursor ((t (:background "white"))))
  '(show-paren-match ((t (:background "lime green"))))
  '(show-paren-mismatch ((t (:background "red1" :foreground "white")))))
@@ -212,6 +212,7 @@
 ;; (global-ede-mode 1)
 
 ;;Org-mode
+
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
