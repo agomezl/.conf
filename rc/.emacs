@@ -14,6 +14,8 @@
  '(display-battery-mode t)
  '(ecb-layout-window-sizes (quote (("left5" (ecb-directories-buffer-name 0.23809523809523808 . 0.2807017543859649) (ecb-sources-buffer-name 0.23809523809523808 . 0.3508771929824561) (ecb-history-buffer-name 0.23809523809523808 . 0.3508771929824561)))))
  '(ecb-options-version "2.40")
+ '(fci-rule-column 80)
+ '(fci-rule-use-dashes t)
  '(global-linum-mode t)
  '(haskell-mode-hook (quote (turn-on-haskell-indent turn-on-haskell-indentation (lambda nil (ghc-init) (flymake-mode) (turn-on-haskell-indentation) (auto-complete-mode) (local-set-key (kbd "C-?") (quote flymake-display-err-menu-for-current-line))))) t)
  '(ibuffer-saved-filter-groups nil)
@@ -53,11 +55,20 @@
             (ghc-init)
             (flymake-mode)
             (turn-on-haskell-indentation)
-            (auto-complete-mode)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-            (interactive) (column-marker-1 60)
-            (interactive) (column-marker-2 70)
-            (interactive) (column-marker-3 80)))
+            (general-hook)
+            ))
+
+;; General hook
+(defun general-hook ()
+  (interactive) (column-marker-1 60)
+  (interactive) (column-marker-2 70)
+  (interactive) (column-marker-3 80)
+  (fci-mode)
+  (auto-complete-mode)
+  )
+
+
 
 ;; configuraciones de C
 
@@ -71,9 +82,7 @@
             (flymake-mode)
             (local-set-key [C-tab] 'ac-complete-gccsense)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-            (interactive) (column-marker-1 60)
-            (interactive) (column-marker-2 70)
-            (interactive) (column-marker-3 80)))
+            (general-hook)))
 
 ;; atajos de teclado y cosas raras generales
 (put 'downcase-region 'disabled nil)
@@ -115,12 +124,9 @@
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (tex-pdf-mode)
-            (auto-complete-mode)
             (flymake-mode)
             (flyspell-mode)
-            (interactive) (column-marker-1 60)
-            (interactive) (column-marker-2 70)
-            (interactive) (column-marker-3 80)
+            (general-hook)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
 
 (defun flymake-get-tex-args (file-name)
@@ -133,6 +139,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-marker-1 ((t (:background "black" :foreground "green" :box (:line-width 2 :color "black" :style released-button)))))
+ '(column-marker-2 ((t (:background "black" :foreground "yellow" :box (:line-width 2 :color "black" :style released-button)))))
+ '(column-marker-3 ((t (:background "black" :foreground "orange" :box (:line-width 2 :color "black" :style released-button)))))
  '(cursor ((t (:background "white"))))
  '(show-paren-match ((t (:background "lime green"))))
  '(show-paren-mismatch ((t (:background "red1" :foreground "white")))))

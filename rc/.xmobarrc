@@ -3,16 +3,23 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*"
        , border = TopB
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopSize L 90 22
+       , position = TopSize L 95 22
        , lowerOnStart = True
        , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-		    , Run Memory ["-t","Mem: <usedratio>%"] 10
-		    , Run Swap [] 10
-		    , Run Date "%a %b %_d %Y %H:%M" "date" 10
-		    , Run StdinReader
-		    , Run CommandReader "~/.pymodoro/pymodoro.py" "pomodoro"
-		    ]
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %b %_d %Y %H:%M" "date" 10
+                    , Run StdinReader
+                    , Run Volume "default" "Master" [] 10
+                    , Run Network "em1" ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
+                    , Run BatteryP ["BAT1"]
+                                   ["-t", "Bat: <left>%(<acstatus>)"
+                                   , "-L", "10", "-H", "80"
+                                   , "-l", "red", "-h", "green"
+                                   ] 10
+                    , Run CommandReader "~/.pymodoro/pymodoro.py" "pomodoro"
+                    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %pomodoro% | %cpu% | %memory% * %swap% | <fc=#ee9a00>%date%</fc> "
+       , template = "%StdinReader% }{ %pomodoro% | %default:Master% | %em1% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> "
        }
