@@ -63,9 +63,6 @@
 
 ;; General hook
 (defun general-hook ()
-  (interactive) (column-marker-1 77)
-  (interactive) (column-marker-2 78)
-  (interactive) (column-marker-3 79)
   (fci-mode)
   (auto-complete-mode)
   )
@@ -108,6 +105,8 @@
       '(("alien"
          ("Latex" (or (filename . ".tex")
                       (filename . ".bib")))
+         ("C++" (or ( filename . ".cpp")
+                    ( filename . ".c" )))
          ("Git" (or (mode . magit-status-mode)
                     (mode . magit-mode)
                     (mode . git-commit-mode)))
@@ -180,9 +179,7 @@
             ;; Activate the folding mode
             (hs-minor-mode t)
             (flymake-jslint-load)
-            (interactive) (column-marker-1 60)
-            (interactive) (column-marker-2 70)
-            (interactive) (column-marker-3 80)))
+            (fci-mode)))
 
 ;; hide code
 (global-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
