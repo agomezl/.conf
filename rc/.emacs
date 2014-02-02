@@ -85,6 +85,8 @@
 
 ;; atajos de teclado y cosas raras generales
 (put 'downcase-region 'disabled nil)
+(global-unset-key (kbd "C-z"))
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
@@ -93,7 +95,12 @@
 (global-set-key (kbd "C-S-<left>") 'previous-buffer)
 (global-set-key (kbd "C-S-<right>") 'next-buffer)
 (global-set-key (kbd "C-M-S-g" ) 'magit-status)
-(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-M-S-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-M-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-M-S-<down>") 'shrink-window)
+(global-set-key (kbd "C-M-S-<up>") 'enlarge-window)
+(global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
+(global-set-key (kbd "C-S-z")  'jump-to-register)
 
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
