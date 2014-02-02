@@ -93,6 +93,7 @@
 (global-set-key (kbd "C-S-<left>") 'previous-buffer)
 (global-set-key (kbd "C-S-<right>") 'next-buffer)
 (global-set-key (kbd "C-M-S-g" ) 'magit-status)
+(global-unset-key (kbd "C-z"))
 
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
