@@ -40,7 +40,10 @@
 
 (setq-default indent-tabs-mode nil)
 
-
+(add-hook 'makefile-mode
+          ( lambda ()
+            (setq-local indent-tabs-mode t)
+            (setq-local whitespace-style '(empty face trailing lines))))
 
 ;; backups
 
