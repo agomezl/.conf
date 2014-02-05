@@ -12,12 +12,7 @@
  '(column-number-mode t)
  '(custom-enabled-themes (quote (wombat)))
  '(display-battery-mode t)
- '(ecb-layout-window-sizes
-   (quote
-    (("left5"
-      (ecb-directories-buffer-name 0.23809523809523808 . 0.2807017543859649)
-      (ecb-sources-buffer-name 0.23809523809523808 . 0.3508771929824561)
-      (ecb-history-buffer-name 0.23809523809523808 . 0.3508771929824561)))))
+ '(ecb-layout-window-sizes (quote (("left5" (ecb-directories-buffer-name 0.23809523809523808 . 0.2807017543859649) (ecb-sources-buffer-name 0.23809523809523808 . 0.3508771929824561) (ecb-history-buffer-name 0.23809523809523808 . 0.3508771929824561)))))
  '(ecb-options-version "2.40")
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
@@ -62,6 +57,14 @@
             (turn-on-haskell-indentation)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
             (general-hook)
+            (flymake-errline ((t (:background "orange" :foreground "black"))))
+            (flymake-warnline ((t (:background "aquamarine" :foreground "black"))))
+            (font-lock-comment-face ((t (:foreground "#FF7F24"))))
+            (font-lock-function-name-face ((t (:foreground "#87CEFA"))))
+            (font-lock-keyword-face ((t (:foreground "#00FCFC" :weight bold))))
+            (font-lock-string-face ((t (:foreground "chocolate"))))
+            (font-lock-type-face ((t (:foreground "#98FB98" :weight normal))))
+            (font-lock-variable-name-face ((t (:foreground "#EEDD82"))))
             ))
 
 ;; General hook
