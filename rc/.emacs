@@ -57,14 +57,7 @@
             (turn-on-haskell-indentation)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
             (general-hook)
-            (flymake-errline ((t (:background "orange" :foreground "black"))))
-            (flymake-warnline ((t (:background "aquamarine" :foreground "black"))))
-            (font-lock-comment-face ((t (:foreground "#FF7F24"))))
-            (font-lock-function-name-face ((t (:foreground "#87CEFA"))))
-            (font-lock-keyword-face ((t (:foreground "#00FCFC" :weight bold))))
-            (font-lock-string-face ((t (:foreground "chocolate"))))
-            (font-lock-type-face ((t (:foreground "#98FB98" :weight normal))))
-            (font-lock-variable-name-face ((t (:foreground "#EEDD82"))))
+            (buffer-face-mode)
             ))
 
 ;; General hook
