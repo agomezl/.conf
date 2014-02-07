@@ -57,7 +57,6 @@
             (turn-on-haskell-indentation)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
             (general-hook)
-            (buffer-face-mode)
             ))
 
 ;; General hook
@@ -155,8 +154,10 @@
  '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))))
  '(column-marker-3 ((t (:underline (:color "orange" :style wave)))))
  '(cursor ((t (:background "white"))))
+ '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
  '(show-paren-match ((t (:background "lime green"))))
- '(show-paren-mismatch ((t (:background "red1" :foreground "white")))))
+ '(show-paren-mismatch ((t (:background "red1" :foreground "white"))))
+ '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
 
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
