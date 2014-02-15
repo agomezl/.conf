@@ -18,9 +18,9 @@ main = do
     , startupHook = setWMName "LG3D"
     , layoutHook = avoidStruts  $  layoutHook defaultConfig
     , logHook = dynamicLogWithPP xmobarPP
-                        { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "green" "" . shorten 100
-                        }
+			{ ppOutput = hPutStrLn xmproc
+			, ppTitle = xmobarColor "green" "" . shorten 100
+			}
     ,terminal    = "lxterminal"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
@@ -31,9 +31,9 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
     , ((mod4Mask , xK_d), spawn "pcmanfm")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
-                                       ["ec","google-chrome","emacs",
-                                        "lxterminal", "virtualbox",
-                                        "qbittorrent","vlc"])
+				       ["ec","google-chrome","emacs",
+					"thunderbird", "virtualbox",
+					"qbittorrent","vlc","lxterminal"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask , xK_o), spawn "sh /home/alien/.xmonad/restore.sh")
@@ -47,9 +47,10 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_F11), spawn "pm-hibernate")
     ]
 
-myWorkspaces = [ "Web", "Emacs", "Shell" ] ++ map show [4 .. 9]
+myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 8] ++ ["Mail"]
 myHooks = composeAll
-          [className =? "Google-chrome" --> doShift "Web"
-          ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "Lxterminal"--> doShift "Shell"
-          ]
+	  [className =? "Google-chrome" --> doShift "Web"
+	  ,className =? "Emacs"--> doShift "Emacs"
+	  ,className =? "Lxterminal"--> doShift "Shell"
+	  ,className =? "Thunderbird" --> doShift "Mail"
+	  ]
