@@ -100,6 +100,13 @@
 (global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
 (global-set-key (kbd "C-S-z")  'jump-to-register)
 
+;;multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 (setq ispell-program-name "aspell"
       ispell-extra-args '("--sug-mode=ultra"))
 
