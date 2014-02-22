@@ -36,9 +36,9 @@
 (setq-default indent-tabs-mode nil)
 
 (add-hook 'makefile-mode
-	  ( lambda ()
-	    (setq-local indent-tabs-mode t)
-	    (setq-local whitespace-style '(empty face trailing lines))))
+          ( lambda ()
+            (setq-local indent-tabs-mode t)
+            (setq-local whitespace-style '(empty face trailing lines))))
 
 ;; backups
 
@@ -51,18 +51,21 @@
 
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
-	  (lambda ()
-	    (ghc-init)
-	    (flymake-mode)
-	    (turn-on-haskell-indentation)
-	    (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-	    (general-hook)
-	    ))
+          (lambda ()
+            (ghc-init)
+            (flymake-mode)
+            (turn-on-haskell-indentation)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (general-hook)
+            ))
 
 ;; General hook
 (defun general-hook ()
   (fci-mode)
   (auto-complete-mode)
+  (custom-set-faces
+    '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
+    '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
   )
 
 
@@ -74,12 +77,12 @@
 (require 'gccsense)
 
 (add-hook 'c-mode-common-hook
-	  (lambda ()
-	    (gccsense-flymake-setup)
-	    (flymake-mode)
-	    (local-set-key [C-tab] 'ac-complete-gccsense)
-	    (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-	    (general-hook)))
+          (lambda ()
+            (gccsense-flymake-setup)
+            (flymake-mode)
+            (local-set-key [C-tab] 'ac-complete-gccsense)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (general-hook)))
 
 ;; atajos de teclado y cosas raras generales
 (put 'downcase-region 'disabled nil)
@@ -101,7 +104,7 @@
 (global-set-key (kbd "C-S-z")  'jump-to-register)
 
 ;;multiple cursors
-(require 'multiple-cursors)
+;;(require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -116,39 +119,39 @@
 ;; configuraciones de ibuffer
 (setq ibuffer-saved-filter-groups
       '(("alien"
-	 ("Latex" (or (filename . ".tex")
-		      (filename . ".bib")))
-	 ("Git" (or (mode . magit-status-mode)
-		    (mode . magit-mode)
-		    (mode . git-commit-mode)))
-	 ("Dired" (mode . dired-mode))
-	 ("Haskell" (mode . haskell-mode))
-	 ("JavaScript" (filename . ".js"))
-	 ("Bash"(filename . ".sh" ))
-	 ("MarkDown" (filename . ".md"))
-	 ("Org" (filename . ".org"))
-	 ("Java" (filename . ".java"))
-	 ("C++" (mode . c-mode)))))
+         ("Latex" (or (filename . ".tex")
+                      (filename . ".bib")))
+         ("Git" (or (mode . magit-status-mode)
+                    (mode . magit-mode)
+                    (mode . git-commit-mode)))
+         ("Dired" (mode . dired-mode))
+         ("Haskell" (mode . haskell-mode))
+         ("JavaScript" (filename . ".js"))
+         ("Bash"(filename . ".sh" ))
+         ("MarkDown" (filename . ".md"))
+         ("Org" (filename . ".org"))
+         ("Java" (filename . ".java"))
+         ("C++" (mode . c-mode)))))
 
 (add-hook 'ibuffer-mode-hook
-	  '(lambda ()
-	     (ibuffer-switch-to-saved-filter-groups "alien")))
+          '(lambda ()
+             (ibuffer-switch-to-saved-filter-groups "alien")))
 
 ;; configuracion de latex
 
 (require 'flymake)
 
 (add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (tex-pdf-mode)
-	    (flymake-mode)
-	    (flyspell-mode)
-	    (general-hook)
-	    (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
+          (lambda ()
+            (tex-pdf-mode)
+            (flymake-mode)
+            (flyspell-mode)
+            (general-hook)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
 
 (defun flymake-get-tex-args (file-name)
   (list "pdflatex"
-	(list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+        (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
 
 
 (custom-set-faces
@@ -178,21 +181,21 @@
 ;;; Emacs is not a package manager, and here we load its package manager!
 (require 'package)
 (dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-		  ("elpa" . "http://tromey.com/elpa/")
-		  ("melpa" . "http://melpa.milkbox.net/packages/")
-		  ))
+                  ("elpa" . "http://tromey.com/elpa/")
+                  ("melpa" . "http://melpa.milkbox.net/packages/")
+                  ))
   (add-to-list 'package-archives source t))
 (package-initialize)
 
 ;;JavaScript shit
 (require 'flymake-jslint)
 (add-hook 'js-mode-hook
-	  (lambda ()
-	    ;; Scan the file for nested code blocks
-	    (imenu-add-menubar-index)
-	    ;; Activate the folding mode
-	    (hs-minor-mode t)
-	    (fci-mode)))
+          (lambda ()
+            ;; Scan the file for nested code blocks
+            (imenu-add-menubar-index)
+            ;; Activate the folding mode
+            (hs-minor-mode t)
+            (fci-mode)))
 
 ;; hide code
 (global-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
@@ -229,16 +232,16 @@
 (setq org-log-done t)
 
 (add-hook 'org-mode-hook
-	  (lambda ()
-	    (flyspell-mode)))
+          (lambda ()
+            (flyspell-mode)))
 
 (put 'dired-find-alternate-file 'disabled nil)
 
 (add-hook 'magit-commit-mode-hook
-	  (lambda ()
-	    (general-hook)))
+          (lambda ()
+            (general-hook)))
 
 (add-hook 'git-commit-mode-hook
-	  (lambda ()
-	    (general-hook)
-	    (flyspell-mode)))
+          (lambda ()
+            (general-hook)
+            (flyspell-mode)))

@@ -1,26 +1,32 @@
 import XMonad
-import XMonad.Config.Gnome
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
-import XMonad.Layout.Fullscreen
 import XMonad.Actions.GridSelect
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
+import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Named
+import XMonad.Layout.Grid
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
 
+main :: IO ()
 main = do
   xmproc <- spawnPipe "/home/alien/.cabal/bin/xmobar /home/alien/.xmobarrc"
   xmonad $ desktopConfig
     {manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
-    , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
+                                 onWorkspace "Mail" Full
+                                 baseLayout
     , logHook = dynamicLogWithPP xmobarPP
-			{ ppOutput = hPutStrLn xmproc
-			, ppTitle = xmobarColor "green" "" . shorten 100
-			}
+                        { ppOutput = hPutStrLn xmproc
+                        , ppTitle = xmobarColor "green" "" . shorten 100
+                        }
     ,terminal    = "lxterminal"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
@@ -31,9 +37,9 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
     , ((mod4Mask , xK_d), spawn "pcmanfm")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
-				       ["ec","google-chrome","emacs",
-					"thunderbird", "virtualbox",
-					"qbittorrent","vlc","lxterminal"])
+                                       ["ec","google-chrome","emacs",
+                                        "thunderbird", "virtualbox",
+                                        "qbittorrent","vlc","lxterminal"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask , xK_o), spawn "sh /home/alien/.xmonad/restore.sh")
@@ -47,10 +53,22 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_F11), spawn "pm-hibernate")
     ]
 
+myWorkspaces :: [String]
 myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 8] ++ ["Mail"]
+
+
 myHooks = composeAll
-	  [className =? "Google-chrome" --> doShift "Web"
-	  ,className =? "Emacs"--> doShift "Emacs"
-	  ,className =? "Lxterminal"--> doShift "Shell"
-	  ,className =? "Thunderbird" --> doShift "Mail"
-	  ]
+          [className =? "Google-chrome" --> doShift "Web"
+          ,className =? "Emacs"--> doShift "Emacs"
+          ,className =? "Lxterminal"--> doShift "Shell"
+          ,className =? "Thunderbird" --> doShift "Mail"
+          ]
+
+
+baseLayout = tall ||| Mirror tall ||| Full
+  where  tall = Tall 1 (3/100) (1/2)
+
+
+shellLayout = Full ||| grid
+  where
+    grid = named "Grid" $ spacing 2 $ Grid
