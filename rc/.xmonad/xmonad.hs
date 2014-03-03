@@ -54,7 +54,7 @@ main = do
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 8] ++ ["Mail"]
+myWorkspaces = [ "Web", "Emacs", "Shell","Mail"] ++ map show [5 .. 8]
 
 
 myHooks = composeAll
