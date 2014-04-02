@@ -5,6 +5,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(agda2-highlight-face-groups (quote default-faces))
+ '(agda2-include-dirs (quote ("." "/home/alien/.cabal/lib/lib-0.7/src")))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
@@ -37,8 +39,8 @@
 
 (add-hook 'makefile-mode
           ( lambda ()
-            (setq-local indent-tabs-mode t)
-            (setq-local whitespace-style '(empty face trailing lines))))
+            (setq indent-tabs-mode t)
+            (setq whitespace-style '(empty face trailing lines))))
 
 ;; backups
 
@@ -53,7 +55,6 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (ghc-init)
-            (flymake-mode)
             (turn-on-haskell-indentation)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
             (general-hook)
@@ -144,7 +145,6 @@
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (tex-pdf-mode)
-            (flymake-mode)
             (flyspell-mode)
             (general-hook)
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
@@ -164,6 +164,10 @@
  '(column-marker-3 ((t (:underline (:color "orange" :style wave)))))
  '(cursor ((t (:background "white"))))
  '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
+ '(idris-prover-processed-face ((t nil)))
+ '(idris-semantic-bound-face ((t (:foreground "tomato"))))
+ '(idris-semantic-data-face ((t (:foreground "DarkOliveGreen1"))))
+ '(idris-semantic-type-face ((t (:foreground "light steel blue"))))
  '(show-paren-match ((t (:background "lime green"))))
  '(show-paren-mismatch ((t (:background "red1" :foreground "white"))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
@@ -245,3 +249,10 @@
           (lambda ()
             (general-hook)
             (flyspell-mode)))
+
+(add-hook 'agda-mode
+          (lambda ()
+            (general-hook)))
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
