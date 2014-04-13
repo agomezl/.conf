@@ -164,8 +164,8 @@
  '(idris-semantic-bound-face ((t (:foreground "tomato"))))
  '(idris-semantic-data-face ((t (:foreground "DarkOliveGreen1"))))
  '(idris-semantic-type-face ((t (:foreground "light steel blue"))))
- '(show-paren-match ((t (:background "lime green"))))
- '(show-paren-mismatch ((t (:background "red1" :foreground "white"))))
+ '(show-paren-match ((t (:foreground "lime green" :weight bold))))
+ '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
 
 ;; UTF-8 as default encoding
@@ -220,3 +220,4 @@
 
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
+(put 'upcase-region 'disabled nil)
