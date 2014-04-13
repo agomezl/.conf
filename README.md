@@ -9,4 +9,4 @@ automatic configuration script for
 * [Xmobar](http://projects.haskell.org/xmobar/)
 * X11
 
-and a [cheat sheet](agomezl.github.io/AgomezlCS.pdf)
+and a [cheat sheet](http://agomezl.github.io/AgomezlCS.pdf)
