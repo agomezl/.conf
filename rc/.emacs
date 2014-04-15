@@ -39,6 +39,11 @@
             (setq indent-tabs-mode t)
             (setq whitespace-style '(empty face trailing lines))))
 
+;; Yasnipet
+
+(require 'yasnippet)
+(yas-reload-all)
+
 ;; backups
 
 (setq delete-old-versions t
@@ -48,12 +53,15 @@
 
 ;; configuraciones de haskell
 
+
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
           (lambda ()
             (ghc-init)
             (turn-on-haskell-indentation)
             (general-hook)
+            (yas-minor-mode)
+            (local-set-key (kbd "C-<tab>") 'yas-expand)
             ))
 
 ;; General hook
@@ -179,9 +187,6 @@
                   ))
   (add-to-list 'package-archives source t))
 (package-initialize)
-
-;; hide code
-(global-set-key (kbd "C-c SPC") 'hs-toggle-hiding)
 
 
 ;; flymake
