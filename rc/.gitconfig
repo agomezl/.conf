@@ -1,0 +1,9 @@
+[user]
+	email = alegomez544@gmail.com
+	name = agomezl
+[color]
+	ui = true
+[push]
+	default = current
+[merge]
+	tool = emerge
