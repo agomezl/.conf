@@ -9,6 +9,7 @@ fi
 
 export PATH=$PATH:/home/alien/.cabal/bin
 export VISUAL='emacs -nw'
+export NAME="Alejandro Gómez Londoño"
 
 alias clean_emacs='find . -name "*~" -exec rm -rf {} \;'
 alias clean_flymake='find . -name "dist" -exec rm -rf {} \;'
