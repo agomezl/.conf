@@ -62,6 +62,7 @@
             (general-hook)
             (yas-minor-mode)
             (local-set-key (kbd "C-<tab>") 'yas-expand)
+            (local-set-key (kbd "C-+") 'yas-insert-snippet)
             ))
 
 ;; General hook
@@ -151,7 +152,10 @@
             (tex-pdf-mode)
             (flyspell-mode)
             (general-hook)
-            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)))
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (yas-minor-mode)
+            (local-set-key (kbd "C-<tab>") 'yas-expand)
+            (local-set-key (kbd "C-+") 'yas-insert-snippet)))
 
 (defun flymake-get-tex-args (file-name)
   (list "pdflatex"
