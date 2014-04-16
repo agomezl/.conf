@@ -4,9 +4,9 @@
 # --
 
 --------------------------------------------------------------------------------
--- File  : `(file-name-base)`
--- Autor : `(user-full-name)`
--- Date  : `(current-time-string)`
+-- File   : `(file-name-base)`
+-- Author : `(user-full-name)`
+-- Date   : `(current-time-string)`
 -- Description : $1
 --------------------------------------------------------------------------------
 -- Change log :

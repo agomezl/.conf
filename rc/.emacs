@@ -1,10 +1,39 @@
 ;; .emacs
 
+;;;;;;;;;;;;;;;;;;;;;
+;; Package manager ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+(require 'package)
+(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
+                  ("elpa" . "http://tromey.com/elpa/")
+                  ("melpa" . "http://melpa.milkbox.net/packages/")
+                  ))
+  (add-to-list 'package-archives source t))
+(package-initialize)
+
+;;;;;;;;;;;;;
+;; Require ;;
+;;;;;;;;;;;;;
+
+(require 'flymake)
+(require 'package)
+(require 'org)
+(require 'magit)
+(require 'ghc)
+(require 'gist)
+(require 'flyspell)
+(require 'fill-column-indicator)
+(require 'yasnippet)
+(require 'multiple-cursors)
+;; (require 'gccsense)
+
+;;;;;;;;;;;;;;;
+;; Variables ;;
+;;;;;;;;;;;;;;;
+
+;; Miscellaneous
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(agda2-highlight-face-groups (quote default-faces))
  '(agda2-include-dirs (quote ("." "/home/alien/.cabal/lib/lib-0.7/src")))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
@@ -29,71 +58,106 @@
  '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/"))
 
-;;; uncomment for CJK utf-8 support for non-Asian users
-;; (require 'un-define)
-
+;; whitespace-mode
 (setq-default indent-tabs-mode nil)
+
+;; Org
+(setq org-log-done t)
+
+;; aspell
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"))
+
+;; default web browser
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
+
+;; ibuffer custom group
+(setq ibuffer-saved-filter-groups
+      '(("alien"
+         ("Latex" (or (filename . ".tex")
+                      (filename . ".bib")))
+         ("Git" (or (mode . magit-status-mode)
+                    (mode . magit-mode)
+                    (mode . git-commit-mode)))
+         ("Dired" (mode . dired-mode))
+         ("Haskell" (mode . haskell-mode))
+         ("JavaScript" (filename . ".js"))
+         ("Bash"(filename . ".sh" ))
+         ("MarkDown" (filename . ".md"))
+         ("Org" (filename . ".org"))
+         ("Java" (filename . ".java"))
+         ("C++" (mode . c-mode)))))
+(add-hook 'ibuffer-mode-hook
+          '(lambda ()
+             (ibuffer-switch-to-saved-filter-groups "alien")))
+
+;; backups
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
+;; gccsense
+(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'exec-path "/opt/gccsense-0.1/bin/")
+
+;; UTF-8 as default encoding
+(set-language-environment "UTF-8")
+
+;; Yasnipet
+(require 'yasnippet)
+(yas-reload-all)
+
 
 (add-hook 'makefile-mode
           ( lambda ()
             (setq indent-tabs-mode t)
             (setq whitespace-style '(empty face trailing lines))))
 
-;; Yasnipet
-
-(require 'yasnippet)
-(yas-reload-all)
-
-;; backups
-
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
-
-;; configuraciones de haskell
-
-
-(autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (ghc-init)
-            (turn-on-haskell-indentation)
-            (general-hook)
-            (yas-minor-mode)
-            (local-set-key (kbd "C-<tab>") 'yas-expand)
-            (local-set-key (kbd "C-+") 'yas-insert-snippet)
-            ))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Functions and dirty magic ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; General hook
 (defun general-hook ()
   (fci-mode)
   (auto-complete-mode)
-  (custom-set-faces
-    '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
-    '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
-  )
+  (yas-minor-mode)
+  (local-set-key (kbd "C-<tab>") 'yas-expand)
+  (local-set-key (kbd "C-+") 'yas-insert-snippet)
+  (flyspell-prog-mode))
+
+;; Flymake and LaTex
+(defun flymake-get-tex-args (file-name)
+  (list "pdflatex"
+        (list
+         "-file-line-error"
+         "-draftmode"
+         "-interaction=nonstopmode" file-name)))
 
 
+;; Flymake only checks on save
+(eval-after-load "flymake"
+  '(progn
+     (defun flymake-after-change-function (start stop len)
+       "Start syntax check for current buffer if it isn't already running."
+       ;; Do nothing, don't want to run checks until I save.
+       )))
 
-;; configuraciones de C
+;;Agda
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
 
-(add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'exec-path "/opt/gccsense-0.1/bin/")
-(require 'gccsense)
-
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (gccsense-flymake-setup)
-            (flymake-mode)
-            (local-set-key [C-tab] 'ac-complete-gccsense)
-            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-            (general-hook)))
-
-;; atajos de teclado y cosas raras generales
+;;up-case down-case enable
+(put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-(global-unset-key (kbd "C-z"))
 
+;;;;;;;;;;;;;;;;;;
+;; Key bindings ;;
+;;;;;;;;;;;;;;;;;;
+
+(global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
@@ -110,57 +174,20 @@
 (global-set-key (kbd "C-S-z")  'jump-to-register)
 
 ;;multiple cursors
-;;(require 'multiple-cursors)
+
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-(setq ispell-program-name "aspell"
-      ispell-extra-args '("--sug-mode=ultra"))
+;;Org
 
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "google-chrome")
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
 
-;; configuraciones de ibuffer
-(setq ibuffer-saved-filter-groups
-      '(("alien"
-         ("Latex" (or (filename . ".tex")
-                      (filename . ".bib")))
-         ("Git" (or (mode . magit-status-mode)
-                    (mode . magit-mode)
-                    (mode . git-commit-mode)))
-         ("Dired" (mode . dired-mode))
-         ("Haskell" (mode . haskell-mode))
-         ("JavaScript" (filename . ".js"))
-         ("Bash"(filename . ".sh" ))
-         ("MarkDown" (filename . ".md"))
-         ("Org" (filename . ".org"))
-         ("Java" (filename . ".java"))
-         ("C++" (mode . c-mode)))))
-
-(add-hook 'ibuffer-mode-hook
-          '(lambda ()
-             (ibuffer-switch-to-saved-filter-groups "alien")))
-
-;; configuracion de latex
-
-(require 'flymake)
-
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (tex-pdf-mode)
-            (flyspell-mode)
-            (general-hook)
-            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-            (yas-minor-mode)
-            (local-set-key (kbd "C-<tab>") 'yas-expand)
-            (local-set-key (kbd "C-+") 'yas-insert-snippet)))
-
-(defun flymake-get-tex-args (file-name)
-  (list "pdflatex"
-        (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Color and style stuff ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -180,53 +207,57 @@
  '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
 
-;; UTF-8 as default encoding
-(set-language-environment "UTF-8")
+;;;;;;;;;;;
+;; Hooks ;;
+;;;;;;;;;;;
 
-;;; Emacs is not a package manager, and here we load its package manager!
-(require 'package)
-(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-                  ("elpa" . "http://tromey.com/elpa/")
-                  ("melpa" . "http://melpa.milkbox.net/packages/")
-                  ))
-  (add-to-list 'package-archives source t))
-(package-initialize)
+;; Haskell-mode
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (ghc-init)
+            (turn-on-haskell-indentation)
+            (general-hook)
+            ))
 
+;; c-mode
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (gccsense-flymake-setup)
+            (flymake-mode)
+            (local-set-key [C-tab] 'ac-complete-gccsense)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (general-hook)))
 
-;; flymake
-(eval-after-load "flymake"
-  '(progn
-     (defun flymake-after-change-function (start stop len)
-       "Start syntax check for current buffer if it isn't already running."
-       ;; Do nothing, don't want to run checks until I save.
-       )))
+;; latex-mode
 
-;;Org-mode
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (tex-pdf-mode)
+            (flyspell-mode)
+            (general-hook)
+            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
+            (yas-minor-mode)
+            (local-set-key (kbd "C-<tab>") 'yas-expand)
+            (local-set-key (kbd "C-+") 'yas-insert-snippet)))
 
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-
+;; Org-mode
 (add-hook 'org-mode-hook
           (lambda ()
             (flyspell-mode)))
 
-(put 'dired-find-alternate-file 'disabled nil)
-
+;; Magit-commit-mode
 (add-hook 'magit-commit-mode-hook
           (lambda ()
             (general-hook)))
 
+;; Git-commit-mode
 (add-hook 'git-commit-mode-hook
           (lambda ()
             (general-hook)
             (flyspell-mode)))
 
+;; Agda-mode
 (add-hook 'agda-mode
           (lambda ()
             (general-hook)))
-
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
-(put 'upcase-region 'disabled nil)
