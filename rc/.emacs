@@ -215,9 +215,9 @@
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
           (lambda ()
+            (general-hook)
             (ghc-init)
             (turn-on-haskell-indentation)
-            (general-hook)
             ))
 
 ;; c-mode
