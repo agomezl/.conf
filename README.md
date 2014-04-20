@@ -1,7 +1,7 @@
 .conf
 =====
 
-automatic configuration script for
+Automatic configuration script for
 
 * [Emacs](http://www.gnu.org/software/emacs/)
 * Bash
