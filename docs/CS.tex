@@ -6,7 +6,7 @@
 \setlength{\columnsep}{1cm}
 \setlength{\parindent}{0pt}
 \usepackage[compact]{titlesec}
-
+\pagenumbering{gobble}
 
 \title{\vspace{-1.5cm} Emacs Cheat Sheet}
 \author{An small guide}
@@ -43,7 +43,6 @@
 \command{C-x <down>}{Window move-down}
 \command{C-x <right>}{Window move-right}
 \command{C-x <left>}{Window move-left}
-
 \command{C-S-<left>}{Previous buffer}
 \command{C-S-<right>}{Next buffer}
 \command{C-M-S-<left>}{Shrink window H}
@@ -93,6 +92,13 @@
 \command{C-c-<}{Indentation shallower}
 \command{C-c->}{Indentation deeper}
 
+\subsection*{Yasnippet}
+
+\command{C-<tab>}{Expand snippet}
+\command{C-+}{Snippet list}
+\command{yas-describe-tables}{All snippets}
+\command{C-c C-c}{Load snippet}
+\command{C-c C-t}{Try snippet}
 
 \subsection*{Dired-mode}
 
@@ -114,14 +120,6 @@
 \command{C-x C-q}{Edit mode}
 \command{C-c ESC}{Abort changes}
 \command{C-c C-c}{Finish edit}
-
-\subsection*{Yasnippet}
-
-\command{C-<tab>}{Expand snippet}
-\command{C-+}{Snippet list}
-\command{yas-describe-tables}{All snippets}
-\command{C-c C-c}{Load snippet}
-\command{C-c C-t}{Try snippet}
 
 \subsection*{Emerge}
 
