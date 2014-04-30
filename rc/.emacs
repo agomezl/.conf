@@ -158,6 +158,10 @@
 ;;;;;;;;;;;;;;;;;;
 
 (global-unset-key (kbd "C-z"))
+(define-key flyspell-mode-map (kbd "C-M-i") nil)
+(define-key flyspell-mode-map (kbd "C-,") nil)
+(define-key flyspell-mode-map (kbd "C-.") nil)
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
@@ -234,12 +238,7 @@
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (tex-pdf-mode)
-            (flyspell-mode)
-            (general-hook)
-            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
-            (yas-minor-mode)
-            (local-set-key (kbd "C-<tab>") 'yas-expand)
-            (local-set-key (kbd "C-+") 'yas-insert-snippet)))
+            (general-hook)))
 
 ;; Org-mode
 (add-hook 'org-mode-hook
