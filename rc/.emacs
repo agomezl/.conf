@@ -12,10 +12,13 @@
   (add-to-list 'package-archives source t))
 (package-initialize)
 
+(add-to-list 'load-path "~/.emacs.d/")
+
 ;;;;;;;;;;;;;
 ;; Require ;;
 ;;;;;;;;;;;;;
 
+(require 'agda-input)
 (require 'flymake)
 (require 'package)
 (require 'org)
@@ -34,6 +37,11 @@
 
 ;; Miscellaneous
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(agda-input-user-translations (quote (("bool" "𝔹"))))
  '(agda2-highlight-face-groups (quote default-faces))
  '(agda2-include-dirs (quote ("." "/home/alien/.cabal/lib/lib-0.7/src")))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
@@ -99,7 +107,6 @@
   version-control t)
 
 ;; gccsense
-(add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'exec-path "/opt/gccsense-0.1/bin/")
 
 ;; UTF-8 as default encoding
@@ -220,7 +227,7 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (general-hook)
-            (set-input-method "TeX")
+            (set-input-method "Agda")
             (ghc-init)
             (turn-on-haskell-indentation)
             ))
