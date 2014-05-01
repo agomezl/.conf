@@ -220,6 +220,7 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (general-hook)
+            (set-input-method "TeX")
             (ghc-init)
             (turn-on-haskell-indentation)
             ))
