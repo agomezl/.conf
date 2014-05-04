@@ -132,8 +132,7 @@
   (auto-complete-mode)
   (yas-minor-mode)
   (local-set-key (kbd "C-<tab>") 'yas-expand)
-  (local-set-key (kbd "C-+") 'yas-insert-snippet)
-  (flyspell-prog-mode))
+  (local-set-key (kbd "C-+") 'yas-insert-snippet))
 
 ;; Flymake and LaTex
 (defun flymake-get-tex-args (file-name)
@@ -245,6 +244,7 @@
 
 (add-hook 'LaTeX-mode-hook
           (lambda ()
+            (flyspell-mode)
             (tex-pdf-mode)
             (general-hook)))
 
