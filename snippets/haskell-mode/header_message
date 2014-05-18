@@ -2,6 +2,7 @@
 # name: header message
 # key: msg
 # --
+{-# LANGUAGE UnicodeSyntax #-}
 --------------------------------------------------------------------------------
 -- File   : `(file-name-base)`
 -- Author : `(user-full-name)`

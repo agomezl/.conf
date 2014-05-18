@@ -229,6 +229,7 @@
             (set-input-method "Agda")
             (ghc-init)
             (turn-on-haskell-indentation)
+            (flyspell-prog-mode)
             ))
 
 ;; c-mode
