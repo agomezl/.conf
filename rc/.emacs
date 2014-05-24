@@ -241,6 +241,11 @@
             (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
             (general-hook)))
 
+(add-hook 'c-mode-hook
+          (lambda ()
+            (flymake-mode)
+            (general-hook)))
+
 ;; latex-mode
 
 (add-hook 'LaTeX-mode-hook
