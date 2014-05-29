@@ -128,6 +128,7 @@
 
 ;; General hook
 (defun general-hook ()
+  (interactive)
   (fci-mode)
   (auto-complete-mode)
   (yas-minor-mode)
