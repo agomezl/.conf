@@ -43,13 +43,14 @@
  ;; If there is more than one, they won't work right.
  '(agda-input-user-translations (quote (("bool" "𝔹"))))
  '(agda2-highlight-face-groups (quote default-faces))
- '(agda2-include-dirs (quote ("." "/home/alien/.cabal/lib/lib-0.7/src")))
+ '(agda2-include-dirs (quote ("." "/home/alien/opt/agda/agda-stdlib-2.4.0/src")))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
  '(custom-enabled-themes (quote (wombat)))
+ '(custom-safe-themes (quote ("ce79400f46bd76bebeba655465f9eadf60c477bd671cbcd091fe871d58002a88" "c7359bd375132044fe993562dfa736ae79efc620f68bab36bd686430c980df1c" "7d4d00a2c2a4bba551fcab9bfd9186abe5bfa986080947c2b99ef0b4081cb2a6" "1989847d22966b1403bab8c674354b4a2adf6e03e0ffebe097a6bd8a32be1e19" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(display-battery-mode t)
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
@@ -106,11 +107,11 @@
   kept-old-versions 2
   version-control t)
 
-;; gccsense
-(add-to-list 'exec-path "/opt/gccsense-0.1/bin/")
-
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
+
+;; color themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; Yasnipet
 (require 'yasnippet)
@@ -205,15 +206,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-marker-1 ((t (:underline (:color "green" :style wave)))))
- '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))))
- '(column-marker-3 ((t (:underline (:color "orange" :style wave)))))
+ '(column-marker-1 ((t (:underline (:color "green" :style wave)))) t)
+ '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))) t)
+ '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
  '(cursor ((t (:background "white"))))
  '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
- '(idris-prover-processed-face ((t nil)))
- '(idris-semantic-bound-face ((t (:foreground "tomato"))))
- '(idris-semantic-data-face ((t (:foreground "DarkOliveGreen1"))))
- '(idris-semantic-type-face ((t (:foreground "light steel blue"))))
+ '(idris-prover-processed-face ((t nil)) t)
+ '(idris-semantic-bound-face ((t (:foreground "tomato"))) t)
+ '(idris-semantic-data-face ((t (:foreground "DarkOliveGreen1"))) t)
+ '(idris-semantic-type-face ((t (:foreground "light steel blue"))) t)
  '(show-paren-match ((t (:foreground "lime green" :weight bold))))
  '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
@@ -236,15 +237,10 @@
 ;; c-mode
 (add-hook 'c-mode-common-hook
           (lambda ()
-            (gccsense-flymake-setup)
-            (flymake-mode)
-            (local-set-key [C-tab] 'ac-complete-gccsense)
-            (local-set-key (kbd "C-?") 'flymake-display-err-menu-for-current-line)
             (general-hook)))
 
 (add-hook 'c-mode-hook
           (lambda ()
-            (flymake-mode)
             (general-hook)))
 
 ;; latex-mode
@@ -273,6 +269,11 @@
 
 ;; Agda-mode
 (add-hook 'agda-mode
+          (lambda ()
+            (general-hook)))
+
+
+(add-hook 'sh-mode-hook
           (lambda ()
             (general-hook)))
 
