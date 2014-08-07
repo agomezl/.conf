@@ -27,7 +27,7 @@ main = do
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
                         }
-    ,terminal    = "lxterminal"
+    ,terminal    = "urxvt"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
     , borderWidth = 2
