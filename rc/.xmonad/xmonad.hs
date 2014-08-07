@@ -16,12 +16,11 @@ import System.IO
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "/home/alien/.cabal/bin/xmobar /home/alien/.xmobarrc"
+  xmproc <- spawnPipe "xmobar /home/agomezlo/.xmobarrc"
   xmonad $ desktopConfig
     {manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
     , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
-                                 onWorkspace "Mail" Full
                                  baseLayout
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
@@ -38,31 +37,24 @@ main = do
     , ((mod4Mask , xK_d), spawn "pcmanfm")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
-                                        "thunderbird", "virtualbox",
-                                        "qbittorrent","vlc","matlab",
                                         "lxterminal","scrot -s"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
-    , ((mod4Mask , xK_o), spawn "sh /home/alien/.xmonad/restore.sh")
-    , ((mod4Mask .|. shiftMask, xK_m), spawn "sh /home/alien/.xmonad/multi.sh")
-    , ((mod4Mask , xK_z), spawn "touch ~/.pomodoro_session")
-    , ((mod4Mask .|. shiftMask, xK_F10), spawn "shutdown -h now")
-    , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
-    , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
-    , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
-    , ((mod4Mask .|. shiftMask, xK_o), spawn "scrot -s -e 'mv $f /home/alien/Pictures/shots'")
-    , ((mod4Mask .|. shiftMask, xK_F11), spawn "pm-hibernate")
+    , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")
+    , ((mod4Mask , xK_KP_Add)           , spawn "amixer set Master 5%+")
+    , ((mod4Mask , xK_KP_Subtract)      , spawn "amixer set Master 5%-")
+    , ((mod4Mask , xK_KP_Multiply)      , spawn "amixer set Master toggle")
+    , ((mod4Mask .|. shiftMask , xK_o)  , spawn "scrot -s -e 'mv $f /home/alien/Pictures/shots'")
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Emacs", "Shell","Mail"] ++ map show [5 .. 9]
+myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 9]
 
 
 myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
           ,className =? "Lxterminal"--> doShift "Shell"
-          ,className =? "Thunderbird" --> doShift "Mail"
           ]
 
 

@@ -18,12 +18,10 @@
 ;; Require ;;
 ;;;;;;;;;;;;;
 
-(require 'agda-input)
 (require 'flymake)
 (require 'package)
 (require 'org)
 (require 'magit)
-(require 'ghc)
 (require 'gist)
 (require 'flyspell)
 (require 'fill-column-indicator)
@@ -41,9 +39,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda-input-user-translations (quote (("bool" "𝔹"))))
- '(agda2-highlight-face-groups (quote default-faces))
- '(agda2-include-dirs (quote ("." "/home/alien/opt/agda/agda-stdlib-2.4.0/src")))
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
@@ -153,9 +148,6 @@
        ;; Do nothing, don't want to run checks until I save.
        )))
 
-;;Agda
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
 
 ;;up-case down-case enable
 (put 'upcase-region 'disabled nil)
@@ -211,10 +203,6 @@
  '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
  '(cursor ((t (:background "white"))))
  '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
- '(idris-prover-processed-face ((t nil)) t)
- '(idris-semantic-bound-face ((t (:foreground "tomato"))) t)
- '(idris-semantic-data-face ((t (:foreground "DarkOliveGreen1"))) t)
- '(idris-semantic-type-face ((t (:foreground "light steel blue"))) t)
  '(show-paren-match ((t (:foreground "lime green" :weight bold))))
  '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
@@ -222,17 +210,6 @@
 ;;;;;;;;;;;
 ;; Hooks ;;
 ;;;;;;;;;;;
-
-;; Haskell-mode
-(autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (general-hook)
-            (set-input-method "Agda")
-            (ghc-init)
-            (turn-on-haskell-indentation)
-            (flyspell-prog-mode)
-            ))
 
 ;; c-mode
 (add-hook 'c-mode-common-hook
@@ -251,6 +228,15 @@
             (tex-pdf-mode)
             (general-hook)))
 
+;;Haskell
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (general-hook)
+            (turn-on-haskell-indentation)
+            (flyspell-prog-mode)
+            ))
+
+
 ;; Org-mode
 (add-hook 'org-mode-hook
           (lambda ()
@@ -267,28 +253,6 @@
             (general-hook)
             (flyspell-mode)))
 
-;; Agda-mode
-(add-hook 'agda-mode
-          (lambda ()
-            (general-hook)))
-
-
 (add-hook 'sh-mode-hook
           (lambda ()
             (general-hook)))
-
-;; Scala-mode
-
-(add-hook 'scala-mode-hook '(lambda ()
-   (local-set-key (kbd "M-.") 'sbt-find-definitions)
-   (local-set-key (kbd "C-x '") 'sbt-run-previous-command)
-   (ensime)
-   (general-hook)
-))
-
-;; Sbt-mode
-(add-hook 'sbt-mode-hook '(lambda ()
-  (setq compilation-skip-threshold 1)
-  (local-set-key (kbd "C-a") 'comint-bol)
-  (local-set-key (kbd "M-RET") 'comint-accumulate)
-))

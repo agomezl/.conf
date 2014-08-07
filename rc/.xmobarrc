@@ -10,15 +10,9 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run Date "%a %b %_d %Y %H:%M" "date" 10
                     , Run StdinReader
-                    , Run Volume "default" "Master" [] 10
-                    , Run Network "wlp3s0" ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
-                    , Run BatteryP ["BAT1"]
-                                   ["-t", "Bat: <left>%(<acstatus>)"
-                                   , "-L", "10", "-H", "80"
-                                   , "-l", "red", "-h", "green"
-                                   ] 10
+                    , Run Network "em1" ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %default:Master% | %wlp3s0% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> "
+       , template = "%StdinReader% }{ %em1% | %cpu% | %memory% * %swap% | <fc=#ee9a00>%date%</fc> "
        }

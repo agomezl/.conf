@@ -7,7 +7,8 @@ fi
 
 # User specific aliases and functions
 
-export PATH=$PATH:/home/alien/.cabal/bin
+RAPPTURE=/opt/rappture/bin
+export PATH=$PATH:$RAPPTURE:/home/agomezlo/.cabal/bin
 export VISUAL='emacs -nw'
 export NAME="Alejandro Gómez Londoño"
 
