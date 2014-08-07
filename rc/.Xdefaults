@@ -7,13 +7,18 @@ URxvt*boldFont:                         xft:DejaVu Sans Mono:bold:size=10
 URxvt*italicFont:                       xft:DejaVu Sans Mono:italic:size=10
 URxvt*boldItalicFont:                   xft:DejaVu Sans Mono:bold:italic:size=10
 URxvt*.depth:                           32
+URxvt*saveLines:                        10000
+URxvt*highlightColor:                   White
+URxvt*highlightTextColor:               Black
+URxvt*cursorColor:                      Red
+
 
 URxvt.perl-ext-common:                  default,clipboard,matcher,keyboard-select
 URxvt.keysym.M-u:                       perl:url-select:select_next
 URxvt.url-launcher:                     /bin/google-chrome
 URxvt.underlineURLs:                    True
 URxvt.matcher.button:                   1
-URxvt.keysym.C-x:                       perl:keyboard-select:activate
+URxvt.keysym.C-s:                       perl:keyboard-select:activate
 URxvt.keysym.M-c:                       perl:clipboard:copy
 URxvt.keysym.M-v:                       perl:clipboard:paste
 URxvt.keysym.M-C-v:                     perl:clipboard:paste_escaped
@@ -105,9 +110,7 @@ URxvt.clipboard.pastecmd: xsel -ob
 ! URxvt*underlineColor:                 color
 ! URxvt*scrollColor:                    color
 ! URxvt*troughColor:                    color
-URxvt*highlightColor:                   White
-URxvt*highlightTextColor:               White
-! URxvt*cursorColor:                    color
+
 ! URxvt*cursorColor2:                   color
 ! URxvt*pointerColor:                   color
 ! URxvt*pointerColor2:                  color
@@ -122,7 +125,6 @@ URxvt*highlightTextColor:               White
 ! URxvt*imFont:                         fontname
 ! URxvt*title:                          string
 ! URxvt*iconName:                       string
-! URxvt*saveLines:                      number
 ! URxvt*buffered:                       boolean
 
 ! URxvt*visual:                         number
