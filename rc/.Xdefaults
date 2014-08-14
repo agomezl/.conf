@@ -18,7 +18,7 @@ URxvt.keysym.M-u:                       perl:url-select:select_next
 URxvt.url-launcher:                     /bin/google-chrome
 URxvt.underlineURLs:                    True
 URxvt.matcher.button:                   1
-URxvt.keysym.C-s:                       perl:keyboard-select:activate
+URxvt.keysym.C-a:                       perl:keyboard-select:activate
 URxvt.keysym.M-c:                       perl:clipboard:copy
 URxvt.keysym.M-v:                       perl:clipboard:paste
 URxvt.keysym.M-C-v:                     perl:clipboard:paste_escaped
