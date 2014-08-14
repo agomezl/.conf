@@ -77,7 +77,7 @@ shellLayout = Full ||| grid
 
 webLayout = Full ||| sideTall
   where
-    sideTall = Tall nmaster ratio delta
+    sideTall = Tall nmaster delta ratio
     nmaster = 1
     ratio  = 4/5
     delta  = 3/100
