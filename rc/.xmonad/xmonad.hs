@@ -21,7 +21,8 @@ main = do
     {manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
     , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
-                                 onWorkspace "Mail" Full
+                                 onWorkspace "Mail" Full $
+                                 onWorkspace "Web" webLayout
                                  baseLayout
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
@@ -61,7 +62,7 @@ myWorkspaces = [ "Web", "Emacs", "Shell","Mail"] ++ map show [5 .. 9]
 myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "Lxterminal"--> doShift "Shell"
+          ,className =? "urxvt"--> doShift "Shell"
           ,className =? "Thunderbird" --> doShift "Mail"
           ]
 
@@ -73,3 +74,10 @@ baseLayout = tall ||| Mirror tall ||| Full
 shellLayout = Full ||| grid
   where
     grid = named "Grid" $ spacing 2 $ Grid
+
+webLayout = Full ||| sideTall
+  where
+    sideTall = Tall nmaster ratio delta
+    nmaste = 1
+    ratio  = 4/5
+    delta  = 3/100
