@@ -13,6 +13,8 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
+import XMonad.Util.Loggers (logCurrent)
+import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
 
 main :: IO ()
 main = do
@@ -27,7 +29,7 @@ main = do
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
-                        }
+                        } >> myhook
     ,terminal    = "urxvt"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
@@ -62,7 +64,7 @@ myWorkspaces = [ "Web", "Emacs", "Shell","Mail"] ++ map show [5 .. 9]
 myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "urxvt"--> doShift "Shell"
+          ,className =? "URxvt"--> doShift "Shell"
           ,className =? "Thunderbird" --> doShift "Mail"
           ]
 
@@ -81,3 +83,11 @@ webLayout = Full ||| sideTall
     nmaster = 1
     ratio  = 4/5
     delta  = 3/100
+
+myhook :: X ()
+myhook = do
+  let fadeAmount = 0.8
+  Just ws <- logCurrent
+  if ws == "Shell"
+    then fadeInactiveCurrentWSLogHook fadeAmount
+    else return ()

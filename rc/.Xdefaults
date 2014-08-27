@@ -1,6 +1,6 @@
 URxvt*scrollBar:                        False
 URxvt*visualBell:                       False
-URxvt*.background:                      rgba:0000/0000/0000/cccc
+URxvt*.background:                      rgba:0000/0000/0000/dddd
 URxvt*foreground:                       White
 URxvt*font:                             xft:DejaVu Sans Mono:size=10
 URxvt*boldFont:                         xft:DejaVu Sans Mono:bold:size=10

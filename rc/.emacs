@@ -19,6 +19,7 @@
 ;;;;;;;;;;;;;
 
 (require 'agda-input)
+(require 'company)
 (require 'flymake)
 (require 'package)
 (require 'org)
@@ -131,7 +132,7 @@
 (defun general-hook ()
   (interactive)
   (fci-mode)
-  (auto-complete-mode)
+;;(auto-complete-mode)
   (yas-minor-mode)
   (local-set-key (kbd "C-<tab>") 'yas-expand)
   (local-set-key (kbd "C-+") 'yas-insert-snippet))
@@ -185,6 +186,11 @@
 (global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
 (global-set-key (kbd "C-S-z")  'jump-to-register)
 
+;;company mode
+(add-to-list 'company-backends 'company-ghc)
+(custom-set-variables '(company-ghc-show-info t))
+
+
 ;;multiple cursors
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -230,6 +236,7 @@
             (general-hook)
             (set-input-method "Agda")
             (ghc-init)
+            (company-mode)
             (turn-on-haskell-indentation)
             (flyspell-prog-mode)
             ))
