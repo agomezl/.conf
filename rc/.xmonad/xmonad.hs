@@ -55,7 +55,7 @@ myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 9]
 myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "urxvt"--> doShift "Shell"
+          ,className =? "URxvt"--> doShift "Shell"
           ]
 
 

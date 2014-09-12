@@ -60,7 +60,8 @@
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
- '(tramp-auto-save-directory "~/.save/"))
+ '(tramp-auto-save-directory "~/.save/")
+ '(x-select-enable-primary t))
 
 ;; whitespace-mode
 (setq-default indent-tabs-mode nil)
@@ -229,12 +230,15 @@
             (general-hook)))
 
 ;;Haskell
+(autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (general-hook)
+            (ghc-init)
             (turn-on-haskell-indentation)
             (flyspell-prog-mode)
+            (general-hook)
             ))
+
 
 
 ;; Org-mode
@@ -256,3 +260,18 @@
 (add-hook 'sh-mode-hook
           (lambda ()
             (general-hook)))
+
+
+;;edit server
+
+(when (and (daemonp) (locate-library "edit-server"))
+   (require 'edit-server)
+   (setq edit-server-new-frame nil)
+   (edit-server-start))
+
+(autoload 'edit-server-maybe-dehtmlize-buffer
+  "edit-server-htmlize" "edit-server-htmlize" t)
+(autoload 'edit-server-maybe-htmlize-buffer
+  "edit-server-htmlize" "edit-server-htmlize" t)
+(add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
+(add-hook 'edit-server-done-hook  'edit-server-maybe-htmlize-buffer)
