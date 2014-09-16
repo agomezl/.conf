@@ -284,18 +284,15 @@
           (lambda ()
             (general-hook)))
 
-;; Scala-mode
+;;edit server
+(when (and (daemonp) (locate-library "edit-server"))
+   (require 'edit-server)
+   (setq edit-server-new-frame nil)
+   (edit-server-start))
 
-(add-hook 'scala-mode-hook '(lambda ()
-   (local-set-key (kbd "M-.") 'sbt-find-definitions)
-   (local-set-key (kbd "C-x '") 'sbt-run-previous-command)
-   (ensime)
-   (general-hook)
-))
-
-;; Sbt-mode
-(add-hook 'sbt-mode-hook '(lambda ()
-  (setq compilation-skip-threshold 1)
-  (local-set-key (kbd "C-a") 'comint-bol)
-  (local-set-key (kbd "M-RET") 'comint-accumulate)
-))
+(autoload 'edit-server-maybe-dehtmlize-buffer
+  "edit-server-htmlize" "edit-server-htmlize" t)
+(autoload 'edit-server-maybe-htmlize-buffer
+  "edit-server-htmlize" "edit-server-htmlize" t)
+(add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
+(add-hook 'edit-server-done-hook  'edit-server-maybe-htmlize-buffer)

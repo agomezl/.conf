@@ -1,12 +1,12 @@
 #!/bin/bash
 
-sudo bumblebeed --D &
+sudo bumblebeed -D &
 
-#xsetbg ~/Images/ShinobuHD.jpg
-#~/.xmonad/multi.sh
+xsetbg ~/Images/ShinobuHD.jpg
+~/.xmonad/multi.sh
 
-xcompmgr &
-feh --bg-scale ~/Images/ShinobuHD.jpg &
+# xcompmgr &
+# feh --bg-scale ~/Images/ShinobuHD.jpg &
 
 # Fire up apps
 xsetroot -cursor_name ul_angle &
