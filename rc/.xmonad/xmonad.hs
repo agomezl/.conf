@@ -5,7 +5,6 @@ import XMonad.Actions.GridSelect
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Layout.Spacing
-import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Named
 import XMonad.Layout.Grid
@@ -13,8 +12,6 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
-import XMonad.Util.Loggers (logCurrent)
-import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
 
 main :: IO ()
 main = do
@@ -29,7 +26,7 @@ main = do
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
-                        } >> myhook
+                        }
     ,terminal    = "urxvt"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
@@ -83,11 +80,3 @@ webLayout = Full ||| sideTall
     nmaster = 1
     ratio  = 4/5
     delta  = 3/100
-
-myhook :: X ()
-myhook = do
-  let fadeAmount = 0.8
-  Just ws <- logCurrent
-  if ws == "Shell"
-    then fadeInactiveCurrentWSLogHook fadeAmount
-    else return ()

@@ -1,0 +1,147 @@
+;; .emacs
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Package manager ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+(require 'package)
+(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
+                  ("elpa" . "http://tromey.com/elpa/")
+                  ("melpa" . "http://melpa.milkbox.net/packages/")
+                  ))
+  (add-to-list 'package-archives source t))
+(package-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/")
+
+;;;;;;;;;;;;;
+;; Require ;;
+;;;;;;;;;;;;;
+
+(require 'magit)
+(require 'fill-column-indicator)
+(require 'multiple-cursors)
+
+;;;;;;;;;;;;;;;
+;; Variables ;;
+;;;;;;;;;;;;;;;
+
+(custom-set-variables
+ '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(backup-by-copying t)
+ '(backup-directory-alist (quote (("" . "~/.save/"))))
+ '(before-save-hook (quote (whitespace-cleanup)))
+ '(column-number-mode t)
+ '(custom-enabled-themes (quote (wombat)))
+ '(custom-safe-themes (quote ("ce79400f46bd76bebeba655465f9eadf60c477bd671cbcd091fe871d58002a88" "c7359bd375132044fe993562dfa736ae79efc620f68bab36bd686430c980df1c" "7d4d00a2c2a4bba551fcab9bfd9186abe5bfa986080947c2b99ef0b4081cb2a6" "1989847d22966b1403bab8c674354b4a2adf6e03e0ffebe097a6bd8a32be1e19" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(fci-rule-column 80)
+ '(fci-rule-use-dashes t)
+ '(global-linum-mode t)
+ '(ibuffer-show-empty-filter-groups nil)
+ '(inhibit-startup-screen t)
+ '(initial-buffer-choice nil)
+ '(ispell-dictionary "english")
+ '(keyboard-coding-system (quote utf-8-unix))
+ '(menu-bar-mode nil)
+ '(save-place t nil (saveplace))
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
+ '(tramp-auto-save-directory "~/.save/"))
+
+;; whitespace-mode
+(setq-default indent-tabs-mode nil)
+
+;; aspell
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"))
+
+;; ibuffer custom group
+(setq ibuffer-saved-filter-groups
+      '(("alien"
+         ("Latex" (or (filename . ".tex")
+                      (filename . ".bib")))
+         ("Git" (or (mode . magit-status-mode)
+                    (mode . magit-mode)
+                    (mode . git-commit-mode)))
+         ("Dired" (mode . dired-mode))
+         ("Haskell" (mode . haskell-mode))
+         ("JavaScript" (filename . ".js"))
+         ("Bash"(filename . ".sh" ))
+         ("MarkDown" (filename . ".md"))
+         ("Org" (filename . ".org"))
+         ("Java" (filename . ".java"))
+         ("C++" (mode . c-mode)))))
+(add-hook 'ibuffer-mode-hook
+          '(lambda ()
+             (ibuffer-switch-to-saved-filter-groups "alien")))
+
+;; backups
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
+;; UTF-8 as default encoding
+(set-language-environment "UTF-8")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Functions and dirty magic ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;
+;; Key bindings ;;
+;;;;;;;;;;;;;;;;;;
+
+(global-unset-key (kbd "C-z"))
+(define-key flyspell-mode-map (kbd "C-M-i") nil)
+(define-key flyspell-mode-map (kbd "C-,") nil)
+(define-key flyspell-mode-map (kbd "C-.") nil)
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-S-<left>") 'previous-buffer)
+(global-set-key (kbd "C-S-<right>") 'next-buffer)
+(global-set-key (kbd "C-M-S-g" ) 'magit-status)
+(global-set-key (kbd "C-M-S-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-M-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-M-S-<down>") 'shrink-window)
+(global-set-key (kbd "C-M-S-<up>") 'enlarge-window)
+(global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
+(global-set-key (kbd "C-S-z")  'jump-to-register)
+
+;;multiple cursors
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Color and style stuff ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-faces
+ '(cursor ((t (:background "white"))))
+ '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
+ '(show-paren-match ((t (:foreground "lime green" :weight bold))))
+ '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
+ '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
+
+;;;;;;;;;;;
+;; Hooks ;;
+;;;;;;;;;;;
+
+;; Git-commit-mode
+(add-hook 'git-commit-mode-hook
+          (lambda ()
+            (flyspell-mode)
+            (fci-mode)
+
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (flyspell-prog-mode)
+            fci-mode))
