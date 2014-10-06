@@ -50,6 +50,7 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
+ '(company-ghc-show-info t)
  '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes (quote ("ce79400f46bd76bebeba655465f9eadf60c477bd671cbcd091fe871d58002a88" "c7359bd375132044fe993562dfa736ae79efc620f68bab36bd686430c980df1c" "7d4d00a2c2a4bba551fcab9bfd9186abe5bfa986080947c2b99ef0b4081cb2a6" "1989847d22966b1403bab8c674354b4a2adf6e03e0ffebe097a6bd8a32be1e19" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(display-battery-mode t)
@@ -188,7 +189,7 @@
 
 ;;company mode
 (add-to-list 'company-backends 'company-ghc)
-(custom-set-variables '(company-ghc-show-info t))
+
 
 
 ;;multiple cursors
@@ -217,6 +218,9 @@
  '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
  '(cursor ((t (:background "white"))))
  '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
+ '(flyspell-duplicate ((t (:underline (:color "deep sky blue" :style wave)))))
+ '(flyspell-incorrect ((t (:underline (:color "orange red" :style wave)))))
+ '(ghc-face-error ((t (:underline "orangered"))))
  '(idris-prover-processed-face ((t nil)) t)
  '(idris-semantic-bound-face ((t (:foreground "tomato"))) t)
  '(idris-semantic-data-face ((t (:foreground "DarkOliveGreen1"))) t)
