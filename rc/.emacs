@@ -112,9 +112,6 @@
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
 
-;; color themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-
 ;; Yasnipet
 (require 'yasnippet)
 (yas-reload-all)
