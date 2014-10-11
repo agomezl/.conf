@@ -39,7 +39,7 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
                                         "thunderbird", "virtualbox",
-                                        "qbittorrent","vlc","matlab",
+                                        "qbittorrent","vlc",
                                         "lxterminal","scrot -s","firefox",
                                         "minecraft","ts3"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)

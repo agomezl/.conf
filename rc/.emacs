@@ -275,6 +275,9 @@
             (general-hook)
             (flyspell-mode)))
 
+;; Makefile-mode
+(add-hook 'makefile-mode-hook 'indent-tabs-mode)
+
 ;; Agda-mode
 (add-hook 'agda-mode
           (lambda ()
