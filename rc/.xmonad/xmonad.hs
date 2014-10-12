@@ -41,7 +41,7 @@ main = do
                                         "thunderbird", "virtualbox",
                                         "qbittorrent","vlc",
                                         "lxterminal","scrot -s","firefox",
-                                        "minecraft","ts3"])
+                                        "minecraft","ts3","steam"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask , xK_o), spawn "sh /home/alien/.xmonad/restore.sh")
