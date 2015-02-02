@@ -240,6 +240,7 @@
           (lambda ()
             (ghc-init)
             (turn-on-haskell-indentation)
+            (set-input-method "Agda")
             (flyspell-prog-mode)
             (company-mode)
             (general-hook)
