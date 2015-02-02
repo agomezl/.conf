@@ -16,7 +16,7 @@ import System.IO
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "xmobar /home/agomezlo/.xmobarrc"
+  xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
   xmonad $ desktopConfig
     {manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
@@ -38,7 +38,10 @@ main = do
     , ((mod4Mask , xK_d), spawn "pcmanfm")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
-                                        "lxterminal","scrot -s"])
+                                        "thunderbird", "virtualbox",
+                                        "qbittorrent","vlc",
+                                        "lxterminal","scrot -s","firefox",
+                                        "minecraft","ts3","steam"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")

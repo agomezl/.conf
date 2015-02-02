@@ -5,14 +5,11 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
-(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-                  ("elpa" . "http://tromey.com/elpa/")
-                  ("melpa" . "http://melpa.milkbox.net/packages/")
-                  ))
+(dolist (source '(("melpa" . "http://melpa.milkbox.net/packages/")))
   (add-to-list 'package-archives source t))
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;;;;;;;;;;;;;
 ;; Require ;;
@@ -20,12 +17,14 @@
 
 (require 'flymake)
 (require 'package)
+(require 'company)
 (require 'org)
 (require 'magit)
 (require 'gist)
 (require 'flyspell)
 (require 'fill-column-indicator)
 (require 'yasnippet)
+(require 'powerline)
 (require 'multiple-cursors)
 ;; (require 'gccsense)
 
@@ -39,14 +38,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(agda2-highlight-face-groups (quote default-faces))
+ '(agda2-include-dirs (quote ("." "/opt/agda-stdlib-0.9/src")))
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
  '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes (quote ("ce79400f46bd76bebeba655465f9eadf60c477bd671cbcd091fe871d58002a88" "c7359bd375132044fe993562dfa736ae79efc620f68bab36bd686430c980df1c" "7d4d00a2c2a4bba551fcab9bfd9186abe5bfa986080947c2b99ef0b4081cb2a6" "1989847d22966b1403bab8c674354b4a2adf6e03e0ffebe097a6bd8a32be1e19" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
- '(display-battery-mode t)
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
  '(global-linum-mode t)
@@ -65,6 +65,14 @@
 
 ;; whitespace-mode
 (setq-default indent-tabs-mode nil)
+
+
+;; powerline
+(powerline-default-theme)
+
+
+;; haskell
+(add-to-list 'company-backends 'company-ghc)
 
 ;; Org
 (setq org-log-done t)
@@ -127,18 +135,9 @@
 (defun general-hook ()
   (interactive)
   (fci-mode)
-  (auto-complete-mode)
   (yas-minor-mode)
   (local-set-key (kbd "C-<tab>") 'yas-expand)
   (local-set-key (kbd "C-+") 'yas-insert-snippet))
-
-;; Flymake and LaTex
-(defun flymake-get-tex-args (file-name)
-  (list "pdflatex"
-        (list
-         "-file-line-error"
-         "-draftmode"
-         "-interaction=nonstopmode" file-name)))
 
 
 ;; Flymake only checks on save
@@ -204,6 +203,12 @@
  '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
  '(cursor ((t (:background "white"))))
  '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
+ '(mode-line ((t (:foreground "#ffffff" :background "#696969" :box nil))))
+ '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))
+ '(powerline-active1 ((t (:inherit mode-line :background "white" :foreground "black"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "grey20"))))
+ '(powerline-inactive1 ((t (:inherit mode-line-inactive :background "grey22"))))
+ '(powerline-inactive2 ((t (:inherit mode-line-inactive :background "grey40"))))
  '(show-paren-match ((t (:foreground "lime green" :weight bold))))
  '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
@@ -236,10 +241,9 @@
             (ghc-init)
             (turn-on-haskell-indentation)
             (flyspell-prog-mode)
+            (company-mode)
             (general-hook)
             ))
-
-
 
 ;; Org-mode
 (add-hook 'org-mode-hook
@@ -275,3 +279,6 @@
   "edit-server-htmlize" "edit-server-htmlize" t)
 (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
 (add-hook 'edit-server-done-hook  'edit-server-maybe-htmlize-buffer)
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
