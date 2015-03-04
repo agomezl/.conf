@@ -17,6 +17,7 @@
 
 (require 'flymake)
 (require 'package)
+(require 'agda-input)
 (require 'company)
 (require 'org)
 (require 'magit)
@@ -38,7 +39,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda2-highlight-face-groups (quote default-faces))
+ '(agda-input-user-translations (quote (("blkb" "▪") ("bool" "𝔹") ("brt" "▸")
+                                        ("blt" "◂"))))
  '(agda2-include-dirs (quote ("." "/opt/agda-stdlib-0.9/src")))
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
@@ -110,6 +112,11 @@
   kept-new-versions 6
   kept-old-versions 2
   version-control t)
+
+;; Agda mode
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
 
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
@@ -241,6 +248,7 @@
             (ghc-init)
             (turn-on-haskell-indentation)
             (set-input-method "Agda")
+            (interactive-haskell-mode)
             (flyspell-prog-mode)
             (company-mode)
             (general-hook)
@@ -280,6 +288,3 @@
   "edit-server-htmlize" "edit-server-htmlize" t)
 (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
 (add-hook 'edit-server-done-hook  'edit-server-maybe-htmlize-buffer)
-
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))

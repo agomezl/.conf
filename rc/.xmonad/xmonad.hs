@@ -13,6 +13,9 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
+import XMonad.Util.Loggers (logCurrent)
+import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
+import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
 
 main :: IO ()
 main = do
@@ -26,7 +29,7 @@ main = do
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
-                        }
+                        } >> fadeHook
     ,terminal    = "urxvt"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
@@ -35,7 +38,6 @@ main = do
     } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
-    , ((mod4Mask , xK_d), spawn "pcmanfm")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
                                         "thunderbird", "virtualbox",
@@ -45,10 +47,9 @@ main = do
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")
-    , ((mod4Mask , xK_KP_Add)           , spawn "amixer set Master 5%+")
-    , ((mod4Mask , xK_KP_Subtract)      , spawn "amixer set Master 5%-")
-    , ((mod4Mask , xK_KP_Multiply)      , spawn "amixer set Master toggle")
-    , ((mod4Mask .|. shiftMask , xK_o)  , spawn "scrot -s -e 'mv $f /home/alien/Pictures/shots'")
+    , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
+    , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
+    , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
     ]
 
 myWorkspaces :: [String]
@@ -76,3 +77,10 @@ webLayout = Full ||| sideTall
     nmaster = 1
     ratio  = 16/20
     delta  = 3/100
+
+fadeHook :: X ()
+fadeHook = do
+  ws <- logCurrent
+  case ws of
+   Just "Shell" -> fadeInactiveCurrentWSLogHook 0.9
+   _            -> fadeInactiveCurrentWSLogHook 1

@@ -1,13 +1,13 @@
 URxvt*scrollBar:                        False
 URxvt*visualBell:                       False
-URxvt*.background:                      Black
+URxvt*.background:                      rgba:0000/0000/0000/eeee
 URxvt*foreground:                       White
 URxvt*font:                             xft:DejaVu Sans Mono:size=10
 URxvt*boldFont:                         xft:DejaVu Sans Mono:bold:size=10
 URxvt*italicFont:                       xft:DejaVu Sans Mono:italic:size=10
 URxvt*boldItalicFont:                   xft:DejaVu Sans Mono:bold:italic:size=10
 URxvt*.depth:                           32
-URxvt*saveLines:                        10000
+URxvt*saveLines:                        12000
 URxvt*highlightColor:                   White
 URxvt*highlightTextColor:               Black
 URxvt*cursorColor:                      Red
