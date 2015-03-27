@@ -10,7 +10,7 @@ URxvt*.depth:                           32
 URxvt*saveLines:                        12000
 URxvt*highlightColor:                   White
 URxvt*highlightTextColor:               Black
-URxvt*cursorColor:                      Red
+URxvt*cursorColor:                      Green
 
 
 URxvt.perl-ext-common:                  default,clipboard,matcher,keyboard-select
