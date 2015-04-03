@@ -7,4 +7,5 @@ sudo yum install wget emacs gmp-devel xcompmgr feh nm-applet volumeicon \
      xscreensaver vlc NetworkManager-vpnc-gnome scrot fail2ban aspell \
      aspell-en aspell-es arandr broadcom-wl libXrandr-devel libX11-devel \
      lm_sensors unrar qbittorrent libXinerama-devel libXft-devel gpicview \
-     evince
+     evince readline-devel texlive-scheme-full system-config-printer.x86_64 \
+     cups

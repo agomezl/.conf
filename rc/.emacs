@@ -25,7 +25,7 @@
 (require 'flyspell)
 (require 'fill-column-indicator)
 (require 'yasnippet)
-(require 'powerline)
+;;(require 'powerline)
 (require 'multiple-cursors)
 ;; (require 'gccsense)
 
@@ -71,7 +71,7 @@
 
 
 ;; powerline
-(powerline-default-theme)
+;; (powerline-default-theme)
 
 
 ;; haskell
@@ -244,7 +244,8 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (ghc-init)
-            (turn-on-haskell-indentation)
+            (haskell-indentation-mode)
+            (haskell-indentation-disable-show-indentations)
             (set-input-method "Agda")
             (interactive-haskell-mode)
             (flyspell-prog-mode)
