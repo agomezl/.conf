@@ -44,15 +44,13 @@
  ;; If there is more than one, they won't work right.
  '(agda-input-user-translations (quote (("bool" "𝔹"))))
  '(agda2-highlight-face-groups (quote default-faces))
- '(agda2-include-dirs (quote ("." "/home/alien/opt/agda/agda-stdlib-2.4.0/src")))
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(agda2-include-dirs (quote ("." "/home/alien/opt/agda-stdlib-0.9/src")))
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
  '(company-ghc-show-info t)
  '(custom-enabled-themes (quote (wombat)))
- '(custom-safe-themes (quote ("ce79400f46bd76bebeba655465f9eadf60c477bd671cbcd091fe871d58002a88" "c7359bd375132044fe993562dfa736ae79efc620f68bab36bd686430c980df1c" "7d4d00a2c2a4bba551fcab9bfd9186abe5bfa986080947c2b99ef0b4081cb2a6" "1989847d22966b1403bab8c674354b4a2adf6e03e0ffebe097a6bd8a32be1e19" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(display-battery-mode t)
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
@@ -117,11 +115,6 @@
 (yas-reload-all)
 
 
-(add-hook 'makefile-mode
-          ( lambda ()
-            (setq indent-tabs-mode t)
-            (setq whitespace-style '(empty face trailing lines))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Functions and dirty magic ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -130,7 +123,6 @@
 (defun general-hook ()
   (interactive)
   (fci-mode)
-;;(auto-complete-mode)
   (yas-minor-mode)
   (local-set-key (kbd "C-<tab>") 'yas-expand)
   (local-set-key (kbd "C-+") 'yas-insert-snippet))
@@ -238,7 +230,8 @@
             (set-input-method "Agda")
             (ghc-init)
             (company-mode)
-            (turn-on-haskell-indentation)
+            (haskell-indent-mode)
+            (haskell-indentation-disable-show-indentations)
             (flyspell-prog-mode)
             ))
 
