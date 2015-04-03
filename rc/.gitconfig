@@ -7,3 +7,5 @@
 	default = current
 [merge]
 	tool = emerge
+[core]
+	editor = emacs -nw

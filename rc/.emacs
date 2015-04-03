@@ -48,6 +48,7 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
+ '(company-ghc-show-info t)
  '(custom-enabled-themes (quote (wombat)))
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
@@ -121,18 +122,10 @@
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
 
-;; color themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-
 ;; Yasnipet
 (require 'yasnippet)
 (yas-reload-all)
 
-
-(add-hook 'makefile-mode
-          ( lambda ()
-            (setq indent-tabs-mode t)
-            (setq whitespace-style '(empty face trailing lines))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Functions and dirty magic ;;
@@ -183,6 +176,11 @@
 (global-set-key (kbd "C-M-S-<up>") 'enlarge-window)
 (global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
 (global-set-key (kbd "C-S-z")  'jump-to-register)
+
+;;company mode
+(add-to-list 'company-backends 'company-ghc)
+
+
 
 ;;multiple cursors
 

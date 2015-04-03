@@ -9,7 +9,7 @@
 \pagenumbering{gobble}
 
 \title{\vspace{-1.5cm} Emacs Cheat Sheet}
-\author{An small guide}
+\author{An small guide (for not so beginners)}
 \date{}
 \begin{document}
 \newcommand{\command}[2]{
@@ -80,18 +80,22 @@
 \command{M-C-i}{Auto Complete}
 \command{M-/}{Auto complete local symbol}
 \command{M-t}{Inserts template}
-\command{C-u M-C-d}{Documentation}
+\command{M-s}{Sort and merge imports}
+\command{C-M-d}{Documentation}
 \command{M-C-m}{Add module}
-\command{C-c C-h}{Hoogle}
-\command{C-x C-s}{Saves ans syntax check}
-\command{C-c C-c}{Toggle GHC and Hlint}
 \command{M-n}{N warning/error}
 \command{M-p}{P warning/error}
 \command{M-?}{Warning/Error}
+\command{C-c C-h}{Hoogle}
+\command{C-x C-s}{Saves ans syntax check}
+\command{C-c C-c}{Toggle GHC and Hlint}
 \command{C-c C-i}{Info}
 \command{C-c C-t}{Type}
 \command{C-c C-m}{Inser module}
-\command{M-s}{Sort and merge imports}
+\command{C-u M-t}{Create skeleton}
+\command{C-c C-f}{Refine}
+\command{C-c M-n}{next hole}
+\command{C-c M-p}{prev hole}
 \command{C-c C-j}{Go to Error}
 \command{C-c C-k}{Kill ghc-modi}
 \command{C-c-<}{Indentation shallower}
@@ -153,10 +157,21 @@
 
 \subsection*{\texttt{Urxvt}}
 
-\command{C-x}{Select}
+\command{C-a}{Select}
 \command{v}{Change select mode}
 \command{y}{Copy}
 \command{S-Insert}{Paste}
+
+\subsection*{Org-mode}
+
+\command{M-RET}{Insert headline}
+\command{S-M-RET}{Insert TODO/Checkbox}
+\command{C-c C-t}{Toggle TODO}
+\command{C-c C-c}{Toggle Checkbox}
+
+\subsection*{Term-mode}
+\command{C-c C-j}{Switch to line mode}
+\command{C-c C-k}{Switch to char mode}
 
 \end{multicols*}
 \end{document}

@@ -5,7 +5,6 @@ import XMonad.Actions.GridSelect
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Layout.Spacing
-import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Named
 import XMonad.Layout.Grid
