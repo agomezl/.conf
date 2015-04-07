@@ -73,6 +73,9 @@
 ;; powerline
 ;; (powerline-default-theme)
 
+;; magit
+(setq magit-auto-revert-mode nil)
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; haskell
 (add-to-list 'company-backends 'company-ghc)
@@ -177,11 +180,6 @@
 (global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
 (global-set-key (kbd "C-S-z")  'jump-to-register)
 
-;;company mode
-(add-to-list 'company-backends 'company-ghc)
-
-
-
 ;;multiple cursors
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -244,8 +242,7 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
             (ghc-init)
-            (haskell-indentation-mode)
-            (haskell-indentation-disable-show-indentations)
+            (haskell-indent-mode)
             (set-input-method "Agda")
             (interactive-haskell-mode)
             (flyspell-prog-mode)

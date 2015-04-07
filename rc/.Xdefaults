@@ -11,6 +11,9 @@ URxvt*saveLines:                        12000
 URxvt*highlightColor:                   White
 URxvt*highlightTextColor:               Black
 URxvt*cursorColor:                      Green
+URxvt*jumpScroll:                     false
+URxvt*skipScroll:                     false
+
 
 
 URxvt.perl-ext-common:                  default,clipboard,matcher,keyboard-select
@@ -57,8 +60,6 @@ URxvt.clipboard.pastecmd: xsel -ob
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   boolean
 ! URxvt*loginShell:                     boolean
-! URxvt*jumpScroll:                     boolean
-! URxvt*skipScroll:                     boolean
 ! URxvt*pastableTabs:                   boolean
 ! URxvt*scrollstyle:                    mode
 

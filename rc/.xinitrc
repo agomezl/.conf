@@ -20,4 +20,5 @@ fi
 volumeicon &
 ~/.dropbox-dist/dropboxd &
 
-xmonad
+XMONAD_SANDBOX=/home/agomezl/opt/xmonad/cabal.sandbox.config
+cabal --sandbox-config-file=${XMONAD_SANDBOX} exec xmonad

@@ -8,4 +8,4 @@ sudo yum install wget emacs gmp-devel xcompmgr feh nm-applet volumeicon \
      aspell-en aspell-es arandr broadcom-wl libXrandr-devel libX11-devel \
      lm_sensors unrar qbittorrent libXinerama-devel libXft-devel gpicview \
      evince readline-devel texlive-scheme-full system-config-printer.x86_64 \
-     cups
+     cups environment-modules libXpm-devel
