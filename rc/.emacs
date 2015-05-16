@@ -231,7 +231,7 @@
             (ghc-init)
             (company-mode)
             (haskell-indent-mode)
-            (haskell-indentation-disable-show-indentations)
+;;            (haskell-indentation-disable-show-indentations)
             (flyspell-prog-mode)
             ))
 
