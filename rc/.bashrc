@@ -7,6 +7,8 @@ fi
 
 # User specific aliases and functions
 
+shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups
 
 # export PATH=/home/agomezl/.cabal/bin:$PATH
 export VISUAL='emacs -nw'

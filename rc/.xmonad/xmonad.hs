@@ -13,14 +13,14 @@ import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
 import XMonad.Util.Loggers (logCurrent)
-import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
+import XMonad.Actions.PhysicalScreens (viewScreen)
 
 main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
   xmonad $ desktopConfig
-    {manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
+    { manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
     , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
                                  onWorkspace "Web" webLayout
@@ -29,7 +29,7 @@ main = do
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
                         } >> fadeHook
-    ,terminal    = "urxvt"
+    , terminal    = "urxvt"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
     , borderWidth = 2
@@ -49,6 +49,10 @@ main = do
     , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
     , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
     , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
+    , ((mod4Mask, xK_q), viewScreen 0)
+    , ((mod4Mask, xK_w), viewScreen 1)
+    , ((mod4Mask, xK_e), viewScreen 2)
+    , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
     ]
 
 myWorkspaces :: [String]
@@ -59,6 +63,8 @@ myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
           ,className =? "URxvt"--> doShift "Shell"
+          ,className =? "Wow-64.exe" --> doShift "4"
+          ,className =? "Wow-64.exe" --> doFloat
           ]
 
 

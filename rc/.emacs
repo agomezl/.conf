@@ -241,10 +241,10 @@
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
           (lambda ()
+            (interactive-haskell-mode)
             (ghc-init)
             (haskell-indent-mode)
             (set-input-method "Agda")
-            (interactive-haskell-mode)
             (flyspell-prog-mode)
             (company-mode)
             (general-hook)
@@ -284,3 +284,4 @@
   "edit-server-htmlize" "edit-server-htmlize" t)
 (add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
 (add-hook 'edit-server-done-hook  'edit-server-maybe-htmlize-buffer)
+(put 'dired-find-alternate-file 'disabled nil)
