@@ -39,9 +39,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda-input-user-translations (quote (("blkb" "▪") ("bool" "𝔹") ("brt" "▸")
-                                        ("blt" "◂"))))
- '(agda2-include-dirs (quote ("." "/opt/agda-stdlib-0.9/src")))
+ '(agda-input-user-translations (quote (("blkb" "▪") ("bool" "𝔹") ("brt" "▸") ("blt" "◂"))))
+ '(agda2-include-dirs (quote ("." "/home/agomezl/opt/agda-stdlib/src")))
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(backup-by-copying t)
@@ -53,12 +52,17 @@
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
  '(global-linum-mode t)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
  '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
  '(menu-bar-mode nil)
+ '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -161,11 +165,13 @@
 ;;;;;;;;;;;;;;;;;;
 
 (global-unset-key (kbd "C-z"))
+
 (define-key flyspell-mode-map (kbd "C-M-i") nil)
 (define-key flyspell-mode-map (kbd "C-,") nil)
 (define-key flyspell-mode-map (kbd "C-.") nil)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "<S-delete>") 'delete-region)
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
@@ -208,13 +214,26 @@
  '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
  '(mode-line ((t (:foreground "#ffffff" :background "#696969" :box nil))))
  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))
+ '(org-todo ((t (:foreground "red" :weight bold))))
  '(powerline-active1 ((t (:inherit mode-line :background "white" :foreground "black"))))
  '(powerline-active2 ((t (:inherit mode-line :background "grey20"))))
  '(powerline-inactive1 ((t (:inherit mode-line-inactive :background "grey22"))))
  '(powerline-inactive2 ((t (:inherit mode-line-inactive :background "grey40"))))
  '(show-paren-match ((t (:foreground "lime green" :weight bold))))
  '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
- '(warning ((t (:background "light sea green" :foreground "white" :weight bold)))))
+ '(warning ((t (:background "light sea green" :foreground "white" :weight bold))))
+ '(agda2-highlight-datatype-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-field-face ((t (:foreground "#ad7fa8"))))
+ '(agda2-highlight-function-face ((t (:inherit font-lock-function-name-face))))
+ '(agda2-highlight-inductive-constructor-face ((t (:foreground "#8ae234"))))
+ '(agda2-highlight-keyword-face ((t (:inherit font-lock-keyword-face))))
+ '(agda2-highlight-module-face ((t (:inherit font-lock-builtin-face))))
+ '(agda2-highlight-number-face ((t (:inherit font-lock-constant-face))))
+ '(agda2-highlight-postulate-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-primitive-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-primitive-type-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-record-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-string-face ((t (:inherit font-lock-string-face)))))
 
 ;;;;;;;;;;;
 ;; Hooks ;;
@@ -237,17 +256,30 @@
             (tex-pdf-mode)
             (general-hook)))
 
-;;Haskell
-(autoload 'ghc-init "ghc" nil t)
+;; Haskell
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook
+;;           (lambda ()
+;;             (general-hook)
+;;             (set-input-method "Agda")
+;;             (company-mode)
+;;             (haskell-indent-mode)
+;;             (interactive-haskell-mode)
+;;             (flyspell-prog-mode)
+;;             (ghc-init)
+;;             ))
+
+;;(autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (interactive-haskell-mode)
-            (ghc-init)
-            (haskell-indent-mode)
-            (set-input-method "Agda")
-            (flyspell-prog-mode)
-            (company-mode)
             (general-hook)
+            (interactive-haskell-mode)
+            (set-input-method "Agda")
+            (ghc-init)
+            (company-mode)
+            (haskell-indent-mode)
+            (flyspell-prog-mode)
             ))
 
 ;; Org-mode
