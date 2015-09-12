@@ -1,24 +1,24 @@
 #!/bin/bash
 
-sudo bumblebeed -D &
-
-xsetbg ~/Images/ShinobuHD.jpg
-~/.xmonad/multi.sh
-
-# xcompmgr &
-# feh --bg-scale ~/Images/ShinobuHD.jpg &
-
 # Fire up apps
 xsetroot -cursor_name ul_angle &
 xscreensaver -no-splash &
 
-#lxpanel &
+xcompmgr &
+
+#~/.screenlayout/Dual.sh
+
+feh --bg-scale ~/Images/evangelion.jpg --bg-scale ~/Images/wp.jpg
+
 trayer --edge top --align right --widthtype percent --width 10 --heighttype pixel --height 22 --transparent true --alpha 0 --tint 0x000000 --monitor primary &
 
-#batti &
 if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &
 fi
-/home/alien/.dropbox-dist/dropboxd &
 
-exec /home/alien/.cabal/bin/xmonad
+# syndaemon -R -k -d -i 1
+
+volumeicon &
+~/.dropbox-dist/dropboxd &
+
+xmonad

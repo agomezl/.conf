@@ -15,7 +15,7 @@ import System.IO
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "/home/alien/.cabal/bin/xmobar /home/alien/.xmobarrc"
+  xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
   xmonad $ desktopConfig
     {manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
@@ -27,7 +27,7 @@ main = do
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
                         }
-    ,terminal    = "urxvt"
+    ,terminal    = "st"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
     , borderWidth = 2

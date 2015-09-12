@@ -12,7 +12,7 @@
   (add-to-list 'package-archives source t))
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;;;;;;;;;;;;;
 ;; Require ;;
@@ -44,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(agda-input-user-translations (quote (("bool" "𝔹"))))
  '(agda2-highlight-face-groups (quote default-faces))
- '(agda2-include-dirs (quote ("." "/home/alien/opt/agda-stdlib-0.9/src")))
+ '(agda2-include-dirs (quote ("." "/home/agomezl/opt/agda-stdlib/src")))
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(before-save-hook (quote (whitespace-cleanup)))
@@ -61,6 +61,7 @@
  '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
  '(menu-bar-mode nil)
+ '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -228,8 +229,8 @@
           (lambda ()
             (general-hook)
             (set-input-method "Agda")
-            (ghc-init)
-            (company-mode)
+;;          (ghc-init)
+;;          (company-mode)
             (haskell-indent-mode)
 ;;            (haskell-indentation-disable-show-indentations)
             (flyspell-prog-mode)
@@ -258,6 +259,7 @@
             (flyspell-mode)))
 
 ;; Magit-commit-mode
+(setq magit-last-seen-setup-instructions "1.4.0")
 (add-hook 'magit-commit-mode-hook
           (lambda ()
             (general-hook)))
