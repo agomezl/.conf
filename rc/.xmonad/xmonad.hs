@@ -29,7 +29,7 @@ main = do
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
                         } >> fadeHook
-    , terminal    = "urxvt"
+    , terminal    = "st"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
     , borderWidth = 2
@@ -62,7 +62,7 @@ myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 9]
 myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "URxvt"--> doShift "Shell"
+          ,className =? "xterm-256color"--> doShift "Shell"
           ,className =? "Wow-64.exe" --> doShift "4"
           ,className =? "Wow-64.exe" --> doFloat
           ]
