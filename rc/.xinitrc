@@ -1,5 +1,9 @@
 #!/bin/bash
 
+exec > /home/agomezl/init.log 2>&1
+
+PATH=$HOME/.cabal/bin:$HOME/.local/bin:$PATH
+
 # Fire up apps
 xsetroot -cursor_name ul_angle &
 xscreensaver -no-splash &

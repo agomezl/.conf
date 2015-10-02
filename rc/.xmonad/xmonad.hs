@@ -62,10 +62,9 @@ myWorkspaces = [ "Web", "Emacs", "Shell","Mail"] ++ map show [5 .. 9]
 myHooks = composeAll
           [className =? "Google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "URxvt"--> doShift "Shell"
+          ,className =? "xterm-256color"--> doShift "Shell"
           ,className =? "Thunderbird" --> doShift "Mail"
           ]
-
 
 baseLayout = tall ||| Mirror tall ||| Full
   where  tall = Tall 1 (3/100) (1/2)
