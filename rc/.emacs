@@ -55,7 +55,6 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)

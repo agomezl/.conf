@@ -39,32 +39,34 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
-                                        "thunderbird", "virtualbox",
-                                        "qbittorrent","vlc",
+                                        "thunderbird", "isa",
+                                        "Morning","vlc",
                                         "lxterminal","scrot -s","firefox",
-                                        "minecraft","ts3","steam"])
+                                        "hipchat","ts3","steam"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")
     , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
     , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
     , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
-    , ((mod4Mask, xK_q), viewScreen 0)
-    , ((mod4Mask, xK_w), viewScreen 1)
-    , ((mod4Mask, xK_e), viewScreen 2)
+    , ((mod4Mask, xK_q), viewScreen 2)
+    , ((mod4Mask, xK_w), viewScreen 0)
+    , ((mod4Mask, xK_e), viewScreen 1)
     , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 9]
+myWorkspaces = [ "Web", "Edit", "Shell", "Mail", "Chat"] ++ map show [6 .. 9]
 
 
 myHooks = composeAll
-          [className =? "Google-chrome" --> doShift "Web"
-          ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "xterm-256color"--> doShift "Shell"
-          ,className =? "Wow-64.exe" --> doShift "4"
-          ,className =? "Wow-64.exe" --> doFloat
+          [className =? "google-chrome" --> doShift "Web"
+          ,className =? "Emacs"--> doShift "Edit"
+          ,className =? "st-256color"--> doShift "Shell"
+          ,className =? "HipChat" --> doShift "Chat"
+          ,className =? "Thunderbird" --> doShift "Mail"
+          ,className =? "jedit" --> doShift "Edit"
+
           ]
 
 
@@ -87,5 +89,5 @@ fadeHook :: X ()
 fadeHook = do
   ws <- logCurrent
   case ws of
-   Just "Shell" -> fadeInactiveCurrentWSLogHook 0.9
+   Just "Shell" -> fadeInactiveCurrentWSLogHook 0.7
    _            -> fadeInactiveCurrentWSLogHook 1

@@ -10,6 +10,17 @@
                 "priority": 20
             },
             {
+                "function": "powerline.segments.shell.cwd",
+                "args" : {
+                    "dir_limit_depth" : 1,
+                    "ellipsis" : null
+                },
+                "priority": 20
+            }
+
+        ],
+        "right" : [
+            {
                 "function": "powerline.segments.common.vcs.branch",
                 "priority": 20
             },
@@ -20,16 +31,7 @@
             {
                 "function": "powerline.segments.shell.last_status",
                 "priority": 20
-            },
-            {
-                "function": "powerline.segments.shell.cwd",
-                "args" : {
-                    "dir_limit_depth" : 1,
-                    "ellipsis" : null
-                },
-                "priority": 20
             }
-
         ]
     }
 }
