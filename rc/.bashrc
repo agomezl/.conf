@@ -10,7 +10,7 @@ fi
 shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 
-# export PATH=/home/agomezl/.cabal/bin:$PATH
+export PATH=/home/agomezl/.cabal/bin:$PATH
 export VISUAL='emacs -nw'
 export NAME="Alejandro Gómez Londoño"
 export MODULEPATH=~/.local/modules

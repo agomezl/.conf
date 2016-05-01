@@ -1,14 +1,6 @@
 {
     "segments": {
-        "left": [
-            {
-                "function": "powerline.segments.common.time.date",
-                "args" : {
-                    "format" : "%H:%M:%S",
-                    "istime" : true
-                },
-                "priority": 20
-            },
+        "right" : [
             {
                 "function": "powerline.segments.common.vcs.branch",
                 "priority": 20
@@ -20,7 +12,18 @@
             {
                 "function": "powerline.segments.shell.last_status",
                 "priority": 20
+            }
+        ],
+        "left": [
+            {
+                "function": "powerline.segments.common.time.date",
+                "args" : {
+                    "format" : "%H:%M:%S",
+                    "istime" : true
+                },
+                "priority": 20
             },
+
             {
                 "function": "powerline.segments.shell.cwd",
                 "args" : {

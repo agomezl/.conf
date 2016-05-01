@@ -9,9 +9,9 @@ xscreensaver -no-splash &
 
 xcompmgr &
 
-~/.screenlayout/Dual.sh
+#~/.screenlayout/Dual.sh
 
-feh --bg-scale ~/Images/evangelion.jpg --bg-scale ~/Images/evangelion2.jpg
+feh --bg-scale ~/Images/shinobu.jpg
 
 trayer --edge top --align right --widthtype percent --width 10 --heighttype pixel --height 22 --transparent true --alpha 0 --tint 0x000000 --monitor primary &
 

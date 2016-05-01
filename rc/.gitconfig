@@ -1,11 +1,11 @@
 [user]
-	email = alegomez544@gmail.com
-	name = agomezl
+        email = alegomez544@gmail.com
+        name = agomezl
 [color]
-	ui = true
+        ui = true
 [push]
-	default = current
+        default = current
 [merge]
-	tool = emerge
+        tool = emerge
 [core]
-	editor = emacs -nw
+        editor = ec
