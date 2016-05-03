@@ -58,8 +58,6 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[2~' overwrite-mode
 bindkey '^[[3~' delete-char
 
-
-
 unset CABAL_SANDBOX_CONFIG
 unset CABAL_SANDBOX_PACKAGE_PATH
 unset GHC_PACKAGE_PATH
@@ -72,6 +70,8 @@ fi
 
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
+
 
 source $ZSH/oh-my-zsh.sh
 
