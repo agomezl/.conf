@@ -27,6 +27,7 @@
 (require 'yasnippet)
 ;;(require 'powerline)
 (require 'multiple-cursors)
+(require 'web-mode)
 ;; (require 'gccsense)
 
 ;;;;;;;;;;;;;;;
@@ -55,7 +56,6 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
@@ -73,6 +73,30 @@
 ;; whitespace-mode
 (setq-default indent-tabs-mode nil)
 
+
+;; web-mode
+
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+
+(setq web-mode-enable-current-element-highlight t)
+(setq web-mode-enable-current-column-highlight t)
+(setq web-mode-enable-auto-pairing t)
+(setq web-mode-enable-auto-closing t)
+(setq web-mode-ac-sources-alist
+      '(("css" . (ac-source-css-property))
+        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+
+(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+(define-key web-mode-map (kbd "C-c ]") 'web-mode-element-close)
 
 ;; powerline
 ;; (powerline-default-theme)
@@ -207,6 +231,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(agda2-highlight-datatype-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-field-face ((t (:foreground "#ad7fa8"))))
+ '(agda2-highlight-function-face ((t (:inherit font-lock-function-name-face))))
+ '(agda2-highlight-inductive-constructor-face ((t (:foreground "#8ae234"))))
+ '(agda2-highlight-keyword-face ((t (:inherit font-lock-keyword-face))))
+ '(agda2-highlight-module-face ((t (:inherit font-lock-builtin-face))))
+ '(agda2-highlight-number-face ((t (:inherit font-lock-constant-face))))
+ '(agda2-highlight-postulate-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-primitive-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-primitive-type-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-record-face ((t (:inherit font-lock-type-face))))
+ '(agda2-highlight-string-face ((t (:inherit font-lock-string-face))))
  '(column-marker-1 ((t (:underline (:color "green" :style wave)))) t)
  '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))) t)
  '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
@@ -222,18 +258,8 @@
  '(show-paren-match ((t (:foreground "lime green" :weight bold))))
  '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
  '(warning ((t (:background "light sea green" :foreground "white" :weight bold))))
- '(agda2-highlight-datatype-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-field-face ((t (:foreground "#ad7fa8"))))
- '(agda2-highlight-function-face ((t (:inherit font-lock-function-name-face))))
- '(agda2-highlight-inductive-constructor-face ((t (:foreground "#8ae234"))))
- '(agda2-highlight-keyword-face ((t (:inherit font-lock-keyword-face))))
- '(agda2-highlight-module-face ((t (:inherit font-lock-builtin-face))))
- '(agda2-highlight-number-face ((t (:inherit font-lock-constant-face))))
- '(agda2-highlight-postulate-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-primitive-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-primitive-type-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-record-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-string-face ((t (:inherit font-lock-string-face)))))
+ '(web-mode-current-element-highlight-face ((t (:underline "white"))))
+ '(web-mode-html-tag-face ((t (:inherit font-lock-keyword-face)))))
 
 ;;;;;;;;;;;
 ;; Hooks ;;
@@ -302,6 +328,15 @@
           (lambda ()
             (general-hook)))
 
+
+;; web-mode
+(add-hook 'web-mode-hook
+          (lambda ()
+            (fci-mode)
+            (flyspell-prog-mode)
+            (setq web-mode-markup-indent-offset 2)
+            (setq web-mode-css-indent-offset 2)
+            (setq web-mode-code-indent-offset 2)))
 
 ;;edit server
 

@@ -20,8 +20,6 @@ alias clean_flymake='find . -name "dist" -exec rm -rf {} \;'
 alias clean_latex='rm *.{aux,log,nav,toc,vrb,out,snm}'
 alias emacs='~/.conf/scripts/ec.sh'
 
-export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
-
 unset CABAL_SANDBOX_CONFIG
 unset CABAL_SANDBOX_PACKAGE_PATH
 unset GHC_PACKAGE_PATH

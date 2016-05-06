@@ -60,9 +60,9 @@ myWorkspaces = [ "Web", "Emacs", "Shell"] ++ map show [4 .. 9]
 
 
 myHooks = composeAll
-          [className =? "Google-chrome" --> doShift "Web"
+          [className =? "google-chrome" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Emacs"
-          ,className =? "xterm-256color"--> doShift "Shell"
+          ,className =? "st-256color"--> doShift "Shell"
           ,className =? "Wow-64.exe" --> doShift "4"
           ,className =? "Wow-64.exe" --> doFloat
           ]

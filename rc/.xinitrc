@@ -19,6 +19,8 @@ if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &
 fi
 
+#proxy
+export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
 
 volumeicon &
 ~/.dropbox-dist/dropboxd &
