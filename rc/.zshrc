@@ -1,3 +1,7 @@
+# Emacs tramp support
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+#[[ $TERM == "dumb" ]] && PS1='$ ' && return
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
