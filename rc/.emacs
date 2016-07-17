@@ -302,7 +302,6 @@
             (general-hook)
             (interactive-haskell-mode)
             (set-input-method "Agda")
-            (ghc-init)
             (company-mode)
             (haskell-indent-mode)
             (flyspell-prog-mode)

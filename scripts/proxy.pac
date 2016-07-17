@@ -1,10 +1,8 @@
 function FindProxyForURL(url, host) {
-  switch (host.toLowerCase()) {
-    case "bamboo.keg.ertos.in.nicta.com.au": return "SOCKS5 localhost:9090";
-    case "bamboo" : return "SOCKS5 localhost:9090";
-    case "bitbucket.keg.ertos.in.nicta.com.au": return "SOCKS5 localhost:9090";
-    case "tracker.research.nicta.com.au" : return "SOCKS5 localhost:9090";
-    case "wiki.inside.nicta.com.au" : return "SOCKS5 localhost:9090";
+    var str = host.toLowerCase()
+    switch (true) {
+    case /keg.ertos.in.nicta.com.au/.test(str): return "SOCKS5 localhost:9090";
+    case /bamboo/.test(str): return "SOCKS5 localhost:9090";
     default: return "DIRECT";
-  }
+    }
 }
