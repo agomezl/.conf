@@ -5,5 +5,4 @@ ec &
 google-chrome &
 thunderbird &
 spotify &
-isa &
 hipchat &

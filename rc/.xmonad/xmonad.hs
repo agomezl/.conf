@@ -1,3 +1,4 @@
+{-# LANGUAGE UnicodeSyntax #-}
 import XMonad
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
@@ -15,6 +16,9 @@ import System.IO
 import XMonad.Util.Loggers (logCurrent)
 import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
 import XMonad.Actions.PhysicalScreens (viewScreen)
+import XMonad.Prompt (defaultXPConfig,XPConfig(..))
+import XMonad.Prompt.Input ((?+),inputPrompt)
+
 
 main :: IO ()
 main = do
@@ -53,6 +57,7 @@ main = do
     , ((mod4Mask, xK_w), viewScreen 0)
     , ((mod4Mask, xK_e), viewScreen 1)
     , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
+    , ((mod4Mask, xK_i), isaPrompt)
     ]
 
 myWorkspaces :: [String]
@@ -91,3 +96,11 @@ fadeHook = do
   case ws of
    Just "Shell" -> fadeInactiveCurrentWSLogHook 0.7
    _            -> fadeInactiveCurrentWSLogHook 1
+
+isaWithImg ∷ String → X ()
+isaWithImg img = spawn $ "isabelle jedit -d ~/NICTA/verification/l4v/ -l " ++ img
+
+isaPrompt ∷ X ()
+isaPrompt = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ isaWithImg
+
+myXPConfig = defaultXPConfig { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }

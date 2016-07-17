@@ -8,4 +8,4 @@ sudo dnf install wget emacs gmp-devel xcompmgr feh volumeicon \
      aspell-en aspell-es arandr broadcom-wl libXrandr-devel libX11-devel \
      lm_sensors unrar qbittorrent libXinerama-devel libXft-devel gpicview \
      evince readline-devel texlive-scheme-full system-config-printer.x86_64 \
-     cups environment-modules libXpm-devel
+     cups environment-modules libXpm-devel moreutils

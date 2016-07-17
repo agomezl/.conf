@@ -302,7 +302,6 @@
             (general-hook)
             (interactive-haskell-mode)
             (set-input-method "Agda")
-            (ghc-init)
             (company-mode)
             (haskell-indent-mode)
             (flyspell-prog-mode)
@@ -332,7 +331,6 @@
 ;; web-mode
 (add-hook 'web-mode-hook
           (lambda ()
-            (fci-mode)
             (flyspell-prog-mode)
             (setq web-mode-markup-indent-offset 2)
             (setq web-mode-css-indent-offset 2)

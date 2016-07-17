@@ -14,3 +14,5 @@
 [alias]
         nicta    = config user.email alejadro.gomez@nicta.com.au
         personal = config user.email alegomez544@gmial.com
+        co       = checkout
+        ci       = commit
