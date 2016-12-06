@@ -7,22 +7,24 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Layout.Spacing
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.NoBorders
 import XMonad.Layout.Named
 import XMonad.Layout.Grid
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
+import XMonad.Operations (refresh)
 import XMonad.Util.Loggers (logCurrent)
 import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
 import XMonad.Actions.PhysicalScreens (viewScreen)
 import XMonad.Prompt (defaultXPConfig,XPConfig(..))
 import XMonad.Prompt.Input ((?+),inputPrompt)
 
-
 main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
+  spawn "conky"
   xmonad $ desktopConfig
     { manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
@@ -59,10 +61,11 @@ main = do
     , ((mod4Mask, xK_e), viewScreen 1)
     , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
     , ((mod4Mask, xK_i), isaPrompt)
+    , ((mod4Mask, xK_d), refresh)
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Edit", "Shell", "Mail", "Chat"] ++ map show [6 .. 9]
+myWorkspaces = [ "Web", "Emacs", "Shell","Chat","Mail"] ++ map show [6 .. 9]
 
 
 myHooks = composeAll
@@ -76,15 +79,15 @@ myHooks = composeAll
           ]
 
 
-baseLayout = tall ||| Mirror tall ||| Full
+baseLayout = tall ||| Mirror tall ||| smartBorders Full
   where  tall = Tall 1 (3/100) (1/2)
 
 
-shellLayout = Full ||| grid
+shellLayout = smartBorders Full ||| grid
   where
     grid = named "Grid" $ spacing 2 $ Grid
 
-webLayout = Full ||| sideTall
+webLayout = smartBorders Full ||| sideTall
   where
     sideTall = Tall nmaster delta ratio
     nmaster = 1

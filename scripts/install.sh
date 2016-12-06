@@ -12,14 +12,12 @@ function setup-rpmfusion {
 #Nvidia driver
 function setup-nvidia {
     set -e
-    [ $S_FUSION == "OK" ] || setup-rpmfusion
     sudo dnf -y install akmod-nvidia "kernel-devel-uname-r == $(uname -r)"
     export S_NVIDIA=OK
 }
 #Other stuff
 function setup-base {
     set -e
-    [ $S_FUSION == "OK" ] || setup-rpmfusion
     sudo dnf -y install wget emacs gmp-devel xcompmgr feh volumeicon \
          xscreensaver vlc NetworkManager-vpnc-gnome scrot fail2ban aspell \
          aspell-en aspell-es arandr broadcom-wl libXrandr-devel libX11-devel \
@@ -65,11 +63,6 @@ function setup-ohzsh {
 
 function setup-conf {
     set -e
-    [ $S_OHZSH == "OK" ] || setup-ohzsh
-    cd
-    git clone https://github.com/agomezl/.conf.git
-    cd .conf
-    git checkout purdue
     for file in $(ls -A .conf/rc)
     do
         [ -e $file ] && mv $file ${file}_bkp || echo "${i}: No backup"
@@ -83,7 +76,6 @@ function setup-conf {
 
 function setup-xmonad {
     set -e
-    [ $S_CONF == "OK" ]  || setup-conf
     [ $S_CABAL == "OK" ] || setup-cabal
     cd ~/opt
     mkdir xmonad

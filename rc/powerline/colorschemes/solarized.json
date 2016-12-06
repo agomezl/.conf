@@ -23,7 +23,7 @@
                 "network_load":            { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
                 "network_load:divider":    { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
                 "hostname":                { "fg": "solarized:base3", "bg": "solarized:base01", "attrs": [] },
-                "environment":             { "fg": "solarized:base3", "bg": "solarized:green", "attrs": [] },
+                "environment":             { "fg": "black", "bg": "white", "attrs": [] },
                 "attached_clients":        { "fg": "solarized:base3", "bg": "solarized:green", "attrs": [] },
                 "date":                    { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] },
                 "time":                    { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": ["bold"] },

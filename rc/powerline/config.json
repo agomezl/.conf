@@ -1,11 +1,12 @@
 {
         "common": {
             "term_truecolor": true,
+            "log_file" : "/home/agomezl/pl.log",
             "additional_escapes" : "screen"
         },
         "ext": {
                 "shell": {
-                        "colorscheme": "mine",
+                        "colorscheme": "solarized",
                         "theme": "leftonly",
                         "local_themes": {
                                 "continuation": "continuation",
