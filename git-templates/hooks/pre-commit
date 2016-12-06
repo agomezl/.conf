@@ -1,0 +1,19 @@
+#!/bin/bash
+
+EMAIL=$(git config --get user.email)
+
+function errormsg {
+    cat <<EOF
+###############
+# WRONG EMAIL #
+###############
+
+Use a @nicta.com.au email
+EOF
+    exit 1
+}
+
+if $(git remote show $(git remote) | grep -q nicta.com.au)
+then
+    [[ $EMAIL =~ .*@nicta.com.au ]] || errormsg
+fi

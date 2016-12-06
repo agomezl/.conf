@@ -1,6 +1,8 @@
 [user]
-        email = alegomez544@gmail.com
-        name = agomezl
+        email = alejandro.gomez@nicta.com.au
+        name  = Alejandro Gomez-Londono
+[init]
+        templatedir = ~/.conf/git-templates/
 [color]
         ui = true
 [push]
@@ -9,3 +11,8 @@
         tool = emerge
 [core]
         editor = ec
+[alias]
+        nicta    = config user.email alejadro.gomez@nicta.com.au
+        personal = config user.email alegomez544@gmial.com
+        co       = checkout
+        ci       = commit
