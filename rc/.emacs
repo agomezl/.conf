@@ -21,7 +21,6 @@
 (require 'company)
 (require 'org)
 (require 'magit)
-(require 'gist)
 (require 'flyspell)
 (require 'fill-column-indicator)
 (require 'yasnippet)
@@ -46,7 +45,6 @@
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
- '(before-save-hook (quote (whitespace-cleanup)))
  '(column-number-mode t)
  '(company-ghc-show-info t)
  '(custom-enabled-themes (quote (wombat)))
@@ -61,18 +59,27 @@
  '(initial-buffer-choice nil)
  '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
+ '(magit-diff-refine-hunk t)
  '(menu-bar-mode nil)
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
+ '(package-selected-packages
+   (quote
+    (ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
+ '(select-enable-primary t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
- '(tramp-auto-save-directory "~/.save/")
- '(x-select-enable-primary t))
+ '(tramp-auto-save-directory "~/.save/"))
 
 ;; whitespace-mode
 (setq-default indent-tabs-mode nil)
 
+(defun save-buffer-clean ()
+  "save current buffer after cleaning up whitespaces"
+  (interactive)
+  (whitespace-cleanup)
+  (save-buffer))
 
 ;; web-mode
 
@@ -167,6 +174,7 @@
   (interactive)
   (fci-mode)
   (yas-minor-mode)
+  (flycheck-mode)
   (local-set-key (kbd "C-<tab>") 'yas-expand)
   (local-set-key (kbd "C-+") 'yas-insert-snippet))
 
@@ -195,6 +203,8 @@
 (define-key flyspell-mode-map (kbd "C-.") nil)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-s") 'save-buffer-clean)
+(global-set-key (kbd "C-x C-S-s") 'save-buffer)
 (global-set-key (kbd "<S-delete>") 'delete-region)
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
@@ -324,6 +334,10 @@
             (flyspell-mode)))
 
 (add-hook 'sh-mode-hook
+          (lambda ()
+            (general-hook)))
+
+(add-hook 'python-mode-hook
           (lambda ()
             (general-hook)))
 

@@ -3,7 +3,7 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*"
        , border = TopB
        , bgColor = "black"
        , fgColor = "grey"
-       , position = Static { xpos = 1280 , ypos = 0, width = 1728, height = 22 }
+       , position = Static { xpos = 1200, ypos = 312, width = 1728, height = 22 }
        , allDesktops = False
        , lowerOnStart = True
        , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
@@ -11,10 +11,11 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run DateZone "%a %b %_d %Y %H:%M" "en_AU.UTF-8" "Australia/Sydney" "date" 10
                     , Run DateZone "%H:%M" "es_CO.UTF-8" "America/Bogota" "col_time" 10
+                    , Run Kbd [("us(intl)", "US-INT"), ("us", "US")]
                     , Run StdinReader
                     , Run Network "enp0s31f6" ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %enp0s31f6% | %cpu% | %memory% * %swap% | <fc=#ee9a00>%date%</fc> (%col_time%)"
+       , template = "%StdinReader% }{ %enp0s31f6% | %cpu% | %memory% * %swap% | [%kbd%] <fc=#ee9a00>%date%</fc> (%col_time%)"
        }
