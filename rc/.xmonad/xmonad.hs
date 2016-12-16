@@ -58,7 +58,7 @@ main = do
     , ((mod4Mask, xK_w), viewScreen 2)
     , ((mod4Mask, xK_e), viewScreen 1)
     , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
-    , ((mod4Mask, xK_i), isaPrompt)
+    , ((mod4Mask, xK_i), isaSelected defaultGSConfig)
     ]
 
 myWorkspaces :: [String]
@@ -98,16 +98,28 @@ fadeHook = do
    Just "Shell" -> fadeInactiveCurrentWSLogHook 0.7
    _            -> fadeInactiveCurrentWSLogHook 1
 
-isaWithImg ∷ String → X ()
-isaWithImg img = spawn $ "L4V_ARCH=ARM_HYP "
-                       ++ "isabelle jedit -d ~/NICTA/verification/l4v/ "
-                       ++ "-d ~/NICTA/verification/l4v/test-images/ "
-                       ++ "-l " ++ img
+isaWithImg ∷ String → String → X ()
+isaWithImg dir img = do spawn $ "echo " ++ command
+                        spawn command
+    where location = "~/NICTA/" ++ dir ++ "/l4v"
+          isa_bin  = location ++ "/isabelle/bin/isabelle"
+          command  = "L4V_ARCH=ARM_HYP "
+                      ++ isa_bin ++ " jedit -d " ++ location
+                      ++ " -d "  ++ location ++ "/test-images"
+                      ++ " -l "  ++ img
 
-isaPrompt ∷ X ()
-isaPrompt = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ isaWithImg
+isaPrompt ∷ String → X ()
+isaPrompt dir = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ (isaWithImg dir)
 
 myXPConfig = defaultXPConfig { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }
+
+isaSelected :: GSConfig String -> X ()
+isaSelected conf = do selection ← gridselect conf (zip lst lst)
+                      case selection of
+                        Just dir -> isaPrompt dir
+                        _   -> return ()
+    where
+      lst =["verification", "github"]
 
 kbdSelected :: GSConfig String -> X ()
 kbdSelected conf = do selection ← gridselect conf (zip lst lst)
