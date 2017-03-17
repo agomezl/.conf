@@ -15,5 +15,5 @@ EOF
 
 if $(git remote show $(git remote) | grep -q nicta.com.au)
 then
-    [[ $EMAIL =~ .*@nicta.com.au ]] || errormsg
+    [[ $EMAIL =~ .*@data61.csiro.au ]] || errormsg
 fi

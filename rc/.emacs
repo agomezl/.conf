@@ -56,7 +56,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
- '(initial-buffer-choice nil)
+ '(initial-buffer-choice "~/Documents/TODO.org")
  '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
  '(magit-diff-refine-hunk t)
@@ -65,6 +65,7 @@
  '(package-selected-packages
    (quote
     (ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
+ '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
  '(select-enable-primary t)
@@ -135,7 +136,8 @@
                     (mode . magit-mode)
                     (mode . git-commit-mode)))
          ("Dired" (mode . dired-mode))
-         ("Haskell" (mode . haskell-mode))
+         ("Haskell" (or (mode . haskell-mode)
+                        (mode . literate-haskell-mode)))
          ("JavaScript" (filename . ".js"))
          ("Bash"(filename . ".sh" ))
          ("MarkDown" (filename . ".md"))
