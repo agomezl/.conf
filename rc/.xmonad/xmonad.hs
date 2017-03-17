@@ -45,7 +45,7 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
-                                        "evolution", "isa",
+                                        "thunderbird", "vncviewer",
                                         "Morning","vlc",
                                         "lxterminal","scrot -s","firefox",
                                         "hipchat","spotify","steam"])
@@ -56,16 +56,17 @@ main = do
     , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
     , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
     , ((mod4Mask, xK_k), kbdSelected defaultGSConfig)
+    , ((mod4Mask, xK_j), trackpadSelected defaultGSConfig)
     , ((mod4Mask, xK_q), viewScreen 0)
-    , ((mod4Mask, xK_w), viewScreen 2)
-    , ((mod4Mask, xK_e), viewScreen 1)
+    , ((mod4Mask, xK_w), viewScreen 1)
+    , ((mod4Mask, xK_e), viewScreen 2)
     , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
-    , ((mod4Mask, xK_i), isaPrompt)
+    , ((mod4Mask, xK_i), isaSelected defaultGSConfig)
     , ((mod4Mask, xK_d), refresh)
     ]
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Emacs", "Shell","Chat","Mail"] ++ map show [6 .. 9]
+myWorkspaces = [ "Web", "Edit", "Shell","Chat","Mail"] ++ map show [6 .. 9]
 
 
 myHooks = composeAll
@@ -101,14 +102,26 @@ fadeHook = do
    Just "Shell" -> fadeInactiveCurrentWSLogHook 0.7
    _            -> fadeInactiveCurrentWSLogHook 1
 
-isaWithImg ∷ String → X ()
-isaWithImg img = spawn $ "L4V_ARCH=ARM_HYP "
-                       ++ "isabelle jedit -d ~/NICTA/verification/l4v/ "
-                       ++ "-d ~/NICTA/verification/l4v/test-images/ "
-                       ++ "-l " ++ img
+isaWithImg ∷ String → String → X ()
+isaWithImg dir img = do spawn $ "echo " ++ command
+                        spawn command
+    where location = "~/NICTA/" ++ dir ++ "/l4v"
+          isa_bin  = location ++ "/isabelle/bin/isabelle"
+          command  = "L4V_ARCH=ARM_HYP "
+                      ++ isa_bin ++ " jedit -d " ++ location
+                      ++ " -d "  ++ location ++ "/test-images"
+                      ++ " -l "  ++ img
 
-isaPrompt ∷ X ()
-isaPrompt = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ isaWithImg
+isaPrompt ∷ String → X ()
+isaPrompt dir = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ (isaWithImg dir)
+
+isaSelected :: GSConfig String -> X ()
+isaSelected conf = do selection ← gridselect conf (zip lst lst)
+                      case selection of
+                        Just dir -> isaPrompt dir
+                        _   -> return ()
+    where
+      lst =["verification", "github"]
 
 myXPConfig = defaultXPConfig { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }
 
@@ -117,5 +130,15 @@ kbdSelected conf = do selection ← gridselect conf (zip lst lst)
                       case selection of
                         Just "US"     -> spawn "setxkbmap -layout us"
                         Just "US-INT" -> spawn "setxkbmap -layout us -variant intl"
+                        _             -> return ()
     where
       lst =["US", "US-INT"]
+
+trackpadSelected :: GSConfig String -> X ()
+trackpadSelected conf = do selection ← gridselect conf (zip lst lst)
+                           case selection of
+                             Just "TAP"     -> spawn "xinput set-prop 12 276 1"
+                             Just "CLICK"   -> spawn "xinput set-prop 12 276 0"
+                             _              -> return ()
+    where
+      lst =["TAP", "CLICK"]

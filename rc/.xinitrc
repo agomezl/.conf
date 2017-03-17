@@ -7,6 +7,11 @@ PATH=$HOME/.cabal/bin:$HOME/.local/bin:$PATH
 xsetroot -cursor_name ul_angle &
 xscreensaver -no-splash &
 
+if xrandr | grep -q "DP-1-1 connected"
+then
+    /home/agomezl/.conf/scripts/dock.sh
+fi
+
 xcompmgr &
 
 #~/.screenlayout/Dual.sh

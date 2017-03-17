@@ -374,15 +374,6 @@
             (setq web-mode-css-indent-offset 2)
             (setq web-mode-code-indent-offset 2)))
 
-;; web-mode
-(add-hook 'web-mode-hook
-          (lambda ()
-            (fci-mode)
-            (flyspell-prog-mode)
-            (setq web-mode-markup-indent-offset 2)
-            (setq web-mode-css-indent-offset 2)
-            (setq web-mode-code-indent-offset 2)))
-
 ;;edit server
 
 (when (and (daemonp) (locate-library "edit-server"))
