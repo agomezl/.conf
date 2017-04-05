@@ -1,5 +1,5 @@
 [user]
-        email = alejandro.gomez@nicta.com.au
+        email = alejandro.gomez@data61.csiro.au
         name  = Alejandro Gomez-Londono
 [init]
         templatedir = ~/.conf/git-templates/
@@ -12,7 +12,7 @@
 [core]
         editor = ec
 [alias]
-        nicta    = config user.email alejadro.gomez@nicta.com.au
-        personal = config user.email alegomez544@gmial.com
+        nicta    = config user.email alejadro.gomez@data61.csiro.au
+        personal = config user.email alegomez544@gmail.com
         co       = checkout
         ci       = commit
