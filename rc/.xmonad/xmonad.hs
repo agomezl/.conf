@@ -102,28 +102,31 @@ fadeHook = do
    Just "Shell" -> fadeInactiveCurrentWSLogHook 0.7
    _            -> fadeInactiveCurrentWSLogHook 1
 
-isaWithImg ∷ String → String → X ()
-isaWithImg dir img = do spawn $ "echo " ++ command
-                        spawn command
+
+isaWithImg ∷ String → String → String → X ()
+isaWithImg dir arch img = do spawn $ "echo " ++ command
+                             spawn command
     where location = "~/NICTA/" ++ dir ++ "/l4v"
           isa_bin  = location ++ "/isabelle/bin/isabelle"
-          command  = "L4V_ARCH=ARM_HYP "
+          command  = "L4V_ARCH=" ++ arch ++ " "
                       ++ isa_bin ++ " jedit -d " ++ location
                       ++ " -d "  ++ location ++ "/test-images"
                       ++ " -l "  ++ img
 
-isaPrompt ∷ String → X ()
-isaPrompt dir = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ (isaWithImg dir)
+isaPrompt ∷ String → String → X ()
+isaPrompt dir arch = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ (isaWithImg dir arch)
+
+myXPConfig = defaultXPConfig { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }
 
 isaSelected :: GSConfig String -> X ()
-isaSelected conf = do selection ← gridselect conf (zip lst lst)
-                      case selection of
-                        Just dir -> isaPrompt dir
+isaSelected conf = do selection   ← gridselect conf (zip lst lst)
+                      arch_choice ← gridselect conf (zip lstArch lstArch)
+                      case (arch_choice, selection) of
+                        (Just arch, Just dir) -> isaPrompt dir arch
                         _   -> return ()
     where
       lst =["verification", "github"]
-
-myXPConfig = defaultXPConfig { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }
+      lstArch = ["ARM","ARM_HYP"]
 
 kbdSelected :: GSConfig String -> X ()
 kbdSelected conf = do selection ← gridselect conf (zip lst lst)
