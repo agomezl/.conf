@@ -16,6 +16,7 @@
 ;;;;;;;;;;;;;
 
 (require 'flymake)
+(require 'icicles)
 (require 'package)
 (require 'agda-input)
 (require 'company)
@@ -64,7 +65,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
+    (multi-term icicles ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
@@ -81,6 +82,10 @@
   (interactive)
   (whitespace-cleanup)
   (save-buffer))
+
+;; Icy
+
+(icy-mode 1)
 
 ;; web-mode
 
@@ -132,6 +137,7 @@
       '(("alien"
          ("Latex" (or (filename . ".tex")
                       (filename . ".bib")))
+         ("Isabelle" (filename . ".thy"))
          ("Git" (or (mode . magit-status-mode)
                     (mode . magit-mode)
                     (mode . git-commit-mode)))

@@ -9,13 +9,14 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*"
        , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run DateZone "%a %b %_d %Y %H:%M" "en_AU.UTF-8" "Australia/Sydney" "date" 10
-                    , Run DateZone "%H:%M" "es_CO.UTF-8" "America/Bogota" "col_time" 10
+                    , Run DateZone "%a %D %H:%M" "en_AU.UTF-8" "Australia/Sydney" "date" 10
+                    , Run DateZone "%H" "es_CO.UTF-8" "America/Bogota" "col" 10
+                    , Run DateZone "%H" "se_SE.UTF-8" "Europe/Stockholm" "swe" 10
                     , Run Kbd [("us(intl)", "US-INT"), ("us", "US")]
                     , Run StdinReader
                     , Run Network "enp0s31f6" ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %enp0s31f6% | %cpu% | %memory% * %swap% | [%kbd%] <fc=#ee9a00>%date%</fc> (%col_time%)"
+       , template = "%StdinReader% }{ %enp0s31f6% | %cpu% | %memory% * %swap% | [%kbd%] <fc=#ee9a00>%date%</fc> (%col%)-(%swe%)"
        }
