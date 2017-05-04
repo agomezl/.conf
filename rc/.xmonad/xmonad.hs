@@ -24,7 +24,6 @@ import XMonad.Prompt.Input ((?+),inputPrompt)
 main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
-  spawn "conky"
   xmonad $ desktopConfig
     { manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
