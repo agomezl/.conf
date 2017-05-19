@@ -10,13 +10,16 @@
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp/isar")
 
 ;;;;;;;;;;;;;
 ;; Require ;;
 ;;;;;;;;;;;;;
 
 (require 'flymake)
-(require 'icicles)
+(require 'isar-mode)
+(require 'helm)
+(require 'helm-config)
 (require 'package)
 (require 'agda-input)
 (require 'company)
@@ -83,9 +86,15 @@
   (whitespace-cleanup)
   (save-buffer))
 
-;; Icy
+;; HOL4
 
-(icy-mode 1)
+(load "~/.emacs.d/lisp/hol-mode.el")
+
+(add-hook 'sml-mode-hook
+          (lambda ()
+            (set-input-method "Agda")
+            (setq electric-indent-chars'())))
+
 
 ;; web-mode
 
@@ -137,6 +146,39 @@
 
 ;; powerline
 ;; (powerline-default-theme)
+
+;; helm
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t)
+
+(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 20)
+(helm-autoresize-mode 1)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-s") 'helm-occur)
+
+(helm-mode 1)
+
+(eval-after-load "helm" '(progn ;; Weird incantation
+                           (define-key helm-find-files-map (kbd "C-s") 'helm-ff-run-grep-ag)))
 
 ;; magit
 (setq magit-auto-revert-mode nil)
