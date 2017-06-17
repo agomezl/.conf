@@ -40,7 +40,7 @@ main = do
     , borderWidth = 2
     , workspaces = myWorkspaces
     } `additionalKeys`
-    [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
+    ([ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
@@ -49,23 +49,27 @@ main = do
                                         "lxterminal","scrot -s","firefox",
                                         "hipchat","spotify","steam"])
     , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
-    , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
+    , ((mod4Mask, xK_s), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")
     , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
     , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
     , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
     , ((mod4Mask, xK_k), kbdSelected defaultGSConfig)
     , ((mod4Mask, xK_j), trackpadSelected defaultGSConfig)
-    , ((mod4Mask, xK_q), viewScreen 0)
-    , ((mod4Mask, xK_w), viewScreen 1)
-    , ((mod4Mask, xK_e), viewScreen 2)
     , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
-    , ((mod4Mask, xK_i), isaSelected defaultGSConfig)
-    , ((mod4Mask, xK_d), refresh)
+    , ((mod4Mask , xK_q), viewScreen 0)
+    , ((mod4Mask , xK_w), viewScreen 2)
+    , ((mod4Mask , xK_e), viewScreen 1)
+    , ((mod4Mask , xK_i), isaSelected defaultGSConfig)
     ]
+    ++
+    [((mod4Mask, k), windows $ W.greedyView i)
+        | (i, k) <- zip myWorkspaces
+                    [xK_a,xK_s,xK_d,xK_f,xK_z,xK_x,xK_c,xK_v]])
+
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Edit", "Shell","Chat","Mail"] ++ map show [6 .. 9]
+myWorkspaces = [ "Web", "Edit", "Shell","Isa", "Mail", "Chat"] ++ map show [7 .. 9]
 
 
 myHooks = composeAll
@@ -75,7 +79,7 @@ myHooks = composeAll
           ,className =? "HipChat" --> doShift "Chat"
           ,className =? "Thunderbird" --> doShift "Mail"
           ,className =? "Evolution" --> doShift "Mail"
-          ,className =? "jedit" --> doShift "Edit"
+          ,className =? "jedit" --> doShift "Isa"
           ]
 
 

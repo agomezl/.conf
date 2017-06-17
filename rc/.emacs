@@ -53,7 +53,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (multi-term icicles ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
+    (helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
@@ -62,6 +62,10 @@
  '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/"))
 
+;;up-case down-case enable
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;;;;;;;;;;;;;;;;;;
 ;; Key bindings ;;
 ;;;;;;;;;;;;;;;;;;
@@ -69,6 +73,7 @@
 (global-unset-key (kbd "C-z"))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-S-SPC") 'toggle-maximize-buffer)
 (global-set-key (kbd "C-x C-s") 'save-buffer-clean)
 (global-set-key (kbd "C-x C-S-s") 'save-buffer)
 (global-set-key (kbd "<S-delete>") 'delete-region)
@@ -96,7 +101,9 @@
       '(("alien"
          ("Latex" (or (filename . ".tex")
                       (filename . ".bib")))
-         ("Isabelle" (filename . ".thy"))
+         ("Isabelle" (or (filename . "ROOT")
+                         (filename . ".thy")))
+         ("SML" (filename . ".sml"))
          ("Git" (or (mode . magit-status-mode)
                     (mode . magit-mode)
                     (mode . git-commit-mode)))
@@ -108,10 +115,15 @@
          ("MarkDown" (filename . ".md"))
          ("Org" (filename . ".org"))
          ("Java" (filename . ".java"))
+         ("Helm" (predicate string-match "Hmm" mode-name))
+         ("Other" (mode . fundamental))
          ("C++" (mode . c-mode)))))
+
 (add-hook 'ibuffer-mode-hook
           '(lambda ()
              (ibuffer-switch-to-saved-filter-groups "alien")))
+
+
 
 ;; backups
 (setq delete-old-versions t
@@ -167,6 +179,15 @@
   (interactive)
   (whitespace-cleanup)
   (save-buffer))
+
+;; full-screen buffer toggle
+(defun toggle-maximize-buffer () "Maximize buffer"
+  (interactive)
+  (if (= 1 (length (window-list)))
+    (jump-to-register '_)
+    (progn
+      (set-register '_ (list (current-window-configuration)))
+      (delete-other-windows))))
 
 ;; HOL4
 (load "~/.emacs.d/lisp/hol-mode.el")
