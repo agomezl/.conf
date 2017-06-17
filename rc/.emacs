@@ -10,13 +10,15 @@
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
-
+(add-to-list 'load-path "~/.emacs.d/lisp/isar")
 ;;;;;;;;;;;;;
 ;; Require ;;
 ;;;;;;;;;;;;;
 
 (require 'flymake)
-(require 'icicles)
+(require 'isar-mode)
+(require 'helm)
+(require 'helm-config)
 (require 'package)
 (require 'agda-input)
 (require 'company)
@@ -65,7 +67,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (multi-term icicles ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
+    (helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
@@ -83,9 +85,15 @@
   (whitespace-cleanup)
   (save-buffer))
 
-;; Icy
+;; full-screen buffer toggle
 
-(icy-mode 1)
+(defun toggle-maximize-buffer () "Maximize buffer"
+  (interactive)
+  (if (= 1 (length (window-list)))
+    (jump-to-register '_)
+    (progn
+      (set-register '_ (list (current-window-configuration)))
+      (delete-other-windows))))
 
 ;; web-mode
 
@@ -114,6 +122,49 @@
 ;; powerline
 ;; (powerline-default-theme)
 
+;; helm
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-set-key (kbd "C-c r") 'helm-resume)
+(global-unset-key (kbd "C-x c"))
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t)
+
+(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 20)
+(helm-autoresize-mode 1)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-s") 'helm-occur)
+
+(helm-mode 1)
+
+(eval-after-load "helm" '(progn ;; Weird incantation
+  (define-key helm-find-files-map (kbd "C-s") 'helm-ff-run-grep-ag)))
+
+;; HOL
+
+(load "/home/agomezl/.emacs.d/lisp/hol-mode.el")
+
+(add-hook 'sml-mode-hook
+          (lambda ()
+            (setq electric-indent-chars '())
+            (set-input-method "Agda")))
+
 ;; magit
 (setq magit-auto-revert-mode nil)
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -137,7 +188,9 @@
       '(("alien"
          ("Latex" (or (filename . ".tex")
                       (filename . ".bib")))
-         ("Isabelle" (filename . ".thy"))
+         ("Isabelle" (or (filename . "ROOT")
+                         (filename . ".thy")))
+         ("SML" (filename . ".sml"))
          ("Git" (or (mode . magit-status-mode)
                     (mode . magit-mode)
                     (mode . git-commit-mode)))
@@ -149,10 +202,15 @@
          ("MarkDown" (filename . ".md"))
          ("Org" (filename . ".org"))
          ("Java" (filename . ".java"))
+         ("Helm" (predicate string-match "Hmm" mode-name))
+         ("Other" (mode . fundamental))
          ("C++" (mode . c-mode)))))
+
 (add-hook 'ibuffer-mode-hook
           '(lambda ()
              (ibuffer-switch-to-saved-filter-groups "alien")))
+
+
 
 ;; backups
 (setq delete-old-versions t
@@ -211,6 +269,7 @@
 (define-key flyspell-mode-map (kbd "C-.") nil)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-S-SPC") 'toggle-maximize-buffer)
 (global-set-key (kbd "C-x C-s") 'save-buffer-clean)
 (global-set-key (kbd "C-x C-S-s") 'save-buffer)
 (global-set-key (kbd "<S-delete>") 'delete-region)
