@@ -13,7 +13,7 @@ EOF
     exit 1
 }
 
-if $(git remote show $(git remote) | grep -q nicta.com.au)
+if $(git remote -v | grep -q nicta.com.au)
 then
     [[ $EMAIL =~ .*@data61.csiro.au ]] || errormsg
 fi

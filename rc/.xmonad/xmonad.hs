@@ -139,8 +139,8 @@ kbdSelected conf = do selection ← gridselect conf (zip lst lst)
 trackpadSelected :: GSConfig String -> X ()
 trackpadSelected conf = do selection ← gridselect conf (zip lst lst)
                            case selection of
-                             Just "TAP"     -> spawn "xinput set-prop 12 276 1"
-                             Just "CLICK"   -> spawn "xinput set-prop 12 276 0"
+                             Just "TAP"     -> spawn "xinput set-prop 12 277 1"
+                             Just "CLICK"   -> spawn "xinput set-prop 12 277 0"
                              _              -> return ()
     where
       lst =["TAP", "CLICK"]

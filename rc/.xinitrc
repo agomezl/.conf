@@ -18,7 +18,7 @@ xcompmgr &
 
 #~/.screenlayout/Dual.sh
 
-feh --bg-scale ~/Images/overwatch.jpg
+feh --bg-scale ~/Downloads/aperture.jpg
 
 trayer --edge top --align right --widthtype percent --width 10 --heighttype pixel --height 22 --transparent true --alpha 0 --tint 0x000000 --monitor primary &
 
@@ -32,5 +32,4 @@ export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
 volumeicon &
 ~/.dropbox-dist/dropboxd &
 
-XMONAD_SANDBOX=/home/agomezl/opt/xmonad/cabal.sandbox.config
-cabal --sandbox-config-file=${XMONAD_SANDBOX} exec xmonad
+exec xmonad

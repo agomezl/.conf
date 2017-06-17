@@ -13,25 +13,10 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/isar")
 
 ;;;;;;;;;;;;;
-;; Require ;;
+;; Modules ;;
 ;;;;;;;;;;;;;
 
-(require 'flymake)
-(require 'isar-mode)
-(require 'helm)
-(require 'helm-config)
-(require 'package)
-(require 'agda-input)
-(require 'company)
-(require 'org)
-(require 'magit)
-(require 'flyspell)
-(require 'fill-column-indicator)
-(require 'yasnippet)
-;;(require 'powerline)
-(require 'multiple-cursors)
-(require 'web-mode)
-;; (require 'gccsense)
+(load "~/.conf/elisp/modules.el")
 
 ;;;;;;;;;;;;;;;
 ;; Variables ;;
@@ -77,126 +62,34 @@
  '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/"))
 
-;; whitespace-mode
-(setq-default indent-tabs-mode nil)
+;;;;;;;;;;;;;;;;;;
+;; Key bindings ;;
+;;;;;;;;;;;;;;;;;;
 
-(defun save-buffer-clean ()
-  "save current buffer after cleaning up whitespaces"
-  (interactive)
-  (whitespace-cleanup)
-  (save-buffer))
+(global-unset-key (kbd "C-z"))
 
-;; HOL4
-
-(load "~/.emacs.d/lisp/hol-mode.el")
-
-(add-hook 'sml-mode-hook
-          (lambda ()
-            (set-input-method "Agda")
-            (setq electric-indent-chars'())))
-
-
-;; web-mode
-
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-s") 'save-buffer-clean)
+(global-set-key (kbd "C-x C-S-s") 'save-buffer)
+(global-set-key (kbd "<S-delete>") 'delete-region)
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-S-<left>") 'previous-buffer)
+(global-set-key (kbd "C-S-<right>") 'next-buffer)
+(global-set-key (kbd "C-M-S-g" ) 'magit-status)
+(global-set-key (kbd "C-M-S-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-M-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-M-S-<down>") 'shrink-window)
+(global-set-key (kbd "C-M-S-<up>") 'enlarge-window)
+(global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
+(global-set-key (kbd "C-S-z")  'jump-to-register)
 
 
-(setq web-mode-enable-current-element-highlight t)
-(setq web-mode-enable-current-column-highlight t)
-(setq web-mode-enable-auto-pairing t)
-(setq web-mode-enable-auto-closing t)
-(setq web-mode-ac-sources-alist
-      '(("css" . (ac-source-css-property))
-        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
-
-
-(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
-(define-key web-mode-map (kbd "C-c ]") 'web-mode-element-close)
-
-;; web-mode
-
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-
-
-(setq web-mode-enable-current-element-highlight t)
-(setq web-mode-enable-current-column-highlight t)
-(setq web-mode-enable-auto-pairing t)
-(setq web-mode-enable-auto-closing t)
-(setq web-mode-ac-sources-alist
-      '(("css" . (ac-source-css-property))
-        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
-
-
-(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
-(define-key web-mode-map (kbd "C-c ]") 'web-mode-element-close)
-
-;; powerline
-;; (powerline-default-theme)
-
-;; helm
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
-
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-      helm-ff-file-name-history-use-recentf t
-      helm-echo-input-in-header-line t)
-
-(setq helm-autoresize-max-height 0)
-(setq helm-autoresize-min-height 20)
-(helm-autoresize-mode 1)
-
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-s") 'helm-occur)
-
-(helm-mode 1)
-
-(eval-after-load "helm" '(progn ;; Weird incantation
-                           (define-key helm-find-files-map (kbd "C-s") 'helm-ff-run-grep-ag)))
-
-;; magit
-(setq magit-auto-revert-mode nil)
-(setq magit-last-seen-setup-instructions "1.4.0")
-
-;; haskell
-(add-to-list 'company-backends 'company-ghc)
-
-;; Org
-(setq org-log-done t)
-
-;; aspell
-(setq ispell-program-name "aspell"
-      ispell-extra-args '("--sug-mode=ultra"))
-
-;; default web browser
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "google-chrome")
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Buffers and Backups  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ibuffer custom group
 (setq ibuffer-saved-filter-groups
@@ -225,86 +118,6 @@
   kept-new-versions 6
   kept-old-versions 2
   version-control t)
-
-;; Agda mode
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
-
-
-;; UTF-8 as default encoding
-(set-language-environment "UTF-8")
-
-;; Yasnipet
-(require 'yasnippet)
-(yas-reload-all)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Functions and dirty magic ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; General hook
-(defun general-hook ()
-  (interactive)
-  (fci-mode)
-  (yas-minor-mode)
-  (flycheck-mode)
-  (local-set-key (kbd "C-<tab>") 'yas-expand)
-  (local-set-key (kbd "C-+") 'yas-insert-snippet))
-
-
-;; Flymake only checks on save
-(eval-after-load "flymake"
-  '(progn
-     (defun flymake-after-change-function (start stop len)
-       "Start syntax check for current buffer if it isn't already running."
-       ;; Do nothing, don't want to run checks until I save.
-       )))
-
-
-;;up-case down-case enable
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-
-;;;;;;;;;;;;;;;;;;
-;; Key bindings ;;
-;;;;;;;;;;;;;;;;;;
-
-(global-unset-key (kbd "C-z"))
-
-(define-key flyspell-mode-map (kbd "C-M-i") nil)
-(define-key flyspell-mode-map (kbd "C-,") nil)
-(define-key flyspell-mode-map (kbd "C-.") nil)
-
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x C-s") 'save-buffer-clean)
-(global-set-key (kbd "C-x C-S-s") 'save-buffer)
-(global-set-key (kbd "<S-delete>") 'delete-region)
-(global-set-key (kbd "C-x <up>") 'windmove-up)
-(global-set-key (kbd "C-x <down>") 'windmove-down)
-(global-set-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <left>") 'windmove-left)
-(global-set-key (kbd "C-S-<left>") 'previous-buffer)
-(global-set-key (kbd "C-S-<right>") 'next-buffer)
-(global-set-key (kbd "C-M-S-g" ) 'magit-status)
-(global-set-key (kbd "C-M-S-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-M-S-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-M-S-<down>") 'shrink-window)
-(global-set-key (kbd "C-M-S-<up>") 'enlarge-window)
-(global-set-key (kbd "C-M-S-z")  'window-configuration-to-register)
-(global-set-key (kbd "C-S-z")  'jump-to-register)
-
-;;multiple cursors
-
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;;Org
-
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Color and style stuff ;;
@@ -345,6 +158,62 @@
  '(web-mode-current-element-highlight-face ((t (:underline "white"))))
  '(web-mode-html-tag-face ((t (:inherit font-lock-keyword-face)))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Functions and dirty magic ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun save-buffer-clean ()
+  "save current buffer after cleaning up whitespaces"
+  (interactive)
+  (whitespace-cleanup)
+  (save-buffer))
+
+;; HOL4
+(load "~/.emacs.d/lisp/hol-mode.el")
+
+(add-hook 'sml-mode-hook
+          (lambda ()
+            (set-input-method "Agda")
+            (setq electric-indent-chars'())))
+
+;; General hook
+(defun general-hook ()
+  (interactive)
+  (fci-mode)
+  (yas-minor-mode)
+  (flycheck-mode)
+  (local-set-key (kbd "C-<tab>") 'yas-expand)
+  (local-set-key (kbd "C-+") 'yas-insert-snippet))
+
+;; Org
+(setq org-log-done t)
+
+;; aspell
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"))
+
+;; default web browser
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
+
+(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+(define-key web-mode-map (kbd "C-c ]") 'web-mode-element-close)
+
+;; Agda mode
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
+;; UTF-8 as default encoding
+(set-language-environment "UTF-8")
+
+;;up-case down-case enable
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+;;Org
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+
 ;;;;;;;;;;;
 ;; Hooks ;;
 ;;;;;;;;;;;
@@ -365,20 +234,6 @@
             (flyspell-mode)
             (tex-pdf-mode)
             (general-hook)))
-
-;; Haskell
-;; (autoload 'ghc-init "ghc" nil t)
-;; (autoload 'ghc-debug "ghc" nil t)
-;; (add-hook 'haskell-mode-hook
-;;           (lambda ()
-;;             (general-hook)
-;;             (set-input-method "Agda")
-;;             (company-mode)
-;;             (haskell-indent-mode)
-;;             (interactive-haskell-mode)
-;;             (flyspell-prog-mode)
-;;             (ghc-init)
-;;             ))
 
 ;;(autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
@@ -431,10 +286,4 @@
    (setq edit-server-new-frame nil)
    (edit-server-start))
 
-(autoload 'edit-server-maybe-dehtmlize-buffer
-  "edit-server-htmlize" "edit-server-htmlize" t)
-(autoload 'edit-server-maybe-htmlize-buffer
-  "edit-server-htmlize" "edit-server-htmlize" t)
-(add-hook 'edit-server-start-hook 'edit-server-maybe-dehtmlize-buffer)
-(add-hook 'edit-server-done-hook  'edit-server-maybe-htmlize-buffer)
-(put 'dired-find-alternate-file 'disabled nil)
+(message "ALL DONE")
