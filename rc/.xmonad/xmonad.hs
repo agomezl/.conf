@@ -48,8 +48,8 @@ main = do
                                         "Morning","vlc",
                                         "lxterminal","scrot -s","firefox",
                                         "hipchat","spotify","steam"])
-    , ((mod4Mask, xK_a), goToSelected defaultGSConfig)
-    , ((mod4Mask, xK_s), gridselectWorkspace defaultGSConfig W.view)
+    , ((mod4Mask, xK_o), goToSelected defaultGSConfig)
+    , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
     , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")
     , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
     , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
@@ -63,9 +63,9 @@ main = do
     , ((mod4Mask , xK_i), isaSelected defaultGSConfig)
     ]
     ++
-    [((mod4Mask, k), windows $ W.greedyView i)
-        | (i, k) <- zip myWorkspaces
-                    [xK_a,xK_s,xK_d,xK_f,xK_z,xK_x,xK_c,xK_v]])
+    [((m .|. mod4Mask, k), windows $ f i)
+        | (i, k) <- zip myWorkspaces [xK_a,xK_s,xK_d,xK_f,xK_z,xK_x,xK_c,xK_v]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask .|. controlMask)]])
 
 
 myWorkspaces :: [String]

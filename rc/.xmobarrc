@@ -15,8 +15,7 @@ Config { font = "xft:DejaVu Sans Mono:size=11"
                     , Run Kbd [("us(intl)", "US-INT"), ("us", "US")]
                     , Run StdinReader
                     , Run DateZone "%H:%M" "es_CO.UTF-8" "America/Bogota" "col_time" 10
-                    , Run Network "wlp58s0"   ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
-                    , Run Network "enp0s31f6" ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
+                    , Run DynNetwork ["-t", "Net(<dev>): <rx>Kb/<tx>Kb" ,"-L","0","-H","550","--normal","green","--high","red"] 10
                     , Run Kbd [("us(intl)", "US-INT"), ("us", "US")]
                     , Run BatteryP ["BAT0"]
                                    ["-t", "Bat: <left>%(<acstatus>)"
@@ -26,5 +25,5 @@ Config { font = "xft:DejaVu Sans Mono:size=11"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %wlp58s0% | %cpu% | %memory% * %swap% * %battery% | [%kbd%] <fc=#ee9a00>%date%</fc> (%col%)-(%swe%)"
+       , template = "%StdinReader% }{ %dynnetwork% | %cpu% | %memory% * %swap% * %battery% | [%kbd%] <fc=#ee9a00>%date%</fc> (%col%)-(%swe%)"
        }
