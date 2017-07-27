@@ -40,8 +40,8 @@ main = do
     , borderWidth = 2
     , workspaces = myWorkspaces
     } `additionalKeys`
-    ([ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-    , ((mod4Mask .|. shiftMask, xK_d), spawn "arandr")
+    ([ ((mod4Mask .|. shiftMask, xK_z), lockScreen)
+    , ((mod4Mask .|. shiftMask, xK_d), arandr)
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
                                         "thunderbird", "vncviewer",
@@ -50,13 +50,14 @@ main = do
                                         "hipchat","spotify","steam"])
     , ((mod4Mask, xK_o), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
-    , ((mod4Mask .|. shiftMask, xK_F10) , spawn "shutdown -h now")
-    , ((0 , 0x1008FF11), spawn "amixer set Master 5%-")
-    , ((0 , 0x1008FF13), spawn "amixer set Master 5%+")
-    , ((0 , 0x1008FF12), spawn "amixer set Master toggle")
+    , ((mod4Mask .|. shiftMask, xK_F10) , arandr)
+    , ((0 , 0x1008FF11), voldown)
+    , ((0 , 0x1008FF13), volup)
+    , ((0 , 0x1008FF12), mute)
     , ((mod4Mask, xK_k), kbdSelected defaultGSConfig)
     , ((mod4Mask, xK_j), trackpadSelected defaultGSConfig)
-    , ((mod4Mask, xK_r), spawn "xmonad --recompile && xmonad --restart || xmessage xmonad error ")
+    , ((mod4Mask, xK_r), xmonadRecompile)
+    , ((mod4Mask, xK_p), dmenuRun)
     , ((mod4Mask , xK_q), viewScreen 0)
     , ((mod4Mask , xK_w), viewScreen 2)
     , ((mod4Mask , xK_e), viewScreen 1)
@@ -148,3 +149,33 @@ trackpadSelected conf = do selection ← gridselect conf (zip lst lst)
                              _              -> return ()
     where
       lst =["TAP", "CLICK"]
+
+
+-- COMMANDS
+
+lockScreen :: X ()
+lockScreen = spawn "xscreensaver-command -lock"
+
+arandr :: X ()
+arandr = spawn "arandr"
+
+shutdown :: X ()
+shutdown = spawn "shutdown -h now"
+
+voldown :: X ()
+voldown = spawn "amixer set Master 5%-"
+
+volup :: X ()
+volup = spawn "amixer set Master 5%+"
+
+mute :: X ()
+mute = spawn "amixer set Master toggle"
+
+xmonadRecompile :: X ()
+xmonadRecompile = spawn $ "xmonad --recompile && xmonad --restart" ++
+                          " || xmessage xmonad error "
+dmenuRun :: X ()
+dmenuRun  = spawn $ "dmenu_run -l 10 "                                    ++
+                    "-fn \"DejaVu Sans Mono for Powerline"                ++
+                    ":pixelsize=17:antialias=true:autohint=true\" "       ++
+                    "-nb \"#000\" -nf \"#999\" -sb \"#44A\" -sf \"#DD0\""

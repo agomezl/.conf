@@ -190,7 +190,7 @@
       (delete-other-windows))))
 
 ;; HOL4
-(load "~/.emacs.d/lisp/hol-mode.el")
+(load "~/opt/HOL/tools/hol-mode")
 
 (add-hook 'sml-mode-hook
           (lambda ()
