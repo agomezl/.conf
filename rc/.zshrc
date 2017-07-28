@@ -79,6 +79,15 @@ export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
 
 source $ZSH/oh-my-zsh.sh
 
+# Even better ls
+
+run_ls() {
+    LS_COLORS=$(ls_colors_generator) ls-i --color=auto -w $(tput cols) "$@"
+}
+
+alias ls="run_ls"
+alias ll="run_ls -lh"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
