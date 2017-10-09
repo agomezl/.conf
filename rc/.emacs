@@ -59,6 +59,7 @@
  '(scroll-bar-mode nil)
  '(select-enable-primary t)
  '(show-paren-mode t)
+ '(sml-indent-level 2)
  '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/"))
 
@@ -238,6 +239,12 @@
 ;;;;;;;;;;;
 ;; Hooks ;;
 ;;;;;;;;;;;
+
+;; sml-mode
+(add-hook 'sml-mode-hook
+          (lambda ()
+            (general-hook)))
+
 
 ;; c-mode
 (add-hook 'c-mode-common-hook

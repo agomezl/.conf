@@ -88,6 +88,8 @@ run_ls() {
 alias ls="run_ls"
 alias ll="run_ls -lh"
 
+alias ag="ag --pager less"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 

@@ -93,10 +93,14 @@ function setup-dropbox {
 
 function setup-st {
     set -e
+
     [ -d ~/opt ] || mkdir ~/opt
     cd opt
     git clone https://github.com/agomezl/st.git
     cd st
+    mkdir -p ~/.fonts
+    cp -r fonts/DejaVuSansMono/ ~/.fonts/
+    fc-cache -vf ~/.fonts/
     make clean install
     cd
 
