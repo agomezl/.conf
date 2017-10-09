@@ -47,10 +47,10 @@ main = do
                                         "thunderbird", "vncviewer",
                                         "Morning","vlc",
                                         "lxterminal","scrot -s","firefox",
-                                        "hipchat","spotify","steam"])
+                                        "slack","spotify","steam"])
     , ((mod4Mask, xK_o), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
-    , ((mod4Mask .|. shiftMask, xK_F10) , arandr)
+    , ((mod4Mask .|. shiftMask, xK_F10) , shutdown)
     , ((0 , 0x1008FF11), voldown)
     , ((0 , 0x1008FF13), volup)
     , ((0 , 0x1008FF12), mute)
@@ -78,6 +78,7 @@ myHooks = composeAll
           ,className =? "Emacs"--> doShift "Edit"
           ,className =? "st-256color"--> doShift "Shell"
           ,className =? "HipChat" --> doShift "Chat"
+          ,className =? "slack" --> doShift "Chat"
           ,className =? "Thunderbird" --> doShift "Mail"
           ,className =? "Evolution" --> doShift "Mail"
           ,className =? "jedit" --> doShift "Isa"

@@ -17,3 +17,4 @@
         fpush    = push --force-with-lease
         co       = checkout
         ci       = commit
+        update   = fetch --all
