@@ -19,12 +19,6 @@
            )))
   (message "[ERROR] flymake not loaded correctly"))
 
-;;;;;;;;;;;;;;;
-;; isar-mode ;;
-;;;;;;;;;;;;;;;
-(unless (require 'isar-mode nil 'noError)
-  (message "[ERROR] isar-mode not loaded correctly"))
-
 ;;;;;;;;;;;
 ;; helm  ;;
 ;;;;;;;;;;;
@@ -95,7 +89,7 @@
   (message "[ERROR] magit not loaded correctly"))
 
 ;;;;;;;;;;;;;;;;
-;;  Flyspell  ;;
+;;  flyspell  ;;
 ;;;;;;;;;;;;;;;;
 (if (require 'flyspell nil 'noError)
     (progn
@@ -110,14 +104,14 @@
 (require 'fill-column-indicator nil 'noError)
 
 ;;;;;;;;;;;;;;;
-;; Yasnipet  ;;
+;; yasnipet  ;;
 ;;;;;;;;;;;;;;;
 (when (require 'yasnippet nil 'noError)
     (yas-reload-all))
 
-;;;;;;;;;;;;;;;;;;;;;
-;;multiple cursors ;;
-;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
+;; multiple cursors ;;
+;;;;;;;;;;;;;;;;;;;;;;
 (if (require 'multiple-cursors nil 'noError)
   (progn
     (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -127,7 +121,7 @@
   (message "[ERROR] multiple-cursors not loaded correctly"))
 
 ;;;;;;;;;;;;;;;
-;;  Web-mode ;;
+;;  web-mode ;;
 ;;;;;;;;;;;;;;;
 (if (require 'web-mode nil 'noError)
   (progn
@@ -154,3 +148,16 @@
 ;; whitespace-mode ;;
 ;;;;;;;;;;;;;;;;;;;;;
 (setq-default indent-tabs-mode nil)
+
+;;;;;;;;;;;
+;; HOL 4 ;;
+;;;;;;;;;;;
+(unless (load "~/opt/HOL/tools/hol-mode" 'noError)
+  (message "[ERROR] HOL4 emacs mode can't be found"))
+
+;;;;;;;;;;;;;;;
+;; save-mode ;;
+;;;;;;;;;;;;;;;
+(if (require 'saveplace nil 'noError)
+    (setq save-place t)
+    (message "[ERROR] save-place can't be found"))
