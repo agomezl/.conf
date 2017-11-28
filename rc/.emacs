@@ -36,7 +36,6 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(column-number-mode t)
  '(company-ghc-show-info t)
- '(custom-enabled-themes (quote (wombat)))
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
  '(global-linum-mode t)
@@ -53,7 +52,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
+    (hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
@@ -62,6 +61,48 @@
  '(sml-indent-level 2)
  '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/"))
+
+;; Theme
+(defvar zenburn-override-colors-alist
+  '(("zenburn-fg+1"     . "#FFFFEF")
+    ("zenburn-fg"       . "#DCDCCC")
+    ("zenburn-fg-1"     . "#70705E")
+    ("zenburn-bg-2"     . "#000000")
+    ("zenburn-bg-1"     . "#202020")
+    ("zenburn-bg-05"    . "#2D2D2D")
+    ("zenburn-bg"       . "#313131")
+    ("zenburn-bg+05"    . "#383838")
+    ("zenburn-bg+1"     . "#3E3E3E")
+    ("zenburn-bg+2"     . "#4E4E4E")
+    ("zenburn-bg+3"     . "#5E5E5E")
+    ("zenburn-red+1"    . "#E9B0B0")
+    ("zenburn-red"      . "#D9A0A0")
+    ("zenburn-red-1"    . "#C99090")
+    ("zenburn-red-2"    . "#B98080")
+    ("zenburn-red-3"    . "#A97070")
+    ("zenburn-red-4"    . "#996060")
+    ("zenburn-orange"   . "#ECBC9C")
+    ("zenburn-yellow"   . "#FDECBC")
+    ("zenburn-yellow-1" . "#EDDCAC")
+    ("zenburn-yellow-2" . "#DDCC9C")
+    ("zenburn-green-1"  . "#6C8C6C")
+    ("zenburn-green"    . "#8CAC8C")
+    ("zenburn-green+1"  . "#9CBF9C")
+    ("zenburn-green+2"  . "#ACD2AC")
+    ("zenburn-green+3"  . "#BCE5BC")
+    ("zenburn-green+4"  . "#CCF8CC")
+    ("zenburn-cyan"     . "#A0EDF0")
+    ("zenburn-blue+1"   . "#9CC7FB")
+    ("zenburn-blue"     . "#99DDE0")
+    ("zenburn-blue-1"   . "#89C5C8")
+    ("zenburn-blue-2"   . "#79ADB0")
+    ("zenburn-blue-3"   . "#699598")
+    ("zenburn-blue-4"   . "#597D80")
+    ("zenburn-blue-5"   . "#436D6D")
+    ("zenburn-magenta"  . "#E090C7")))
+(load-theme 'zenburn t)
+
+
 
 ;;up-case down-case enable
 (put 'upcase-region 'disabled nil)
@@ -136,40 +177,40 @@
 ;; Color and style stuff ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(agda2-highlight-datatype-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-field-face ((t (:foreground "#ad7fa8"))))
- '(agda2-highlight-function-face ((t (:inherit font-lock-function-name-face))))
- '(agda2-highlight-inductive-constructor-face ((t (:foreground "#8ae234"))))
- '(agda2-highlight-keyword-face ((t (:inherit font-lock-keyword-face))))
- '(agda2-highlight-module-face ((t (:inherit font-lock-builtin-face))))
- '(agda2-highlight-number-face ((t (:inherit font-lock-constant-face))))
- '(agda2-highlight-postulate-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-primitive-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-primitive-type-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-record-face ((t (:inherit font-lock-type-face))))
- '(agda2-highlight-string-face ((t (:inherit font-lock-string-face))))
- '(column-marker-1 ((t (:underline (:color "green" :style wave)))) t)
- '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))) t)
- '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
- '(cursor ((t (:background "white"))))
- '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
- '(mode-line ((t (:foreground "#ffffff" :background "#696969" :box nil))))
- '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))
- '(org-todo ((t (:foreground "red" :weight bold))))
- '(powerline-active1 ((t (:inherit mode-line :background "white" :foreground "black"))))
- '(powerline-active2 ((t (:inherit mode-line :background "grey20"))))
- '(powerline-inactive1 ((t (:inherit mode-line-inactive :background "grey22"))))
- '(powerline-inactive2 ((t (:inherit mode-line-inactive :background "grey40"))))
- '(show-paren-match ((t (:foreground "lime green" :weight bold))))
- '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
- '(warning ((t (:background "light sea green" :foreground "white" :weight bold))))
- '(web-mode-current-element-highlight-face ((t (:underline "white"))))
- '(web-mode-html-tag-face ((t (:inherit font-lock-keyword-face)))))
+;;(custom-set-faces
+;; ;; custom-set-faces was added by Custom.
+;; ;; If you edit it by hand, you could mess it up, so be careful.
+;; ;; Your init file should contain only one such instance.
+;; ;; If there is more than one, they won't work right.
+;; '(agda2-highlight-datatype-face ((t (:inherit font-lock-type-face))))
+;; '(agda2-highlight-field-face ((t (:foreground "#ad7fa8"))))
+;; '(agda2-highlight-function-face ((t (:inherit font-lock-function-name-face))))
+;; '(agda2-highlight-inductive-constructor-face ((t (:foreground "#8ae234"))))
+;; '(agda2-highlight-keyword-face ((t (:inherit font-lock-keyword-face))))
+;; '(agda2-highlight-module-face ((t (:inherit font-lock-builtin-face))))
+;; '(agda2-highlight-number-face ((t (:inherit font-lock-constant-face))))
+;; '(agda2-highlight-postulate-face ((t (:inherit font-lock-type-face))))
+;; '(agda2-highlight-primitive-face ((t (:inherit font-lock-type-face))))
+;; '(agda2-highlight-primitive-type-face ((t (:inherit font-lock-type-face))))
+;; '(agda2-highlight-record-face ((t (:inherit font-lock-type-face))))
+;; '(agda2-highlight-string-face ((t (:inherit font-lock-string-face))))
+;; '(column-marker-1 ((t (:underline (:color "green" :style wave)))) t)
+;; '(column-marker-2 ((t (:underline (:color "yellow" :style wave)))) t)
+;; '(column-marker-3 ((t (:underline (:color "orange" :style wave)))) t)
+;; '(cursor ((t (:background "white"))))
+;; '(error ((t (:background "firebrick2" :foreground "white" :weight bold))))
+;; '(mode-line ((t (:foreground "#ffffff" :background "#696969" :box nil))))
+;; '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))
+;; '(org-todo ((t (:foreground "red" :weight bold))))
+;; '(powerline-active1 ((t (:inherit mode-line :background "white" :foreground "black"))))
+;; '(powerline-active2 ((t (:inherit mode-line :background "grey20"))))
+;; '(powerline-inactive1 ((t (:inherit mode-line-inactive :background "grey22"))))
+;; '(powerline-inactive2 ((t (:inherit mode-line-inactive :background "grey40"))))
+;; '(show-paren-match ((t (:foreground "lime green" :weight bold))))
+;; '(show-paren-mismatch ((t (:foreground "red1" :weight bold))))
+;; '(warning ((t (:background "light sea green" :foreground "white" :weight bold))))
+;; '(web-mode-current-element-highlight-face ((t (:underline "white"))))
+;; '(web-mode-html-tag-face ((t (:inherit font-lock-keyword-face)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Functions and dirty magic ;;
@@ -222,8 +263,8 @@
 (define-key web-mode-map (kbd "C-c ]") 'web-mode-element-close)
 
 ;; Agda mode
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+;; (load-file (let ((coding-system-for-read 'utf-8))
+;;                 (shell-command-to-string "agda-mode locate")))
 
 ;; UTF-8 as default encoding
 (set-language-environment "UTF-8")
@@ -315,3 +356,4 @@
    (edit-server-start))
 
 (message "ALL DONE")
+(put 'dired-find-alternate-file 'disabled nil)

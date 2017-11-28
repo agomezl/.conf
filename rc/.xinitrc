@@ -7,7 +7,7 @@ sleep 1
 PATH=$HOME/.cabal/bin:$HOME/.local/bin:$PATH
 # Fire up apps
 xsetroot -cursor_name ul_angle &
-xscreensaver -no-splash &
+gnome-screensaver &
 
 if xrandr | grep -q "DP-1-1 connected"
 then

@@ -76,6 +76,8 @@ export PATH=$HOME/.local/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
 
+# Modules
+export MODULEPATH=/home/agomezl/.conf/modules
 
 source $ZSH/oh-my-zsh.sh
 

@@ -21,7 +21,7 @@ function setup-base {
          lm_sensors unrar qbittorrent libXinerama-devel libXft-devel gpicview \
          evince readline-devel texlive-scheme-full system-config-printer.x86_64 \
          cups environment-modules libXpm-devel powerline network-manager-applet \
-         the_silver_searcher colordiff
+         the_silver_searcher colordiff pdfgrep
 }
 
 #ghc
