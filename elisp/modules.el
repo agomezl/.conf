@@ -95,7 +95,9 @@
     (progn
       (define-key flyspell-mode-map (kbd "C-M-i") nil)
       (define-key flyspell-mode-map (kbd "C-,") nil)
-      (define-key flyspell-mode-map (kbd "C-.") nil))
+      (define-key flyspell-mode-map (kbd "C-.") nil)
+      (setq ispell-program-name "aspell"
+            ispell-extra-args '("--sug-mode=ultra")))
   (message "[ERROR] flyspell not loaded correctly"))
 
 ;;;;;;;;;;;;;;;
