@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Start theory
+# key: INIT
+# --
+open preamble
+
+val _ = new_theory "${1:name}";
+
+$0
+
+val _ = export_theory();

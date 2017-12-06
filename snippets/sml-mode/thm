@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Add theorem
+# key: THM
+# --
+val ${1:name} = Q.store_thm("$1",
+  `$0`,
+  cheat
+);

@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Add definition
+# key: DEF
+# --
+val ${1:name}_def = Define`
+  $1 ${2:args} = $0
+`;
