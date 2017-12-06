@@ -72,6 +72,16 @@
 (unless (require 'agda-input)
   (message "[ERROR] agda-input not loaded correctly"))
 
+;;;;;;;;;;;;;;;;
+;; projectile ;;
+;;;;;;;;;;;;;;;;
+(if (and (require 'projectile)
+         (require 'helm-projectile))
+    (progn
+      (helm-projectile-on))
+  (message "[ERROR] projectile not loaded correctly"))
+
+
 ;;;;;;;;;;;;;;;
 ;;  company  ;;
 ;;;;;;;;;;;;;;;

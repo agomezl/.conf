@@ -20,71 +20,35 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
- ;; Extra Input symbols
  '(agda-input-user-translations (quote (("blkb" "▪") ("bool" "𝔹") ("brt" "▸") ("blt" "◂"))))
  '(agda2-include-dirs (quote ("." "/home/agomezl/opt/agda-stdlib/src")))
-
- ;; Backup
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
-
- ;; Minimalistic look
  '(column-number-mode t)
+ '(company-ghc-show-info t)
+ '(fci-rule-column 80)
+ '(fci-rule-use-dashes t)
  '(global-linum-mode t)
- '(menu-bar-mode nil)
- '(scroll-bar-mode nil)
- '(show-paren-mode t)
- '(tool-bar-mode nil)
-
- ;; Haskell stuff
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(company-ghc-show-info t)
-
- ;; Fill column indicator
- '(fci-rule-column 80)
- '(fci-rule-use-dashes t)
-
- ;; Packages
- '(package-selected-packages
-   (quote (hc-zenburn-theme
-           zenburn-theme
-           helm
-           sml-mode
-           multi-term
-           ag
-           flycheck
-           yasnippet
-           yaml-mode
-           web-mode
-           s
-           pcache
-           multiple-cursors
-           marshal
-           markdown-mode
-           magit
-           logito
-           fill-column-indicator
-           edit-server-htmlize
-           dockerfile-mode
-           company-ghc
-           auctex
-           ac-mozc
-           ac-haskell-process)))
-
- ;; Miscellaneous
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice "~/Documents/TODO.org")
  '(ispell-dictionary "english")
  '(keyboard-coding-system (quote utf-8-unix))
  '(magit-diff-refine-hunk t)
+ '(menu-bar-mode nil)
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
+ '(package-selected-packages
+   (quote
+    (free-keys helm-ag helm-projectile projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
+ '(scroll-bar-mode nil)
  '(select-enable-primary t)
+ '(show-paren-mode t)
  '(sml-indent-level 2)
+ '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/"))
 
 ;; backups
@@ -141,3 +105,9 @@
    (edit-server-start))
 
 (message "ALL DONE")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

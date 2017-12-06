@@ -54,13 +54,16 @@
   (interactive)
   (fci-mode)
   (yas-minor-mode)
+  (hs-minor-mode)
+  (projectile-mode)
+  (helm-projectile-on)
   (flycheck-mode)
-  (local-set-key (kbd "C-<tab>") 'yas-expand)
-  (local-set-key (kbd "C-+") 'yas-insert-snippet))
+  (local-set-key (kbd "C-<tab>") 'yas-expand))
 
 (add-hook 'sml-mode-hook
           (lambda ()
             (set-input-method "Agda")
+            (general-hook)
             (setq electric-indent-chars'())))
 
 ;; c-mode-common
