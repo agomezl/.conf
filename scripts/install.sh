@@ -87,6 +87,28 @@ function setup-st {
     ln -s `pwd`/bin/st ~/.local/bin/
 }
 
+function setup-ls {
+    set -e
+
+    sudo dnf -y install python libselinux-devel
+    [ -d ~/opt ] || mkdir -p ~/opt
+    cd ~/opt
+    wget http://raw.githubusercontent.com/illinoisjackson/even-better-ls/master/ls_colors_generator.py
+    chmod 755 ls_colors_generator.py
+    cp ls_colors_generator.py ~/.local/bin/ls_colors_generator
+    wget http://ftp.gnu.org/gnu/coreutils/coreutils-8.2.tar.xz
+    tar -xf coreutils-8.2.tar.xz
+    rm coreutils-8.2.tar.xz
+    cd coreutils-8.2/src
+    rm -rf ls.c
+    wget http://raw.githubusercontent.com/illinoisjackson/even-better-ls/master/ls.c
+    cd ..
+    ./configure
+    make
+    cd src
+    cp ls ~/.local/bin/ls-i
+}
+
 function setup-git {
     git config --global user.email "alegomez544@gmail.com"
     git config --global user.name "Alejandro Gomez-Londono"
