@@ -24,4 +24,5 @@ RUN git clone ${GIT_CONF} && \
  .conf/scripts/install.sh setup-conf && \
  .conf/scripts/install.sh setup-git && \
  .conf/scripts/install.sh setup-st && \
- .conf/scripts/install.sh setup-ls
+ .conf/scripts/install.sh setup-ls && \
+ sudo rm -fr /var/cache
