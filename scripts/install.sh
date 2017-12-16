@@ -107,6 +107,8 @@ function setup-ls {
     make
     cd src
     cp ls ~/.local/bin/ls-i
+    cd ../..
+    rm -fr coreutils-8.2/
 }
 
 function setup-git {
