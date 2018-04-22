@@ -1,4 +1,4 @@
-Config { font = "xft:DejaVu Sans Mono:size=11"
+Config { font = "DejaVu Sans Mono for Powerline Nerd Font Complete Mono:size=13"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"

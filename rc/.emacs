@@ -26,6 +26,7 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(column-number-mode t)
  '(company-ghc-show-info t)
+ '(fci-rule-color "gray")
  '(fci-rule-column 80)
  '(fci-rule-use-dashes t)
  '(global-linum-mode t)
@@ -110,4 +111,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(hol-free-variable ((t (:foreground "deep sky blue" :weight bold)))))
