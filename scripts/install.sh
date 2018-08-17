@@ -13,16 +13,16 @@ function dnf-base {
          fail2ban aspell aspell-en aspell-es \
          unrar readline environment-modules \
          powerline the_silver_searcher colordiff \
-         pdfgrep cabal-install ghc
+         pdfgrep cabal-install ghc lxtask source-highlight
 }
 
 function dnf-extras {
-    sudo dnf -y broadcom-wl lm_sensors vlc NetworkManager-vpnc-gnome scrot \
-         texlive-scheme-full system-config-printer cups
+    sudo dnf -y install lm_sensors vlc NetworkManager-vpnc-gnome scrot \
+         texlive-scheme-full system-config-printer cups # broadcom-wl
 }
 
 function dnf-gui {
-    sudo dnf -y feh volumeicon arandr libXrandr-devel libX11-devel \
+    sudo dnf -y install feh volumeicon arandr libXrandr-devel libX11-devel \
          qbittorrent libXinerama-devel libXft-devel gpicview \
          evince network-manager-applet gnome-screensaver xcompmgr \
          xmonad
