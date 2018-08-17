@@ -77,11 +77,9 @@ myHooks = composeAll
           [stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "Web"
           ,className =? "Emacs"--> doShift "Edit"
           ,className =? "st-256color"--> doShift "Shell"
-          ,className =? "HipChat" --> doShift "Chat"
           ,className =? "slack" --> doShift "Chat"
           ,className =? "Thunderbird" --> doShift "Mail"
           ,className =? "Evolution" --> doShift "Mail"
-          ,className =? "jedit" --> doShift "Isa"
           ]
 
 
@@ -145,8 +143,8 @@ kbdSelected conf = do selection ← gridselect conf (zip lst lst)
 trackpadSelected :: GSConfig String -> X ()
 trackpadSelected conf = do selection ← gridselect conf (zip lst lst)
                            case selection of
-                             Just "TAP"     -> spawn "xinput set-prop 12 277 1"
-                             Just "CLICK"   -> spawn "xinput set-prop 12 277 0"
+                             Just "TAP"     -> spawn "xinput set-prop 12 280 1"
+                             Just "CLICK"   -> spawn "xinput set-prop 12 280 0"
                              _              -> return ()
     where
       lst =["TAP", "CLICK"]
