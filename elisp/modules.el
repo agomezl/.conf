@@ -73,6 +73,14 @@
   (message "[ERROR] agda-input not loaded correctly"))
 
 ;;;;;;;;;;;;;;;;
+;;   agda     ;;
+;;;;;;;;;;;;;;;;
+(unless (load-file (let ((coding-system-for-read 'utf-8))
+                     (shell-command-to-string "agda-mode locate")))
+  (message "[ERROR] agda-mode not loaded correctly"))
+
+
+;;;;;;;;;;;;;;;;
 ;; projectile ;;
 ;;;;;;;;;;;;;;;;
 (if (and (require 'projectile)
