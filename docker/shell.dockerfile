@@ -1,6 +1,6 @@
 # Gets a working nice shell up and running
 
-FROM fedora:25
+FROM fedora:27
 
 # Basic stuff
 RUN dnf -y install git zsh wget sudo
