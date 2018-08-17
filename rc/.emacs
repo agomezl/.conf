@@ -51,7 +51,18 @@
  '(show-paren-mode t)
  '(sml-indent-level 2)
  '(tool-bar-mode nil)
- '(tramp-auto-save-directory "~/.save/"))
+ '(tramp-auto-save-directory "~/.save/" nil (tramp)))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(diff-refine-added ((t (:background "#188618" :foreground "#AFD8AF"))))
+ '(diff-refine-removed ((t (:background "#AA1313" :foreground "#ECB3B3"))))
+ '(hol-free-variable ((t (:foreground "deep sky blue" :weight bold))))
+ '(magit-diff-added-highlight ((t (:background "#3F5F3F" :foreground "#AFD8AF"))))
+ '(magit-diff-removed-highlight ((t (:background "#7C4343" :foreground "#ECB3B3")))))
 
 ;; backups
 (setq delete-old-versions t
@@ -107,9 +118,3 @@
    (edit-server-start))
 
 (message "ALL DONE")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(hol-free-variable ((t (:foreground "deep sky blue" :weight bold)))))
