@@ -41,6 +41,11 @@ else
     >>=\[\033[0m\] "
 fi
 
+# gpg-agent
+gpg-connect-agent /bye
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+
 if [[ "$TERM" == "dumb" ]]
 then
   PS1='$ '

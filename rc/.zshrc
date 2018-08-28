@@ -83,8 +83,11 @@ export LESS=' -R '
 # Modules
 export MODULEPATH=/home/agomezl/.conf/modules
 
-source $ZSH/oh-my-zsh.sh
+gpg-agent
+gpg-connect-agent /bye
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+source $ZSH/oh-my-zsh.sh
 # Even better ls
 
 run_ls() {
