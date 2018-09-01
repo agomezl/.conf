@@ -84,9 +84,8 @@
 ;; projectile ;;
 ;;;;;;;;;;;;;;;;
 (if (and (require 'projectile)
-         (require 'helm-projectile))
-    (progn
-      (helm-projectile-on))
+             (require 'helm-projectile))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (message "[ERROR] projectile not loaded correctly"))
 
 

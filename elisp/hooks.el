@@ -9,6 +9,7 @@
                       (filename . ".bib")))
          ("Isabelle" (or (filename . "ROOT")
                          (filename . ".thy")))
+         ("HOL" (filename . "Script.sml"))
          ("SML" (filename . ".sml"))
          ("Git" (or (mode . magit-status-mode)
                     (mode . magit-mode)
