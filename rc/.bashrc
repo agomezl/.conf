@@ -42,7 +42,7 @@ else
 fi
 
 # gpg-agent
-gpg-connect-agent /bye
+gpg-connect-agent -q /bye
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 
