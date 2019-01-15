@@ -15,7 +15,7 @@
         nicta    = config user.email alejadro.gomez@data61.csiro.au
         personal = config user.email alegomez544@gmail.com
         fpush    = push --force-with-lease
-        purge    = clean -fdX
+        cleaner  = clean -fdX
         co       = checkout
         ci       = commit
         update   = fetch --all

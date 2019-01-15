@@ -39,3 +39,17 @@
     ("zenburn-blue-5"   . "#436D6D")
     ("zenburn-magenta"  . "#E090C7")))
 (load-theme 'zenburn t)
+
+;;;;;;;;;;;;;;
+;; poweline ;;
+;;;;;;;;;;;;;;
+(powerline-center-theme)
+(setq powerline-default-separator 'arrow)
+
+
+;;;;;;;;;;;;
+;; margin ;;
+;;;;;;;;;;;;
+
+(custom-set-faces
+ '(fringe  ((t (:foreground "#DCDCCC" :background "#3F3F3F")))))

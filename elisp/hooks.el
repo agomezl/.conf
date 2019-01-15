@@ -53,18 +53,23 @@
 ;; General hook
 (defun general-hook ()
   (interactive)
-  (fci-mode)
-  (yas-minor-mode)
+  (company-mode)
   (hs-minor-mode)
   (projectile-mode)
-  (helm-projectile-on)
-  (flycheck-mode)
-  (local-set-key (kbd "C-<tab>") 'yas-expand))
+  (helm-projectile-on))
+
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (general-hook)))
 
 (add-hook 'sml-mode-hook
           (lambda ()
             (set-input-method "Agda")
-            (general-hook)
+            (font-lock-add-keywords 'sml-mode
+              '(("Theorem" . font-lock-keyword-face)))
+
+
             (setq electric-indent-chars'())))
 
 ;; c-mode-common
@@ -73,21 +78,16 @@
             (general-hook)))
 
 ;; c-mode
-(add-hook 'c-mode-hook
-          (lambda ()
-            (general-hook)))
 
 ;; latex-mode
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (flyspell-mode)
-            (tex-pdf-mode)
-            (general-hook)))
+            (tex-pdf-mode)))
 
 ;;(autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (general-hook)
             (interactive-haskell-mode)
             (set-input-method "Agda")
             (company-mode)
@@ -114,9 +114,6 @@
           (lambda ()
             (general-hook)))
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (general-hook)))
 
 
 ;; web-mode
