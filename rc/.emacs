@@ -26,11 +26,11 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(column-number-mode t)
  '(company-ghc-show-info t)
+ '(global-hl-line-mode nil)
  '(global-linum-mode t)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(global-hl-line-mode)
  '(hexl-bits 8)
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
@@ -41,7 +41,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (powerline docker-tramp free-keys helm-ag helm-projectile projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator edit-server-htmlize dockerfile-mode company-ghc auctex ac-mozc ac-haskell-process)))
+    (docker-tramp free-keys helm-ag helm-projectile projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode company-ghc auctex ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(scroll-bar-mode nil)
  '(select-enable-primary t)
@@ -57,6 +57,7 @@
  ;; If there is more than one, they won't work right.
  '(diff-refine-added ((t (:background "#188618" :foreground "#AFD8AF"))))
  '(diff-refine-removed ((t (:background "#AA1313" :foreground "#ECB3B3"))))
+ '(fringe ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
  '(hol-free-variable ((t (:foreground "deep sky blue" :weight bold))))
  '(magit-diff-added-highlight ((t (:background "#3F5F3F" :foreground "#AFD8AF"))))
  '(magit-diff-removed-highlight ((t (:background "#7C4343" :foreground "#ECB3B3")))))
