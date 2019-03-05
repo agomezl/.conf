@@ -3,33 +3,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ibuffer custom group
-(setq ibuffer-saved-filter-groups
-      '(("alien"
-         ("Latex" (or (filename . ".tex")
-                      (filename . ".bib")))
-         ("Isabelle" (or (filename . "ROOT")
-                         (filename . ".thy")))
-         ("HOL" (filename . "Script.sml"))
-         ("SML" (filename . ".sml"))
-         ("Git" (or (mode . magit-status-mode)
-                    (mode . magit-mode)
-                    (mode . git-commit-mode)))
-         ("Dired" (mode . dired-mode))
-         ("Haskell" (or (mode . haskell-mode)
-                        (mode . literate-haskell-mode)))
-         ("JavaScript" (filename . ".js"))
-         ("Bash"(filename . ".sh" ))
-         ("MarkDown" (filename . ".md"))
-         ("Org" (filename . ".org"))
-         ("Java" (filename . ".java"))
-         ("Helm" (predicate string-match "Hmm" mode-name))
-         ("Other" (mode . fundamental))
-         ("C++" (mode . c-mode)))))
-
 (add-hook 'ibuffer-mode-hook
-          '(lambda ()
-             (ibuffer-switch-to-saved-filter-groups "alien")))
+          (lambda ()
+            (ibuffer-auto-mode 1)
+            (setq ibuffer-filter-groups
+                  (append
+                   (ibuffer-vc-generate-filter-groups-by-vc-root)
+                   (ibuffer-tramp-generate-filter-groups-by-tramp-connection)
+                   '(("Helm" (predicate string-match "Hmm" mode-name))
+                     ("Dired" (mode . dired-mode)))))))
 
+(setq ibuffer-formats
+      '((mark modified read-only vc-status-mini " "
+              (name 18 18 :left :elide)
+              " "
+              (size 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              vc-relative-file)))
 
 (defun save-buffer-clean ()
   "save current buffer after cleaning up whitespaces"
