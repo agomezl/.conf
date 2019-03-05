@@ -41,7 +41,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (docker-tramp free-keys helm-ag helm-projectile projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode company-ghc auctex ac-haskell-process)))
+    (ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode company-ghc auctex ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(scroll-bar-mode nil)
  '(select-enable-primary t)
@@ -49,6 +49,11 @@
  '(sml-indent-level 2)
  '(tool-bar-mode nil)
  '(tramp-auto-save-directory "~/.save/" nil (tramp)))
+
+;; Install any missing package
+(dolist (package package-selected-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
