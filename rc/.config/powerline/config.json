@@ -1,8 +1,7 @@
 {
         "common": {
             "term_truecolor": true,
-            "log_file" : "/home/agomezl/pl.log",
-            "additional_escapes" : "screen"
+            "log_file" : "/home/agomezl/pl.log"
         },
         "ext": {
                 "shell": {
