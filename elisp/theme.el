@@ -40,13 +40,6 @@
     ("zenburn-magenta"  . "#E090C7")))
 (load-theme 'zenburn t)
 
-;;;;;;;;;;;;;;
-;; poweline ;;
-;;;;;;;;;;;;;;
-(powerline-center-theme)
-(setq powerline-default-separator 'arrow)
-
-
 ;;;;;;;;;;;;
 ;; margin ;;
 ;;;;;;;;;;;;
