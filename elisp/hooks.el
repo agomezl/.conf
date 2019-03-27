@@ -45,6 +45,7 @@
 ;; General hook
 (defun general-hook ()
   (interactive)
+  (flyspell-prog-mode)
   (company-mode)
   (hs-minor-mode)
   (projectile-mode)
@@ -64,27 +65,18 @@
 
             (setq electric-indent-chars'())))
 
-;; c-mode-common
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (general-hook)))
-
-;; c-mode
-
 ;; latex-mode
 (add-hook 'LaTeX-mode-hook
           (lambda ()
-            (flyspell-mode)
             (tex-pdf-mode)))
 
-;;(autoload 'ghc-init "ghc" nil t)
+;; Haskell-mode
 (add-hook 'haskell-mode-hook
           (lambda ()
+            ;;(general-hook)
             (interactive-haskell-mode)
             (set-input-method "Agda")
-            (company-mode)
-            (haskell-indent-mode)
-            (flyspell-prog-mode)))
+            (haskell-indent-mode)))
 
 ;; Org-mode
 (add-hook 'org-mode-hook
@@ -94,24 +86,16 @@
 ;; Magit-commit-mode
 (add-hook 'magit-commit-mode-hook
           (lambda ()
-            (general-hook)))
+            (flyspell-mode)))
 
 ;; Git-commit-mode
 (add-hook 'git-commit-mode-hook
           (lambda ()
-            (general-hook)
             (flyspell-mode)))
-
-(add-hook 'sh-mode-hook
-          (lambda ()
-            (general-hook)))
-
-
 
 ;; web-mode
 (add-hook 'web-mode-hook
           (lambda ()
-            (flyspell-prog-mode)
             (setq web-mode-markup-indent-offset 2)
             (setq web-mode-css-indent-offset 2)
             (setq web-mode-code-indent-offset 2)))

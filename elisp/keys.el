@@ -4,6 +4,7 @@
 
 ;; Unset
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "M-h a"))
 
 ;; Set
 (global-set-key (kbd "C-x C-b")       'ibuffer)
