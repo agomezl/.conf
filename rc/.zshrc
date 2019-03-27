@@ -84,7 +84,7 @@ export LESS=' -R '
 export MODULEPATH=/home/agomezl/.conf/modules
 
 # gpg-agent
-gpg-connect-agent /bye
+systemctl --user start gpg-agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 source $ZSH/oh-my-zsh.sh

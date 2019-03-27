@@ -115,9 +115,5 @@
 ;; server ;;
 ;;;;;;;;;;;;
 
-(when (and (daemonp) (locate-library "edit-server"))
-   (require 'edit-server)
-   (setq edit-server-new-frame nil)
-   (edit-server-start))
 
 (message "ALL DONE")
