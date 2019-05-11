@@ -8,6 +8,7 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Layout.Spacing
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.NoBorders
+import XMonad.Util.NamedScratchpad
 import XMonad.Layout.Named
 import XMonad.Layout.Grid
 import XMonad.Util.EZConfig(additionalKeys)
@@ -25,12 +26,14 @@ main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
   xmonad $ desktopConfig
-    { manageHook = myHooks <+> manageDocks <+> manageHook defaultConfig
+    { manageHook = myHooks <+> manageDocks
+                           <+> namedScratchpadManageHook scratchpads
+                           <+> manageHook defaultConfig
     , startupHook = setWMName "LG3D"
     , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
-                                 onWorkspace "Web" webLayout
+                                 -- onWorkspace "Web" webLayout
                                  baseLayout
-    , logHook = dynamicLogWithPP xmobarPP
+    , logHook = (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP) xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
                         } >> fadeHook
@@ -40,7 +43,8 @@ main = do
     , borderWidth = 2
     , workspaces = myWorkspaces
     } `additionalKeys`
-    ([ ((mod4Mask .|. shiftMask, xK_z), lockScreen)
+    ([((mod4Mask .|. shiftMask, xK_z), lockScreen)
+    , ((mod4Mask .|. shiftMask, xK_m), windows W.swapMaster)
     , ((mod4Mask .|. shiftMask, xK_d), arandr)
     , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
                                        ["ec","google-chrome","emacs",
@@ -50,6 +54,8 @@ main = do
                                         "slack","spotify","steam"])
     , ((mod4Mask, xK_o), goToSelected defaultGSConfig)
     , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
+    , ((mod4Mask, xK_x), namedScratchpadAction scratchpads "slack")
+    , ((mod4Mask, xK_Return), namedScratchpadAction scratchpads "st")
     , ((mod4Mask .|. shiftMask, xK_F10) , shutdown)
     , ((0 , 0x1008FF11), voldown)
     , ((0 , 0x1008FF13), volup)
@@ -61,25 +67,28 @@ main = do
     , ((mod4Mask , xK_q), viewScreen 0)
     , ((mod4Mask , xK_w), viewScreen 2)
     , ((mod4Mask , xK_e), viewScreen 1)
-    , ((mod4Mask , xK_i), isaSelected defaultGSConfig)
     ]
     ++
     [((m .|. mod4Mask, k), windows $ f i)
-        | (i, k) <- zip myWorkspaces [xK_a,xK_s,xK_d,xK_f,xK_z,xK_x,xK_c,xK_v]
+        | (i, k) <- zip myWorkspaces [xK_a,xK_s,xK_d,xK_f,xK_z,xK_c]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask .|. controlMask)]])
 
 
 myWorkspaces :: [String]
-myWorkspaces = [ "Web", "Edit", "Shell","Isa", "Mail", "Chat"] ++ map show [7 .. 9]
+myWorkspaces = [ "Web", "Edit", "Shell","Isa", "Mail","Music"] ++ map show [7 .. 9]
+
+
+scratchpads = [ NS "slack"   "slack"      (resource =? "slack")   (customFloating rect),
+                NS "st"      "st -n term" (resource =? "term")    (customFloating rect)
+              ] where rect = W.RationalRect 0.125 0.125 0.75 0.75
 
 
 myHooks = composeAll
           [stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "Web"
-          ,className =? "Emacs"--> doShift "Edit"
-          ,className =? "st-256color"--> doShift "Shell"
-          ,className =? "slack" --> doShift "Chat"
+          ,className =? "Emacs"       --> doShift "Edit"
+          ,className =? "st-256color" --> doShift "Shell"
           ,className =? "Thunderbird" --> doShift "Mail"
-          ,className =? "Evolution" --> doShift "Mail"
+          ,resource  =? "spotify"     --> doShift "Music"
           ]
 
 
