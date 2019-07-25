@@ -19,8 +19,9 @@ import XMonad.Operations (refresh)
 import XMonad.Util.Loggers (logCurrent)
 import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
 import XMonad.Actions.PhysicalScreens (viewScreen)
-import XMonad.Prompt (defaultXPConfig,XPConfig(..))
+import XMonad.Prompt (XPConfig(..),XPPosition(..))
 import XMonad.Prompt.Input ((?+),inputPrompt)
+import XMonad.Prompt.Shell (shellPrompt)
 
 main :: IO ()
 main = do
@@ -28,7 +29,7 @@ main = do
   xmonad $ desktopConfig
     { manageHook = myHooks <+> manageDocks
                            <+> namedScratchpadManageHook scratchpads
-                           <+> manageHook defaultConfig
+                           <+> manageHook def
     , startupHook = setWMName "LG3D"
     , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
                                  -- onWorkspace "Web" webLayout
@@ -46,27 +47,27 @@ main = do
     ([((mod4Mask .|. shiftMask, xK_z), lockScreen)
     , ((mod4Mask .|. shiftMask, xK_m), windows W.swapMaster)
     , ((mod4Mask .|. shiftMask, xK_d), arandr)
-    , ((mod4Mask .|. shiftMask, xK_p), spawnSelected defaultGSConfig
-                                       ["ec","google-chrome","emacs",
+    , ((mod4Mask .|. shiftMask, xK_p), spawnSelected def
+                                         ["ec","firefox","emacs",
                                         "thunderbird", "vncviewer",
                                         "Morning","vlc",
-                                        "lxterminal","scrot -s","firefox",
+                                        "lxterminal","scrot -s",
                                         "slack","spotify","steam"])
-    , ((mod4Mask, xK_o), goToSelected defaultGSConfig)
-    , ((mod4Mask, xK_0), gridselectWorkspace defaultGSConfig W.view)
+    , ((mod4Mask, xK_o), goToSelected def)
+    , ((mod4Mask, xK_0), gridselectWorkspace def W.view)
     , ((mod4Mask, xK_x), namedScratchpadAction scratchpads "slack")
     , ((mod4Mask, xK_Return), namedScratchpadAction scratchpads "st")
     , ((mod4Mask .|. shiftMask, xK_F10) , shutdown)
     , ((0 , 0x1008FF11), voldown)
     , ((0 , 0x1008FF13), volup)
     , ((0 , 0x1008FF12), mute)
-    , ((mod4Mask, xK_k), kbdSelected defaultGSConfig)
-    , ((mod4Mask, xK_j), trackpadSelected defaultGSConfig)
+    , ((mod4Mask, xK_k), kbdSelected def)
+    , ((mod4Mask, xK_j), trackpadSelected def)
     , ((mod4Mask, xK_r), xmonadRecompile)
-    , ((mod4Mask, xK_p), dmenuRun)
-    , ((mod4Mask , xK_q), viewScreen 0)
-    , ((mod4Mask , xK_w), viewScreen 2)
-    , ((mod4Mask , xK_e), viewScreen 1)
+    , ((mod4Mask, xK_p), shellPrompt $ def { height = 25 , position = Top})
+    , ((mod4Mask , xK_q), viewScreen def 0)
+    , ((mod4Mask , xK_w), viewScreen def 2)
+    , ((mod4Mask , xK_e), viewScreen def 1)
     ]
     ++
     [((m .|. mod4Mask, k), windows $ f i)
@@ -128,7 +129,7 @@ isaWithImg dir arch img = do spawn $ "echo " ++ command
 isaPrompt ∷ String → String → X ()
 isaPrompt dir arch = inputPrompt myXPConfig "Lauch isabelle Session?" ?+ (isaWithImg dir arch)
 
-myXPConfig = defaultXPConfig { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }
+myXPConfig = def { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*" }
 
 isaSelected :: GSConfig String -> X ()
 isaSelected conf = do selection   ← gridselect conf (zip lst lst)

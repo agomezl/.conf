@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
-(dolist (source '(("melpa" . "http://melpa.milkbox.net/packages/")))
+(dolist (source '(("melpa" . "https://melpa.org/packages/")))
   (add-to-list 'package-archives source t))
 (package-initialize)
 
@@ -26,6 +26,10 @@
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(column-number-mode t)
  '(company-ghc-show-info t)
+ '(default-frame-alist
+    (quote
+     ((vertical-scroll-bars)
+      (font . "DejaVu Sans Mono-12"))))
  '(global-hl-line-mode nil)
  '(global-linum-mode t)
  '(haskell-process-auto-import-loaded-modules t)
@@ -48,7 +52,7 @@
  '(show-paren-mode t)
  '(sml-indent-level 2)
  '(tool-bar-mode nil)
- '(tramp-auto-save-directory "~/.save/" nil (tramp)))
+ '(tramp-auto-save-directory "~/.save/"))
 
 ;; Install any missing package
 (dolist (package package-selected-packages)

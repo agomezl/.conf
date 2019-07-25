@@ -171,7 +171,7 @@
 ;;;;;;;;;;;
 ;; HOL 4 ;;
 ;;;;;;;;;;;
-(unless (load "~/opt/HOL/tools/hol-mode" 'noError)
+(unless (load "~/.emacs.d/lisp/hol-mode" 'noError)
   (message "[ERROR] HOL4 emacs mode can't be found"))
 
 ;;;;;;;;;;;;;;;
