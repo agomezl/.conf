@@ -22,6 +22,7 @@ import XMonad.Actions.PhysicalScreens (viewScreen)
 import XMonad.Prompt (XPConfig(..),XPPosition(..))
 import XMonad.Prompt.Input ((?+),inputPrompt)
 import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Prompt.Pass (passPrompt)
 
 main :: IO ()
 main = do
@@ -64,7 +65,8 @@ main = do
     , ((mod4Mask, xK_k), kbdSelected def)
     , ((mod4Mask, xK_j), trackpadSelected def)
     , ((mod4Mask, xK_r), xmonadRecompile)
-    , ((mod4Mask, xK_p), shellPrompt $ def { height = 25 , position = Top})
+    , ((mod4Mask, xK_slash), passPrompt promptConfig)
+    , ((mod4Mask, xK_p), shellPrompt    promptConfig)
     , ((mod4Mask , xK_q), viewScreen def 0)
     , ((mod4Mask , xK_w), viewScreen def 2)
     , ((mod4Mask , xK_e), viewScreen def 1)
@@ -83,6 +85,8 @@ scratchpads = [ NS "slack"   "slack"      (resource =? "slack")   (customFloatin
                 NS "st"      "st -n term" (resource =? "term")    (customFloating rect)
               ] where rect = W.RationalRect 0.125 0.125 0.75 0.75
 
+promptConfig :: XPConfig
+promptConfig = def { height = 25 , position = Top}
 
 myHooks = composeAll
           [stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "Web"
