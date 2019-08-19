@@ -22,7 +22,6 @@ import XMonad.Actions.PhysicalScreens (viewScreen)
 import XMonad.Prompt (XPConfig(..),XPPosition(..))
 import XMonad.Prompt.Input ((?+),inputPrompt)
 import XMonad.Prompt.Shell (shellPrompt)
-import XMonad.Prompt.Pass (passPrompt)
 
 main :: IO ()
 main = do
@@ -65,7 +64,7 @@ main = do
     , ((mod4Mask, xK_k), kbdSelected def)
     , ((mod4Mask, xK_j), trackpadSelected def)
     , ((mod4Mask, xK_r), xmonadRecompile)
-    , ((mod4Mask, xK_slash), passPrompt promptConfig)
+    , ((mod4Mask, xK_slash), spawn "passmenu --type" )
     , ((mod4Mask, xK_p), shellPrompt    promptConfig)
     , ((mod4Mask , xK_q), viewScreen def 0)
     , ((mod4Mask , xK_w), viewScreen def 2)
