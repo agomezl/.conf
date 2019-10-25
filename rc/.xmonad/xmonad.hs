@@ -64,7 +64,9 @@ main = do
     , ((mod4Mask, xK_k), kbdSelected def)
     , ((mod4Mask, xK_j), trackpadSelected def)
     , ((mod4Mask, xK_r), xmonadRecompile)
-    , ((mod4Mask, xK_slash), spawn "passmenu --type" )
+    -- pass support
+    , ((mod4Mask, xK_slash),               spawn "passmenu --type" )
+    , ((mod4Mask .|. shiftMask, xK_slash), spawn "usermenu --type" )
     , ((mod4Mask, xK_p), shellPrompt    promptConfig)
     , ((mod4Mask , xK_q), viewScreen def 0)
     , ((mod4Mask , xK_w), viewScreen def 2)
