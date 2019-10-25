@@ -54,6 +54,7 @@ alias ls="run_ls"
 alias ll="run_ls -lh"
 
 alias ag="ag --pager less"
+alias ack="ack --pager less"
 
 # Powerline
 . /usr/share/powerline/zsh/powerline.zsh
