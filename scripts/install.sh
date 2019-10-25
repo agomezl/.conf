@@ -62,7 +62,7 @@ function setup-trayer {
 
 function setup-desktop {
     sudo dnf remove awesome dwm i3 ratpoison cinnamon
-    sudo cp ~/.conf/scripts/xmonad.desktop /usr/share/xsessions/
+    sudo cp /home/agomezl/.conf/scripts/xmonad.desktop /usr/share/xsessions/
 }
 
 function setup-dropbox {
