@@ -45,7 +45,7 @@
  '(org-agenda-files (quote ("~/Documents/TODO.org")))
  '(package-selected-packages
    (quote
-    (ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yasnippet yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode company-ghc auctex ac-haskell-process)))
+    (ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode company-ghc auctex ac-haskell-process)))
  '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
  '(scroll-bar-mode nil)
  '(select-enable-primary t)
@@ -64,12 +64,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "PfEd" :family "DejaVu Sans Mono"))))
  '(diff-refine-added ((t (:background "#188618" :foreground "#AFD8AF"))))
  '(diff-refine-removed ((t (:background "#AA1313" :foreground "#ECB3B3"))))
  '(fringe ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
  '(hol-free-variable ((t (:foreground "deep sky blue" :weight bold))))
  '(magit-diff-added-highlight ((t (:background "#3F5F3F" :foreground "#AFD8AF"))))
  '(magit-diff-removed-highlight ((t (:background "#7C4343" :foreground "#ECB3B3")))))
+
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; backups
 (setq delete-old-versions t
