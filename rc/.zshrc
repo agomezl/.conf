@@ -52,6 +52,7 @@ run_ls() {
 
 alias ls="run_ls"
 alias ll="run_ls -lh"
+alias rbackup="rsync -zarvh"
 
 alias ag="ag --pager less"
 alias ack="ack --pager less"
