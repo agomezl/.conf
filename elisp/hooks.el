@@ -56,14 +56,9 @@
           (lambda ()
             (general-hook)))
 
-(add-hook 'sml-mode-hook
+(add-hook 'holscript-mode-hook
           (lambda ()
-            (set-input-method "Agda")
-            (font-lock-add-keywords 'sml-mode
-              '(("Theorem" . font-lock-keyword-face)))
-
-
-            (setq electric-indent-chars'())))
+            (general-hook)))
 
 ;; latex-mode
 (add-hook 'LaTeX-mode-hook
