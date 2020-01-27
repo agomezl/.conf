@@ -58,6 +58,7 @@
 
 (add-hook 'holscript-mode-hook
           (lambda ()
+            (set-input-method "Agda")
             (general-hook)))
 
 ;; latex-mode
