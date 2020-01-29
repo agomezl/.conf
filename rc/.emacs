@@ -69,10 +69,11 @@
  '(diff-refine-removed ((t (:background "#AA1313" :foreground "#ECB3B3"))))
  '(fringe ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
  '(hol-free-variable ((t (:foreground "deep sky blue" :weight bold))))
- '(holscript-quoted-material ((t (:inherit font-lock-string-face))))
+ '(holscript-definition-syntax ((t (:inherit holscript-theorem-syntax))))
+ '(holscript-quoted-material ((t (:slant oblique))))
  '(holscript-smlsyntax ((t (:inherit font-lock-keyword-face))))
  '(holscript-theorem-syntax ((t (:inherit font-lock-keyword-face))))
- '(holscript-thmname-syntax ((t (:inherit font-lock-variable-name-face :weight bold))))
+ '(holscript-thmname-syntax ((t (:inherit font-lock-type-face :weight bold))))
  '(magit-diff-added-highlight ((t (:background "#3F5F3F" :foreground "#AFD8AF"))))
  '(magit-diff-removed-highlight ((t (:background "#7C4343" :foreground "#ECB3B3")))))
 
