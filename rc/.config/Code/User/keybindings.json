@@ -1,0 +1,8 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+k shift+\\",
+    "command": "workbench.action.terminal.runSelectedText",
+    "when" : "editorHasSelection"
+  }
+]

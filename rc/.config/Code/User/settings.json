@@ -1,0 +1,31 @@
+{
+    "window.menuBarVisibility": "default",
+    "window.titleBarStyle": "custom",
+    "files.exclude": {
+        "**/.hollogs": true,
+        "**/.HOLMK": true,
+        "**/*Theory.{ui,uo,sml,sig,dat}": true
+    },
+    "files.watcherExclude": {
+        "**/.hollogs/**": true,
+        "**/.HOLMK/**": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "editor.tabCompletion": "on",
+    "workbench.activityBar.visible": false,
+    "terminal.external.linuxExec": "st",
+    "terminal.integrated.fontFamily": "DejaVuSansMonoForPowerline Nerd Font",
+    "terminal.integrated.fontWeightBold": "normal",
+    "workbench.editor.showTabs": false,
+    "diffEditor.renderSideBySide": false,
+    "editor.minimap.enabled": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.tabSize": 2,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "window.zoomLevel": 1,
+    "latex-workshop.view.pdf.viewer": "browser",
+    "editor.fontFamily": "DejaVuSansMonoForPowerline Nerd Font",
+    "editor.fontSize": 14
+}
