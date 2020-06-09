@@ -14,7 +14,7 @@
     "editor.tabCompletion": "on",
     "workbench.activityBar.visible": false,
     "terminal.external.linuxExec": "st",
-    "terminal.integrated.fontFamily": "DejaVuSansMonoForPowerline Nerd Font",
+    "terminal.integrated.fontFamily": "JetBrains Mono",
     "terminal.integrated.fontWeightBold": "normal",
     "workbench.editor.showTabs": false,
     "diffEditor.renderSideBySide": false,
@@ -26,6 +26,7 @@
     "telemetry.enableCrashReporter": false,
     "window.zoomLevel": 1,
     "latex-workshop.view.pdf.viewer": "browser",
-    "editor.fontFamily": "DejaVuSansMonoForPowerline Nerd Font",
-    "editor.fontSize": 14
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true
 }
