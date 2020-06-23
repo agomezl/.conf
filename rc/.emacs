@@ -20,16 +20,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda-input-user-translations (quote (("blkb" "▪") ("bool" "𝔹") ("brt" "▸") ("blt" "◂"))))
+ '(agda-input-user-translations
+   (quote
+    (("blkb" "▪")
+     ("bool" "𝔹")
+     ("brt" "▸")
+     ("blt" "◂")
+     ("inb" "⋲"))))
  '(agda2-include-dirs (quote ("." "/home/agomezl/opt/agda-stdlib/src")))
  '(backup-by-copying t)
  '(backup-directory-alist (quote (("" . "~/.save/"))))
  '(column-number-mode t)
  '(company-ghc-show-info t)
- '(default-frame-alist
-    (quote
-     ((vertical-scroll-bars)
-      (font . "DejaVu Sans Mono-12"))))
+ '(default-frame-alist (quote ((vertical-scroll-bars))))
  '(global-hl-line-mode nil)
  '(global-linum-mode t)
  '(haskell-process-auto-import-loaded-modules t)
@@ -64,7 +67,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "PfEd" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "PfEd" :family "JetBrains Mono"))))
  '(diff-refine-added ((t (:background "#188618" :foreground "#AFD8AF"))))
  '(diff-refine-removed ((t (:background "#AA1313" :foreground "#ECB3B3"))))
  '(fringe ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))

@@ -64,6 +64,7 @@
 ;; latex-mode
 (add-hook 'LaTeX-mode-hook
           (lambda ()
+            (flyspell-mode)
             (tex-pdf-mode)))
 
 ;; Haskell-mode

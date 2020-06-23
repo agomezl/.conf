@@ -98,7 +98,7 @@ myHooks = composeAll
           ]
 
 
-baseLayout = tall ||| Mirror tall ||| smartBorders Full
+baseLayout = smartBorders Full ||| Mirror tall ||| tall
   where  tall = Tall 1 (3/100) (1/2)
 
 

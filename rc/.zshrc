@@ -45,13 +45,9 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Even better ls
-run_ls() {
-    LS_COLORS=$(ls_colors_generator) ls-i --color=auto -w $(tput cols) "$@"
-}
-
-alias ls="run_ls"
-alias ll="run_ls -lh"
+alias ls="lsd"
+alias ll="lsd -lh"
+alias lt="lsd --tree"
 alias rbackup="rsync -zarvh"
 
 alias ag="ag --pager less"
