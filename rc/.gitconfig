@@ -1,6 +1,6 @@
 [user]
-        email = alegomez544@gmail.com
-        name  = Alejandro Gomez-Londono
+        email = agomezl@pm.me
+        name  = Alejandro Gòmez-Londoño
 [init]
         templatedir = ~/.conf/git-templates/
 [color]
@@ -12,10 +12,9 @@
 [core]
         editor = nano
 [alias]
-        nicta    = config user.email alejadro.gomez@data61.csiro.au
-        personal = config user.email alegomez544@gmail.com
         fpush    = push --force-with-lease
         cleaner  = clean -fdX
         co       = checkout
         ci       = commit
+        lg       = log --date=short --pretty=format:'[%C(bold cyan)%h%Creset] - (%C(bold green)%ad%Creset) %s %C(dim white)- %cN'
         update   = fetch --all
