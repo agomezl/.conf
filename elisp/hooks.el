@@ -45,6 +45,7 @@
 ;; General hook
 (defun general-hook ()
   (interactive)
+  (set-fontset-font "fontset-default" (quote unicode) "DejaVuSansMonoForPowerline Nerd Font")
   (flyspell-prog-mode)
   (company-mode)
   (hs-minor-mode)

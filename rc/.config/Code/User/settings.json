@@ -28,5 +28,8 @@
     "latex-workshop.view.pdf.viewer": "browser",
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontSize": 14,
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "cSpell.enabled": true,
+    "breadcrumbs.enabled": true,
+    "workbench.statusBar.visible": true
 }
