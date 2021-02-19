@@ -80,6 +80,9 @@
  '(magit-diff-added-highlight ((t (:background "#3F5F3F" :foreground "#AFD8AF"))))
  '(magit-diff-removed-highlight ((t (:background "#7C4343" :foreground "#ECB3B3")))))
 
+;; (list-fontsets "fontset-default")
+;; (set-default-font "JetBrains Mono")
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; backups
@@ -129,6 +132,5 @@
 ;;;;;;;;;;;;
 ;; server ;;
 ;;;;;;;;;;;;
-
 
 (message "ALL DONE")

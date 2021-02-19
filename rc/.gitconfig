@@ -13,6 +13,8 @@
         editor = nano
 [alias]
         fpush    = push --force-with-lease
+        mupdate  = submodule update
+        msync    = submodule sync
         cleaner  = clean -fdX
         co       = checkout
         ci       = commit
