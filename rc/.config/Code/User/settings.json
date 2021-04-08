@@ -1,5 +1,5 @@
 {
-    "window.menuBarVisibility": "default",
+    "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "custom",
     "files.exclude": {
         "**/.hollogs": true,
@@ -14,7 +14,7 @@
     "editor.tabCompletion": "on",
     "workbench.activityBar.visible": false,
     "terminal.external.linuxExec": "st",
-    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
     "terminal.integrated.fontWeightBold": "normal",
     "workbench.editor.showTabs": false,
     "diffEditor.renderSideBySide": false,
@@ -24,12 +24,18 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "browser",
-    "editor.fontFamily": "JetBrains Mono",
-    "editor.fontSize": 14,
+    "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "editor.fontSize": 16,
     "editor.fontLigatures": true,
     "cSpell.enabled": true,
     "breadcrumbs.enabled": true,
-    "workbench.statusBar.visible": true
+    "workbench.statusBar.visible": true,
+    "settingsSync.keybindingsPerPlatform": false,
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "solid",
+    "git.autofetch": true,
+    "editor.mouseWheelZoom": true,
+    "python.languageServer": "Pylance"
 }
