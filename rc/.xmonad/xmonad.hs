@@ -41,6 +41,7 @@ main = do
     , terminal    = "st"
     , modMask     = mod4Mask
     , focusFollowsMouse = False
+    , focusedBorderColor = "#bc5653"
     , borderWidth = 2
     , workspaces = myWorkspaces
     } `additionalKeys`
