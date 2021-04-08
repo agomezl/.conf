@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME=""
 
 # ho-my-zsh plugins
-plugins=(git docker)
+plugins=(docker)
 
 # User configuration
 
@@ -51,7 +51,13 @@ alias lt="lsd --tree"
 alias rbackup="rsync -zarvh"
 
 alias ag="ag --pager less"
-alias ack="ack --pager less"
+alias agf="ag -g"
+
+alias dl="dirs -v"
+
+function agg(){
+    ag -G $2 $1
+}
 
 # Powerline
 . /usr/share/powerline/zsh/powerline.zsh
