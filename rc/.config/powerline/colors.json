@@ -1,0 +1,34 @@
+{
+    "colors" : {
+
+        "st:normal:black":   [0,"1c1c1c"],
+        "st:normal:red":     [1,"bc5653"],
+        "st:normal:green":   [2,"909d63"],
+        "st:normal:yellow":  [3,"ebc17a"],
+        "st:normal:blue":    [4,"7eaac7"],
+        "st:normal:magenta": [5,"aa6292"],
+        "st:normal:cyan":    [6,"86d3ce"],
+        "st:normal:white":   [7,"cacaca"],
+
+        "st:bright:black":   [8, "636363"],
+        "st:bright:red":     [9, "bc5653"],
+        "st:bright:green":   [10,"909d63"],
+        "st:bright:yellow":  [11,"ebc17a"],
+        "st:bright:blue":    [12,"7eaac7"],
+        "st:bright:magenta": [13,"aa6292"],
+        "st:bright:cyan":    [14,"86d3ce"],
+        "st:bright:white":   [15,"f7f7f7"],
+
+        "st:dim:black":   [16,"232323"],
+        "st:dim:red":     [17,"74423f"],
+        "st:dim:green":   [18,"5e6547"],
+        "st:dim:yellow":  [19,"8b7653"],
+        "st:dim:blue":    [20,"556b79"],
+        "st:dim:magenta": [21,"6e4962"],
+        "st:dim:cyan":    [22,"5c8482"],
+        "st:dim:white":   [23,"828282"],
+
+        "st:bg" :            [256,"2c2c2c"],
+        "st:fg" :            [257,"d6d6d6"]
+    }
+}
