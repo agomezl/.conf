@@ -168,7 +168,7 @@ trackpadSelected conf = do selection ← gridselect conf (zip lst lst)
 -- COMMANDS
 
 lockScreen :: X ()
-lockScreen = spawn "gnome-screensaver-command --lock"
+lockScreen = spawn "dm-tool lock"
 
 arandr :: X ()
 arandr = spawn "arandr"
