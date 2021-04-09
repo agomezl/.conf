@@ -24,6 +24,6 @@ fi
 export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
 
 volumeicon &
-~/.dropbox-dist/dropboxd &
+# ~/.dropbox-dist/dropboxd &
 
 exec xmonad
