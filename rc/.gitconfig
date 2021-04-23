@@ -1,6 +1,6 @@
 [user]
         email = agomezl@pm.me
-        name  = Alejandro Gòmez-Londoño
+        name  = Alejandro Gómez-Londoño
 [init]
         templatedir = ~/.conf/git-templates/
 [color]
