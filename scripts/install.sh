@@ -13,12 +13,15 @@ function dnf-base {
          fail2ban aspell aspell-en aspell-es \
          unrar readline environment-modules \
          powerline the_silver_searcher colordiff \
-         pdfgrep cabal-install ghc lxtask source-highlight
+         pdfgrep cabal-install ghc lxtask source-highlight \
+         bat fd-find lsd
 }
 
 function dnf-extras {
     sudo dnf -y install lm_sensors vlc NetworkManager-vpnc-gnome scrot \
-         texlive-scheme-full system-config-printer cups # broadcom-wl
+         texlive-scheme-full system-config-printer cups rlwrap code meld \
+         ncdu
+    # broadcom-wl
 }
 
 function dnf-gui {
