@@ -38,6 +38,9 @@ export LESS=' -R '
 # Modules
 export MODULEPATH=/home/agomezl/.conf/modules
 
+# dynamic libraries
+export LD_LIBRARY_PATH=/home/agomezl/PhD/cake/polyml/lib:$LD_LIBRARY_PATH
+
 # gpg-agent
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
