@@ -4,5 +4,49 @@
     "key": "ctrl+k shift+\\",
     "command": "workbench.action.terminal.runSelectedText",
     "when" : "editorHasSelection"
+  },
+  {
+    "key": "alt+tab",
+    "command": "search.action.focusSearchList",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "-liveshare.join",
+    "when": "liveshare:state != 'Joined' && liveshare:state != 'Shared'"
+  },
+  {
+    "key" : "alt+space",
+    "command" : "workbench.action.focusFirstEditorGroup",
+    "when"    : "terminalFocus"
+  },
+  {
+    "key" : "alt+space",
+    "command" : "workbench.action.terminal.toggleTerminal",
+    "when"    : "editorFocus"
+  },
+  {
+    "key" : "alt+x",
+    "command" : "workbench.action.showCommands"
+  },
+  {
+    "key" : "ctrl+k ctrl+shift+up",
+    "command" : "workbench.action.navigateUp"
+  },
+  {
+    "key" : "ctrl+k ctrl+shift+down",
+    "command" : "workbench.action.navigateDown"
+  },
+  {
+    "key" : "ctrl+k ctrl+shift+left",
+    "command" : "workbench.action.navigateLeft"
+  },
+  {
+    "key" : "ctrl+k ctrl+shift+right",
+    "command" : "workbench.action.navigateRight"
+  },
+  {
+    "key" : "alt+q",
+    "command" : "paragraphHardWrapper.wrap"
   }
 ]

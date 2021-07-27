@@ -21,10 +21,8 @@
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "newUntitledFile",
     "editor.tabSize": 2,
-    "diffEditor.ignoreTrimWhitespace": false,
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "browser",
     "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontSize": 16,
@@ -37,5 +35,15 @@
     "editor.cursorBlinking": "solid",
     "git.autofetch": true,
     "editor.mouseWheelZoom": true,
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "terminal.integrated.fontSize": 16,
+    "explorer.confirmDelete": false,
+    "cSpell.userWords": [
+        "parallelization"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+    80,100
+    ]
 }
