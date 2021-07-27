@@ -3,6 +3,7 @@
         name  = Alejandro Gómez-Londoño
 [init]
         templatedir = ~/.conf/git-templates/
+        defaultBranch = main
 [color]
         ui = true
 [push]
@@ -16,7 +17,15 @@
         mupdate  = submodule update
         msync    = submodule sync
         cleaner  = clean -fdX
+        mfetch   = submodule foreach "git fetch --all"
+        mcleaner = submodule foreach "git cleaner"
+	mlog     = submodule foreach "git --no-pager lg -n 3"
+	miss     = lg ^HEAD
         co       = checkout
         ci       = commit
-        lg       = log --date=short --pretty=format:'[%C(bold cyan)%h%Creset] - (%C(bold green)%ad%Creset) %s %C(dim white)- %cN'
+        lg       = log --date=short --pretty=tformat:'[%C(bold cyan)%h%Creset] - (%C(bold green)%ad%Creset) %s %C(dim white)- %cN%Creset%C(auto)%d%Creset'
         update   = fetch --all
+[pull]
+        ff = only
+[diff]
+        submodule = log
