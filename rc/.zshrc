@@ -31,6 +31,22 @@ export PATH=$HOME/.local/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 export auto_proxy="file:/home/agomezl/.conf/scripts/proxy.pac"
 
+# Terminal title
+export DISABLE_AUTO_TITLE="true"
+
+# Set title
+echo -ne "\033]0;${HOSTNAME}@${PWD##*/}\007"
+
+function precmd () {
+  TITLE="\033]0;${HOSTNAME}@${PWD##*/}\007"
+  echo -ne "$TITLE"
+}
+
+function preexec () {
+  TITLE="\033]0;${HOSTNAME}@${1%% *}\007"
+  echo -ne "$TITLE"
+}
+
 # colorhighlight for less
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export LESS=' -R '
