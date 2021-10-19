@@ -88,6 +88,7 @@ function setup-st {
     make clean install
     mkdir -p ~/.local/bin
     ln -s `pwd`/bin/st ~/.local/bin/
+    ln -s ${CONF_DIR}/scripts/tst.sh ~/.local/bin/tst
 }
 
 function setup-ls {

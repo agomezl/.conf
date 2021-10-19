@@ -57,7 +57,7 @@ main = do
     , ((mod4Mask, xK_o), goToSelected def)
     , ((mod4Mask, xK_0), gridselectWorkspace def W.view)
     , ((mod4Mask, xK_x), namedScratchpadAction scratchpads "slack")
-    , ((mod4Mask, xK_Return), namedScratchpadAction scratchpads "st")
+    , ((mod4Mask, xK_Return), namedScratchpadAction scratchpads "tst")
     , ((mod4Mask .|. shiftMask, xK_F10) , shutdown)
     , ((0 , 0x1008FF11), voldown)
     , ((0 , 0x1008FF13), volup)
@@ -84,7 +84,7 @@ myWorkspaces = [ "Web", "Edit", "Shell","Isa", "Mail","Music"] ++ map show [7 ..
 
 
 scratchpads = [ NS "slack"   "slack"      (resource =? "slack")   (customFloating rect),
-                NS "st"      "st -n term" (resource =? "term")    (customFloating rect)
+                NS "tst"      "tst"       (className =? "tabbed")    (customFloating rect)
               ] where rect = W.RationalRect 0.125 0.125 0.75 0.75
 
 promptConfig :: XPConfig
