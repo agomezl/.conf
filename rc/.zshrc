@@ -37,13 +37,28 @@ export DISABLE_AUTO_TITLE="true"
 # Set title
 echo -ne "\033]0;${HOSTNAME}@${PWD##*/}\007"
 
+function set-title() {
+  touch /tmp/$$.title
+  echo -ne "\033]0;${*}\007"
+}
+
+function unset-title() {
+  rm -f /tmp/$$.title
+}
+
 function precmd () {
-  TITLE="\033]0;${HOSTNAME}@${PWD##*/}\007"
+  # Do nothing if we are using an user title
+  [ -f /tmp/$$.title ] && return
+
+  TITLE="\033]0; ${HOSTNAME}@${PWD##*/}\007"
   echo -ne "$TITLE"
 }
 
 function preexec () {
-  TITLE="\033]0;${HOSTNAME}@${1%% *}\007"
+  # Do nothing if we are using an user title
+  [ -f /tmp/$$.title ] && return
+
+  TITLE="\033]0; ${HOSTNAME}@${1%% *}\007"
   echo -ne "$TITLE"
 }
 
