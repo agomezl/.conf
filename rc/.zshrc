@@ -94,4 +94,8 @@ function agg(){
 }
 
 # Powerline
-. /usr/share/powerline/zsh/powerline.zsh
+POWERLINE_FEDORA="/usr/share/powerline/zsh/powerline.zsh"
+[ -f ${POWERLINE_FEDORA} ] && . ${POWERLINE_FEDORA}
+
+POWERLINE_UBUNTU="/usr/share/powerline/bindings/zsh/powerline.zsh"
+[ -f ${POWERLINE_UBUNTU} ] && . ${POWERLINE_UBUNTU}
