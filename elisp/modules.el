@@ -69,16 +69,15 @@
 ;;;;;;;;;;;;;;;;
 ;; agda-input ;;
 ;;;;;;;;;;;;;;;;
-(unless (require 'agda-input)
-  (message "[ERROR] agda-input not loaded correctly"))
+;; (unless (require 'agda-input)
+;;   (message "[ERROR] agda-input not loaded correctly"))
 
 ;;;;;;;;;;;;;;;;
 ;;   agda     ;;
 ;;;;;;;;;;;;;;;;
-(unless (load-file (let ((coding-system-for-read 'utf-8))
-                     (shell-command-to-string "agda-mode locate")))
-  (message "[ERROR] agda-mode not loaded correctly"))
-
+;; (unless (load-file (let ((coding-system-for-read 'utf-8))
+;;                      (shell-command-to-string "agda-mode locate")))
+;;   (message "[ERROR] agda-mode not loaded correctly"))
 
 ;;;;;;;;;;;;;;;;
 ;; projectile ;;
@@ -88,13 +87,12 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (message "[ERROR] projectile not loaded correctly"))
 
-
 ;;;;;;;;;;;;;;;
 ;;  company  ;;
 ;;;;;;;;;;;;;;;
-(if (require 'company nil 'noError)
-    (add-to-list 'company-backends 'company-ghc)
-  (message "[ERROR] company not loaded correctly"))
+;; (if (require 'company nil 'noError)
+;;     (add-to-list 'company-backends)
+;;   (message "[ERROR] company not loaded correctly"))
 
 ;;;;;;;;;;;;;;;
 ;;   magit   ;;

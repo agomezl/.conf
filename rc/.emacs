@@ -21,18 +21,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(agda-input-user-translations
-   (quote
-    (("blkb" "▪")
+   '(("blkb" "▪")
      ("bool" "𝔹")
      ("brt" "▸")
      ("blt" "◂")
-     ("inb" "⋲"))))
- '(agda2-include-dirs (quote ("." "/home/agomezl/opt/agda-stdlib/src")))
+     ("inb" "⋲")))
+ '(agda2-include-dirs '("." "/home/agomezl/opt/agda-stdlib/src"))
  '(backup-by-copying t)
- '(backup-directory-alist (quote (("" . "~/.save/"))))
+ '(backup-directory-alist '(("" . "~/.save/")))
  '(column-number-mode t)
  '(company-ghc-show-info t)
- '(default-frame-alist (quote ((vertical-scroll-bars))))
+ '(default-frame-alist '((vertical-scroll-bars)))
  '(global-hl-line-mode nil)
  '(global-linum-mode t)
  '(haskell-process-auto-import-loaded-modules t)
@@ -42,14 +41,13 @@
  '(ibuffer-show-empty-filter-groups nil)
  '(inhibit-startup-screen t)
  '(ispell-dictionary "english")
- '(keyboard-coding-system (quote utf-8-unix))
+ '(keyboard-coding-system 'utf-8-unix)
  '(magit-diff-refine-hunk t)
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/Documents/TODO.org")))
+ '(org-agenda-files '("~/Documents/TODO.org"))
  '(package-selected-packages
-   (quote
-    (ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode company-ghc auctex ac-haskell-process)))
- '(safe-local-variable-values (quote ((org-todo-keyword-faces ("HOLD" . "yellow")))))
+   '(company ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode auctex ac-haskell-process))
+ '(safe-local-variable-values '((org-todo-keyword-faces ("HOLD" . "yellow"))))
  '(scroll-bar-mode nil)
  '(select-enable-primary t)
  '(show-paren-mode t)
@@ -67,7 +65,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "PfEd" :family "JetBrains Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "PfEd" :family "JetBrainsMono Nerd Font Mono"))))
  '(diff-refine-added ((t (:background "#188618" :foreground "#AFD8AF"))))
  '(diff-refine-removed ((t (:background "#AA1313" :foreground "#ECB3B3"))))
  '(fringe ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
