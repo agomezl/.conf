@@ -1,9 +1,9 @@
 Config { font = "xft:DejaVuSansMonoForPowerline Nerd Font:size=12"
        , borderColor = "black"
        , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
        , position = Static { xpos = 0, ypos = 0, width = 1728, height = 22 }
+       , bgColor = "#151515"
+       , fgColor = "#90a959"
        , allDesktops = False
        , lowerOnStart = True
        , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
