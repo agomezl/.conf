@@ -13,7 +13,8 @@ function dnf-base {
          unrar readline environment-modules \
          powerline the_silver_searcher colordiff \
          pdfgrep cabal-install ghc lxtask source-highlight \
-         dmenu
+         dmenu bat fd-find lsd xsetroot feh stalonetray volumeicon \
+         htop vim pip xinput
 }
 
 function dnf-extras {
@@ -24,7 +25,7 @@ function dnf-extras {
 function dnf-gui {
     sudo dnf -y install feh volumeicon arandr libXrandr-devel libX11-devel \
          qbittorrent libXinerama-devel libXft-devel gpicview \
-         evince network-manager-applet gnome-screensaver xcompmgr \
+         evince network-manager-applet xcompmgr \
          xmonad
 }
 
