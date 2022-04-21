@@ -28,7 +28,6 @@
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
     "cSpell.enabled": true,
-    "breadcrumbs.enabled": true,
     "workbench.statusBar.visible": true,
     "settingsSync.keybindingsPerPlatform": false,
     "editor.cursorStyle": "block",
@@ -39,11 +38,54 @@
     "terminal.integrated.fontSize": 16,
     "explorer.confirmDelete": false,
     "cSpell.userWords": [
+        "formedness",
         "parallelization"
     ],
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.renderWhitespace": "all",
     "editor.rulers": [
     80,100
+    ],
+    "insert-unicode.favorites": {
+        "directories": {
+            "Logic": {
+                "directories": {},
+                "items": [
+                    [
+                        8743
+                    ],
+                    [
+                        8744
+                    ],
+                    [
+                        8704
+                    ],
+                    [
+                        8707
+                    ],
+                    [
+                        10961
+                    ],
+                    [
+                        10233
+                    ],
+                    [
+                        8712
+                    ]
+                ]
+            }
+        },
+        "items": []
+    },
+    "editor.guides.bracketPairs": true,
+    "editor.guides.bracketPairsHorizontal": true,
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.tree.indent": 20,
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-11",
+            "path": "/usr/lib/jvm/java-11-openjdk-11.0.14.1.1-5.fc35.x86_64",
+            "default": true
+        }
     ]
 }

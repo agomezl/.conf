@@ -48,5 +48,91 @@
   {
     "key" : "alt+q",
     "command" : "paragraphHardWrapper.wrap"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "block-travel.jumpUp",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+up",
+    "command": "-block-travel.jumpUp",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "block-travel.jumpDown",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+down",
+    "command": "-block-travel.jumpDown",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "block-travel.selectDown",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-block-travel.selectDown",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "block-travel.selectUp",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-block-travel.selectUp",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+,",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+.",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+i",
+    "command": "bookmarks.list"
+  },
+  {
+    "key": "ctrl+shift+alt+i",
+    "command": "bookmarks.listFromAllFiles"
+  },
+  {
+    "key": "ctrl+k ctrl+space",
+    "command": "breadcrumbs.focusAndSelect",
+    "when": "breadcrumbsPossible"
+  },
+  {
+    "key": "ctrl+shift+[IntlBackslash]",
+    "command": "-breadcrumbs.focusAndSelect",
+    "when": "breadcrumbsPossible"
+  },
+  {
+    "key": "ctrl+escape",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "ctrl+alt+-",
+    "command": "-workbench.action.navigateBack"
   }
 ]
