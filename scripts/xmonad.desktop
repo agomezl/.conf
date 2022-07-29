@@ -1,3 +1,5 @@
 [Desktop Entry]
+DesktopNames=xmonad
 Name=xmonad
 Exec=/home/agomezl/.xinitrc
+X-GDM-SessionRegisters=true
