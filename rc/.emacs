@@ -46,7 +46,7 @@
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/Documents/TODO.org"))
  '(package-selected-packages
-   '(company ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode auctex ac-haskell-process))
+   '(company define-word ibuffer-tramp ibuffer-vc docker-tramp free-keys helm-ag helm-projectile hc-zenburn-theme zenburn-theme helm sml-mode multi-term ag flycheck yaml-mode web-mode s pcache multiple-cursors marshal markdown-mode magit logito fill-column-indicator dockerfile-mode auctex ac-haskell-process))
  '(safe-local-variable-values '((org-todo-keyword-faces ("HOLD" . "yellow"))))
  '(scroll-bar-mode nil)
  '(select-enable-primary t)

@@ -99,3 +99,5 @@ POWERLINE_FEDORA="/usr/share/powerline/zsh/powerline.zsh"
 
 POWERLINE_UBUNTU="/usr/share/powerline/bindings/zsh/powerline.zsh"
 [ -f ${POWERLINE_UBUNTU} ] && . ${POWERLINE_UBUNTU}
+
+[ -f "/home/agomezl/.ghcup/env" ] && source "/home/agomezl/.ghcup/env" # ghcup-env
