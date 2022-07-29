@@ -8,7 +8,12 @@
   {
     "key": "alt+tab",
     "command": "search.action.focusSearchList",
-    "when": "hasSearchResult || inSearchEditor"
+    "when": "hasSearchResult"
+  },
+  {
+    "key": "alt+tab",
+    "command": "workbench.action.navigateEditorGroups",
+    "when": "!hasSearchResult"
   },
   {
     "key": "ctrl+alt+j",
@@ -17,8 +22,7 @@
   },
   {
     "key" : "alt+space",
-    "command" : "workbench.action.focusFirstEditorGroup",
-    "when"    : "terminalFocus"
+    "command" : "workbench.action.focusLastEditorGroup",
   },
   {
     "key" : "alt+space",
@@ -129,8 +133,14 @@
   },
   {
     "key": "ctrl+escape",
-    "command": "workbench.action.navigateBack"
+    "command": "workbench.action.navigateBack",
   },
+  {
+    "key": "ctrl+escape",
+    "command": "search.action.clearSearchResults",
+    "when": "hasSearchResult"
+  },
+
   {
     "key": "ctrl+alt+-",
     "command": "-workbench.action.navigateBack"

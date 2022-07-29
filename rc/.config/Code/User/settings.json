@@ -21,8 +21,6 @@
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "newUntitledFile",
     "editor.tabSize": 2,
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
     "latex-workshop.view.pdf.viewer": "browser",
     "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontSize": 16,
@@ -38,6 +36,7 @@
     "terminal.integrated.fontSize": 16,
     "explorer.confirmDelete": false,
     "cSpell.userWords": [
+        "Arepa",
         "formedness",
         "parallelization"
     ],
@@ -87,5 +86,9 @@
             "path": "/usr/lib/jvm/java-11-openjdk-11.0.14.1.1-5.fc35.x86_64",
             "default": true
         }
-    ]
+    ],
+    "telemetry.telemetryLevel": "off",
+    "haskell.manageHLS": "GHCup",
+    "center-editor-window.threeStateToggle": true,
+    "window.zoomLevel": 1,
 }
