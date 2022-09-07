@@ -1,7 +1,7 @@
 Config { font = "xft:DejaVuSansMonoForPowerline Nerd Font:size=12"
        , borderColor = "black"
        , border = TopB
-       , position = Static { xpos = 0, ypos = 0, width = 1728, height = 22 }
+       , position = TopP 0 330
        , bgColor = "#151515"
        , fgColor = "#90a959"
        , allDesktops = False
@@ -20,5 +20,5 @@ Config { font = "xft:DejaVuSansMonoForPowerline Nerd Font:size=12"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %dynnetwork% | %cpu% | %memory% * %swap% * %battery% | [%kbd%] <fc=#ee9a00>%date%</fc> (%col%)-(%swe%)"
+       , template = "%StdinReader% }{ %dynnetwork% | %cpu% | %memory% * %swap% * %battery% | [%kbd%] <fc=#ee9a00>%date%</fc>"
        }
