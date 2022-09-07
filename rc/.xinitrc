@@ -13,7 +13,7 @@ xcompmgr &
 
 feh --bg-scale ~/Pictures/brown_mx.jpg &
 
-stalonetray &
+# stalonetray &
 
 if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &

@@ -25,7 +25,8 @@ import XMonad.Prompt.Shell (shellPrompt)
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "xmobar /home/agomezl/.xmobarrc"
+  xmproc <- spawnPipe "xmobar /home/s0001622/.xmobarrc"
+  spawn "stalonetray"
   xmonad $ desktopConfig
     { manageHook = myHooks <+> manageDocks
                            <+> namedScratchpadManageHook scratchpads
@@ -70,8 +71,8 @@ main = do
     , ((mod4Mask .|. shiftMask, xK_slash), spawn "usermenu --type" )
     , ((mod4Mask, xK_p), shellPrompt    promptConfig)
     , ((mod4Mask , xK_q), viewScreen def 0)
-    , ((mod4Mask , xK_w), viewScreen def 2)
-    , ((mod4Mask , xK_e), viewScreen def 1)
+    , ((mod4Mask , xK_w), viewScreen def 1)
+    , ((mod4Mask , xK_e), viewScreen def 2)
     ]
     ++
     [((m .|. mod4Mask, k), windows $ f i)
