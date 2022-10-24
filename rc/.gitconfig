@@ -11,7 +11,8 @@
 [merge]
         tool = emerge
 [core]
-        editor = nano
+        editor = ec
+        pager = delta
 [alias]
         fpush     = push --force-with-lease
         mupdate   = submodule update
@@ -23,6 +24,7 @@
         mcleanest = submodule foreach "git cleanest"
         mlog      = submodule foreach "git --no-pager lg -n 3"
         miss      = lg ^HEAD
+        extend    = commit -a --amend --no-edit
         st        = status -sb
         co        = checkout
         ci        = commit
@@ -32,3 +34,30 @@
         ff = only
 [diff]
         submodule = log
+
+[interactive]
+        diffFilter = delta --color-only --features=interactive
+
+[delta]
+        features = decorations
+        navigate = true
+
+[delta "interactive"]
+        keep-plus-minus-markers = false
+
+[delta "decorations"]
+        line-numbers = true
+        commit-decoration-style = bold yellow box ul
+        commit-style = raw
+        file-style = bold yellow ul
+        file-decoration-style = none
+        hunk-header-decoration-style = cyan box ul
+        hunk-header-file-style = red
+        hunk-header-line-number-style = "#067a00"
+        hunk-header-style = file line-number syntax
+
+[delta "line-numbers"]
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = 124
+    line-numbers-plus-style = 28

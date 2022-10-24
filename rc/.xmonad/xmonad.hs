@@ -67,9 +67,10 @@ main = do
     , ((mod4Mask, xK_j), trackpadSelected def)
     , ((mod4Mask, xK_r), xmonadRecompile)
     -- pass support
-    , ((mod4Mask, xK_slash),               spawn "passmenu --type" )
-    , ((mod4Mask .|. shiftMask, xK_slash), spawn "usermenu --type" )
-    , ((mod4Mask, xK_p), shellPrompt    promptConfig)
+    , ((mod4Mask, xK_slash),               spawn "passmenu --type -p Password -l 5" )
+    , ((mod4Mask .|. shiftMask, xK_slash), spawn "usermenu --type -p Username -l 5" )
+    , ((mod4Mask .|. shiftMask, xK_bracketright), spawn "src_viewer -p File -l 5" )
+    , ((mod4Mask, xK_p), spawn "dmenu_run -p Command -l 5")
     , ((mod4Mask , xK_q), viewScreen def 0)
     , ((mod4Mask , xK_w), viewScreen def 1)
     , ((mod4Mask , xK_e), viewScreen def 2)
@@ -93,10 +94,11 @@ promptConfig = def { height = 25 , position = Top}
 
 myHooks = composeAll
           [stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShift "Web"
-          ,className =? "Emacs"       --> doShift "Edit"
-          ,className =? "st-256color" --> doShift "Shell"
-          ,className =? "Thunderbird" --> doShift "Mail"
-          ,resource  =? "spotify"     --> doShift "Music"
+          ,className =? "Emacs"        --> doShift "Edit"
+          ,className =? "st-256color"  --> doShift "Shell"
+          ,className =? "st-viewer"    --> doRectFloat (RationalRect 0 0.5 0.5 0.5)
+          ,className =? "Thunderbird"  --> doShift "Mail"
+          ,resource  =? "spotify"      --> doShift "Music"
           ]
 
 

@@ -101,3 +101,11 @@ POWERLINE_UBUNTU="/usr/share/powerline/bindings/zsh/powerline.zsh"
 [ -f ${POWERLINE_UBUNTU} ] && . ${POWERLINE_UBUNTU}
 
 [ -f "/home/agomezl/.ghcup/env" ] && source "/home/agomezl/.ghcup/env" # ghcup-env
+
+export PATH=${HOME}/opt/GNAT/2021/bin:${PATH}
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+export FZF_CTRL_T_OPTS="--preview 'bat --color always {}'"
+

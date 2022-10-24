@@ -7,7 +7,7 @@ sudo apt-get upgrade
 
 # Install useful packges
 
-sudo apt-get -y install emacs terminator zsh powerline dos2unix python3-pip bat
+sudo apt-get -y install emacs terminator zsh powerline dos2unix python3-pip bat htop silversearcher-ag
 
 # Go to home
 cd ~
@@ -28,7 +28,7 @@ OH_ZSH_URL='https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
 [ -d ~/.oh-my-zsh ] || sh -c "$(curl -fsSL ${OH_ZSH_URL})"
 
 # Setup relevant conf files
-for RC_FILE in '.bashrc' '.emacs' '.gitconfig' '.zshrc' 'htoprc' '.config/powerline'
+for RC_FILE in '.bashrc' '.emacs' '.gitconfig' '.zshrc' 'htoprc' '.config/powerline' '.xmonad' '.xmobar'
 do
   ln -sfn ~/.conf/rc/${RC_FILE} ~/${RC_FILE}
 done
@@ -44,6 +44,3 @@ sudo dpkg -i lsd_0.20.1_amd64.deb
 
 # powerline gitstatus
 pip install powerline-gitstatus
-
-
-
