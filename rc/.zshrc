@@ -104,8 +104,21 @@ POWERLINE_UBUNTU="/usr/share/powerline/bindings/zsh/powerline.zsh"
 
 export PATH=${HOME}/opt/GNAT/2021/bin:${PATH}
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+[ -f "/usr/share/doc/fzf/examples/key-bindings.zsh" ] && \
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
 
-export FZF_CTRL_T_OPTS="--preview 'bat --color always {}'"
+[ -f "/usr/share/doc/fzf/examples/completion.zsh" ] && \
+  source /usr/share/doc/fzf/examples/completion.zsh
 
+[ -f "/usr/share/fzf/shell/key-bindings.zsh" ] && \
+  source /usr/share/fzf/shell/key-bindings.zsh
+
+[ -f "/usr/share/fzf/shell/completion.zsh" ] && \
+  source /usr/share/fzf/shell/completion.zsh
+
+export FZF_DEFAULT_COMMAND='rg --files'
+
+export FZF_CTRL_R_OPTS="--height 50% -1 --layout=reverse"
+
+export FZF_CTRL_T_OPTS="--height 50% -1 --layout=reverse --multi --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'"
+export KALEIDOSCOPE_DIR=/home/agomezl/git/Kaleidoscope

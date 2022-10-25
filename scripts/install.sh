@@ -15,7 +15,7 @@ function dnf-base {
          powerline the_silver_searcher colordiff \
          pdfgrep cabal-install ghc lxtask source-highlight \
          bat fd-find lsd xsetroot feh stalonetray volumeicon \
-         htop vim pip xinput
+         htop vim pip xinput fzf ripgrep
 }
 
 function dnf-extras {
