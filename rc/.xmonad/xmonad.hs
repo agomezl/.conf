@@ -15,6 +15,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
 import System.IO
+import XMonad.Hooks.StatusBar.PP (filterOutWsPP)
 import XMonad.Operations (refresh)
 import XMonad.Util.Loggers (logCurrent)
 import XMonad.Hooks.FadeInactive (fadeInactiveCurrentWSLogHook)
@@ -22,6 +23,9 @@ import XMonad.Actions.PhysicalScreens (viewScreen)
 import XMonad.Prompt (XPConfig(..),XPPosition(..))
 import XMonad.Prompt.Input ((?+),inputPrompt)
 import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Hooks.ManageHelpers (doRectFloat)
+import XMonad.StackSet (RationalRect(..))
+
 
 main :: IO ()
 main = do
@@ -35,7 +39,7 @@ main = do
     , layoutHook = avoidStruts $ onWorkspace "Shell" shellLayout $
                                  -- onWorkspace "Web" webLayout
                                  baseLayout
-    , logHook = (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP) xmobarPP
+    , logHook = (dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag]) xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 100
                         } >> fadeHook

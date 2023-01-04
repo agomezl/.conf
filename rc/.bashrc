@@ -50,3 +50,5 @@ if [[ "$TERM" == "dumb" ]]
 then
   PS1='$ '
 fi
+
+[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env" # ghcup-env
